@@ -22,4 +22,7 @@ Running Front end:
 3. Run npm Start to start your local server
 4. Visit hhtp://localhost:3000
 
-
+Running Back end:
+1. Run pip install virtualenv
+2. Run env/Scripts/activate
+3. Run python manage.py runserver
