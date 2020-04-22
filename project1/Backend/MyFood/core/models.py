@@ -26,7 +26,12 @@ BADGES_CHOICES = (
     ('D', 'danger'),
     ('W', 'warning'),
 )
-
+BADGES_CHOICES = (
+    ('H', 'Hot'),
+    ('N', 'New'),
+    ('BS', 'Best seller'),
+    ('R', 'Recommended'),
+)
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
