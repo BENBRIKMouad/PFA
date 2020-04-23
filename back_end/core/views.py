@@ -4,7 +4,7 @@ from .models import Product,Order,OrderProduct
 from django.views import View
 from django.views.generic import ListView,DetailView
 from .models import *
-from django.utils import  timezone
+from django.utils import timezone
 # Create your views here.
 
 class ProductList(ListView):
