@@ -1,9 +1,11 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-
-
+from django.template.defaultfilters import slugify
+from autoslug import AutoSlugField
 # Create your models here.
+
+
 class Category(models.Model):
     title = models.CharField(max_length=100)
 
@@ -27,6 +29,7 @@ BADGES_CHOICES = (
     ('W', 'warning'),
 )
 
+
 class Product(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField()
@@ -35,12 +38,16 @@ class Product(models.Model):
     subcategory = models.ForeignKey(SubCategory, blank=True, null=True, on_delete=models.CASCADE)
     badge = models.CharField(choices=BADGES_CHOICES, blank=True, null=True, max_length=1)
     badge_tag = models.CharField(blank=True, null=True, max_length=30)
-    slug = models.SlugField()
-    photo = models.ImageField(upload_to="gallery",null=True)
+    slug = models.SlugField(blank=True)
+    photo = models.ImageField(upload_to="gallery", null=True)
     description = models.TextField(default="No description available for this product")
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs): # new
+        self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("core:product", kwargs={'slug': self.slug})
@@ -54,14 +61,48 @@ class Product(models.Model):
 
 class OrderProduct(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    ordred = models.BooleanField(default=False)
+    ordered = models.BooleanField(default=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+
+    def get_total_price(self):
+        if self.product.discount_price > 0:
+            return self.quantity * self.product.discount_price
+        else:
+            return self.quantity * self.product.price
+
+    def saved_price(self):
+        if self.product.discount_price > 0:
+            return self. get_total_price(self)-self.product.price
+        else:
+            return 0
 
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     products = models.ManyToManyField(OrderProduct)
     order_date = models.DateTimeField(auto_now_add=True)
-    ordred = models.BooleanField(default=False)
-    ordred_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+    ordered_date = models.DateTimeField()
+
+
+
+class Client(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    address = models.CharField(max_length=1000)
+    tel = models.CharField(max_length=10)
+    city = models.CharField(max_length=50)
+    postal_code = models.CharField(max_length=8)
+
+    def __str__(self):
+        return "client "+self.user.username
+
+
+class DeliveryMan(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    tel = models.CharField(max_length=10)
+    city = models.CharField(max_length=50)
+    available = models.BooleanField()
+
+    def __str__(self):
+        return "delivery man "+self.user.username

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9986a849-3a1f-4b09-b5ed-4f9001c9d883" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/back_end.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Django_Lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/fields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/COPYING.LESSER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/app_settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/cs/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/cs/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/de/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/de/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/es/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/es/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ko/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ko/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/pl/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/pl/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ru/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ru/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/tr/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hans/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hans/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hant/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hant/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/app_settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/social_serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/django_urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/mixins.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/requirements.pip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/test_api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/test_social.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/PFA.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MyFood.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFood/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyFood/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFood/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyFood/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0002_auto_20200418_1913.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0003_auto_20200418_2236.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0004_category_sub_category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0005_auto_20200418_2243.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0006_product_badge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0007_auto_20200419_1135.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0008_product_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0009_auto_20200419_1445.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0010_auto_20200419_1445.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0011_auto_20200419_1820.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0012_product_discount_price.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0013_product_badge_tag.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0014_product_description.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0015_auto_20200419_1925.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0016_auto_20200419_1926.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0017_auto_20200419_2017.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0018_auto_20200420_1157.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0019_auto_20200420_1158.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0020_product_picture.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0021_auto_20200422_1405.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0022_remove_product_picture.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0023_product_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gallery/Boeuf-bourguignon-1920x1080.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gallery/eggs-breakfast-avocado-1296x728-header.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gallery/other.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gallery/other_L5qp2G5.jpg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1awyhVwgeOQMeRgzzQQ2WtsRMZE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="back_end" type="Python.DjangoServer" factoryName="Django server">
+      <module name="back_end" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="MyFood.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9986a849-3a1f-4b09-b5ed-4f9001c9d883" name="Default Changelist" comment="" />
+      <created>1587661070292</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587661070292</updated>
+      <workItem from="1587661076822" duration="3770000" />
+      <workItem from="1587730981839" duration="16599000" />
+      <workItem from="1587833710389" duration="6594000" />
+      <workItem from="1587910474589" duration="7801000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587913478124">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="1456" y="-121" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753317667" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1587913478124" />
+    <state x="413" y="116" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587920358009">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="116" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920358009" />
+    <state x="463" y="110" key="FileChooserDialogImpl" timestamp="1587661394965">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587661394965" />
+    <state width="1323" height="166" key="GridCell.Tab.0.bottom" timestamp="1587920423052">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="166" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
+    <state width="905" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
+    <state width="1323" height="166" key="GridCell.Tab.0.center" timestamp="1587920423052">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="166" key="GridCell.Tab.0.center/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
+    <state width="905" height="182" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
+    <state width="1323" height="166" key="GridCell.Tab.0.left" timestamp="1587920423052">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="166" key="GridCell.Tab.0.left/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
+    <state width="905" height="182" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
+    <state width="1323" height="166" key="GridCell.Tab.0.right" timestamp="1587920423052">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="166" key="GridCell.Tab.0.right/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
+    <state width="905" height="182" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1587911367208">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
+    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1587911367208">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
+    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1587911367208">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1587911367208">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
+    <state x="184" y="14" key="SettingsEditor" timestamp="1587913536742">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587913536742" />
+  </component>
+</project>

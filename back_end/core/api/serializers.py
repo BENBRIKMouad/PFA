@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from core.models import Product, Category, SubCategory, Order, OrderProduct
+from django.conf import settings
 
 
 class ProductSerializer(serializers.ModelSerializer):
