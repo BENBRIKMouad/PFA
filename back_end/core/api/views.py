@@ -13,6 +13,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.permissions import AllowAny
+from django.shortcuts import redirect
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -121,6 +122,34 @@ def remove_from_cart(request, slug):
     else:
         return Response({'message': 'You do not have an active order'})
 
+
+@api_view()
+@login_required
+def remove_single_product_from_cart(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+    )
+    if order_qs.exists():
+        order = order_qs[0]
+        # check if the order item is in the order
+        if order.products.filter(product__slug=product.slug).exists():
+            order_product = OrderProduct.objects.filter(
+                product=product,
+                user=request.user,
+                ordered=False
+            )[0]
+            if order_product.quantity == 1:
+                return redirect("core:api:remove_from_cart", slug=slug)
+            else:
+                order_product.quantity -= 1
+            order_product.save()
+            return Response({'message': 'This item was removed from your cart.'})
+        else:
+            return Response({'message': 'This item was not in your cart'})
+    else:
+        return Response({'message': 'You do not have an active order'})
 
 @api_view()
 @login_required

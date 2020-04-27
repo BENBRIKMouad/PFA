@@ -20,135 +20,409 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9986a849-3a1f-4b09-b5ed-4f9001c9d883" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/back_end.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Django_Lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/fields.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/autoslug/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/COPYING.LESSER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_autoslug-1.9.7.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_auth-0.9.5.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_rest_authtoken-1.2.4.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/app_settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/cs/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/cs/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/de/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/de/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/es/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/es/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ko/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ko/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/pl/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/pl/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ru/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/ru/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/tr/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hans/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hans/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hant/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/locale/zh_Hant/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/app_settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/registration/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/social_serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/django_urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/mixins.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/requirements.pip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/test_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/test_social.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/tests/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_auth/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/rest_authtoken/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six-1.14.0.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/six.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/PFA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MyFood.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0002_auto_20200426_1706.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0003_auto_20200426_1739.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0004_auto_20200426_1742.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0005_auto_20200426_1743.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0006_auto_20200426_1744.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0007_auto_20200426_1746.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0008_auto_20200426_1747.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0009_auto_20200426_1750.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0010_auto_20200426_1752.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0011_auto_20200426_1753.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0012_remove_order_ordered_date.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0013_order_ordered_date.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0014_auto_20200426_2356.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries-6.1.2.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries-6.1.2.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries-6.1.2.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries-6.1.2.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries-6.1.2.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries-6.1.2.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/fields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/graphql/types.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/ioc_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/af/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/af/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ar/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ar/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/bg/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/bg/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ca/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ca/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/cs/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/cs/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/da/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/da/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/de/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/de/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/el/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/el/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/en/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/en/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/eo/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/eo/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/es/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/es/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/et/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/et/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/eu/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/eu/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/eu_ES/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/eu_ES/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/fa/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/fa/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/fi/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/fi/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/fr/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/fr/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/he/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/he/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/he_IL/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/he_IL/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/hr/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/hr/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/hu/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/hu/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/hy/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/hy/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/it/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/it/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ja/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ja/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ko_KR/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ko_KR/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/lt/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/lt/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/lv/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/lv/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/mn/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/mn/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/nb/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/nb/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/nl/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/nl/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/pl/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/pl/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/pt_BR/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/pt_BR/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/pt_PT/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/pt_PT/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ro/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ro/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ru/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/ru/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sk/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sk/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sl/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sl/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sr_BA@latin/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sr_BA@latin/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sv/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/sv/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/tr_TR/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/tr_TR/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/uk/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/uk/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/zh_CN/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/zh_CN/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/zh_Hans/LC_MESSAGES/django.mo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/locale/zh_Hans/LC_MESSAGES/django.po" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/makesprite.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/release.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/serializer_fields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/__.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ad.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ae.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/af.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ag.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ai.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/al.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/am.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ao.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/aq.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ar.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/as.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/at.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/au.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/aw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ax.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/az.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ba.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bb.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bd.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/be.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bh.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bi.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bj.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bl.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bo.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bq.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/br.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bs.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bt.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bv.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/by.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/bz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ca.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cd.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ch.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ci.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ck.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cl.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/co.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cv.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cx.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cy.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/cz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/de.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/dj.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/dk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/dm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/do.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/dz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ec.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ee.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/eg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/eh.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/er.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/es.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/et.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/eu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/fi.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/fj.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/fk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/fm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/fo.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/fr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ga.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gb.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gd.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ge.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gh.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gi.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gl.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gp.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gq.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gs.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gt.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/gy.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/hk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/hm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/hn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/hr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ht.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/hu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/id.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ie.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/il.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/im.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/in.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/io.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/iq.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ir.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/is.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/it.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/je.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/jm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/jo.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/jp.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ke.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/kg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/kh.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ki.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/km.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/kn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/kp.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/kr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/kw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ky.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/kz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/la.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/lb.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/lc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/li.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/lk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/lr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ls.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/lt.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/lu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/lv.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ly.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ma.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/md.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/me.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mh.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ml.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mo.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mp.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mq.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ms.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mt.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mv.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mx.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/my.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/mz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/na.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/nc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ne.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/nf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ng.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ni.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/nl.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/no.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/np.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/nr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/nu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/nz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/om.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pa.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pe.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ph.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pl.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ps.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pt.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/pw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/py.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/qa.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/re.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ro.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/rs.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ru.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/rw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sa.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sb.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sd.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/se.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sh.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/si.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sj.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sl.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/so.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sprite-hq.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sprite-hq.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sprite.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sprite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ss.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/st.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sv.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sx.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sy.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/sz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/td.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/th.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tj.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tk.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tl.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/to.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tt.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tv.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/tz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ua.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ug.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/um.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/us.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/uy.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/uz.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/va.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/vc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ve.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/vg.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/vi.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/vn.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/vu.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/wf.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ws.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/ye.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/yt.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/za.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/zm.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/static/flags/zw.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/templatetags/countries.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/custom_countries.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/graphql/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/graphql/schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/graphql/test_country_type.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/graphql/test_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/test_admin_filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/test_countries.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/test_drf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/test_fields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/test_settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/test_tags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/tests/test_widgets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/Lib/site-packages/django_countries/widgets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/gallery/Boeuf-bourguignon-1920x1080.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/gallery/eggs-breakfast-avocado-1296x728-header.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFood/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyFood/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFood/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyFood/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0002_auto_20200418_1913.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0003_auto_20200418_2236.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0004_category_sub_category.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0005_auto_20200418_2243.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0006_product_badge.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0007_auto_20200419_1135.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0008_product_slug.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0009_auto_20200419_1445.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0010_auto_20200419_1445.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0011_auto_20200419_1820.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0012_product_discount_price.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0013_product_badge_tag.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0014_product_description.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0015_auto_20200419_1925.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0016_auto_20200419_1926.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0017_auto_20200419_2017.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0018_auto_20200420_1157.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0019_auto_20200420_1158.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0020_product_picture.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0021_auto_20200422_1405.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0022_remove_product_picture.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0023_product_photo.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gallery/Boeuf-bourguignon-1920x1080.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gallery/eggs-breakfast-avocado-1296x728-header.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gallery/other.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gallery/other_L5qp2G5.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +451,7 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
-    <configuration name="back_end" type="Python.DjangoServer" factoryName="Django server">
+    <configuration name="MyFood" type="Python.DjangoServer" factoryName="Django server">
       <module name="back_end" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -185,9 +459,9 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="MyFood.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\benbrik\Documents\GitHub\PFA\back_end\env\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
@@ -215,7 +489,7 @@
       <workItem from="1587661076822" duration="3770000" />
       <workItem from="1587730981839" duration="16599000" />
       <workItem from="1587833710389" duration="6594000" />
-      <workItem from="1587910474589" duration="7801000" />
+      <workItem from="1587910474589" duration="20272000" />
     </task>
     <servers />
   </component>
@@ -238,62 +512,69 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587913478124">
+    <state x="206" y="21" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587939651336">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="206" y="21" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587939651336" />
     <state x="1456" y="-121" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753317667" />
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1587913478124" />
     <state x="413" y="116" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587920358009">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="116" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920358009" />
-    <state x="463" y="110" key="FileChooserDialogImpl" timestamp="1587661394965">
+    <state x="463" y="110" key="FileChooserDialogImpl" timestamp="1587939611057">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="463" y="110" key="FileChooserDialogImpl/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587939611057" />
     <state x="463" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587661394965" />
-    <state width="1323" height="166" key="GridCell.Tab.0.bottom" timestamp="1587920423052">
+    <state width="1323" height="166" key="GridCell.Tab.0.bottom" timestamp="1587945359297">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="166" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1323" height="166" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587945359297" />
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
     <state width="905" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
-    <state width="1323" height="166" key="GridCell.Tab.0.center" timestamp="1587920423052">
+    <state width="1323" height="166" key="GridCell.Tab.0.center" timestamp="1587945359297">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="166" key="GridCell.Tab.0.center/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1323" height="166" key="GridCell.Tab.0.center/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587945359297" />
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
     <state width="905" height="182" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
-    <state width="1323" height="166" key="GridCell.Tab.0.left" timestamp="1587920423052">
+    <state width="1323" height="166" key="GridCell.Tab.0.left" timestamp="1587945359297">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="166" key="GridCell.Tab.0.left/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1323" height="166" key="GridCell.Tab.0.left/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587945359297" />
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
     <state width="905" height="182" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
-    <state width="1323" height="166" key="GridCell.Tab.0.right" timestamp="1587920423052">
+    <state width="1323" height="166" key="GridCell.Tab.0.right" timestamp="1587945359297">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="166" key="GridCell.Tab.0.right/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587920423052" />
+    <state width="1323" height="166" key="GridCell.Tab.0.right/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587945359297" />
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1587753561430" />
     <state width="905" height="182" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1587918066969" />
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1587911367208">
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1587939360945">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587939360945" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
-    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1587911367208">
+    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1587939360945">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587939360945" />
     <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
-    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1587911367208">
+    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1587939360945">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587939360945" />
     <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
-    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1587911367208">
+    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1587939360945">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587939360945" />
     <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1587911367208" />
-    <state x="184" y="14" key="SettingsEditor" timestamp="1587913536742">
+    <state x="184" y="14" key="SettingsEditor" timestamp="1587942100760">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="184" y="14" key="SettingsEditor/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1587942100760" />
     <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587913536742" />
   </component>
 </project>
