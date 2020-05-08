@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
@@ -31,6 +32,26 @@ BADGES_CHOICES = (
     ('W', 'warning'),
 )
 
+STATUS_CHOICES = (
+    ('ND', 'not delivered'),
+    ('D', 'delivered'),
+    ('Q', 'in queue'),
+    ('W', 'in the way'),
+)
+
+PAYMENTS_CHOICES = (
+    ('C', 'Credit card'),
+    ('P', 'PayPal')
+)
+
+
+class AdditionalItem(models.Model):
+    title = models.CharField(max_length=100)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.title
+
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
@@ -38,11 +59,12 @@ class Product(models.Model):
     discount_price = models.FloatField(blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory, blank=True, null=True, on_delete=models.CASCADE)
-    badge = models.CharField(choices=BADGES_CHOICES, blank=True, null=True, max_length=1)
+    # badge = models.CharField(choices=BADGES_CHOICES, blank=True, null=True, max_length=1)
     badge_tag = models.CharField(blank=True, null=True, max_length=30)
     slug = models.SlugField(blank=True)
     photo = models.ImageField(upload_to="gallery", null=True)
     description = models.TextField(default="No description available for this product")
+    additional_items = models.ManyToManyField(AdditionalItem, blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -59,6 +81,15 @@ class Product(models.Model):
 
     def get_remove_from_cart_url(self):
         return reverse("core:remove_from_cart", kwargs={'slug': self.slug})
+
+
+class ProductClient(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    additional_items = models.ManyToManyField(AdditionalItem, blank=True, null=True)
+
+    def __str__(self):
+        add = ", ".join(additional_item.title for additional_item in self.additional_items.all())
+        return self.product.title + " with "+add
 
 
 class OrderProduct(models.Model):
@@ -96,6 +127,29 @@ class ShippingAddress(models.Model):
     address = models.CharField(max_length=200)
     # country = CountryField()
     postal_code = models.CharField(max_length=7)
+    default = models.BooleanField(default=False)
+
+
+class CreditCardInfo(models.Model):
+    name = models.CharField(max_length=70)
+    number = models.CharField(max_length=70)
+    expiration_date = models.DateField()
+
+
+# class Coupon(models.Model):
+#     code = models.CharField(max_length=9)
+#     amount = models.FloatField()
+#     def __str__(self):
+#         return self.code
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(Client, null=True, blank=True, on_delete=models.SET_NULL)
+    amount = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    payment_type = models.CharField(choices=PAYMENTS_CHOICES, max_length=1)
+    PayPal_email = models.EmailField(null=True, blank=True)
+    credit_card_info = models.ForeignKey(CreditCardInfo, null=True, blank=True, on_delete=models.SET_NULL)
 
 
 class Order(models.Model):
@@ -104,6 +158,14 @@ class Order(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
     ordered = models.BooleanField(default=False)
     ordered_date = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=2, default='ND')
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, null=True, blank=True)
+    # coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL, null=True, blank=True)
+    # TODO : ADD delivery man foreign key this will change the payment,then removed from delivery man
+    ref_code = models.CharField(max_length=20)
+    received = models.BooleanField(default=False)
+    refund_requested = models.BooleanField(default=False)
+    refund_granted = models.BooleanField(default=False)
     shipping_address = models.ForeignKey(ShippingAddress,
                                          on_delete=models.SET_NULL,
                                          blank=True,
@@ -122,7 +184,17 @@ class Order(models.Model):
         total = 0
         for p in self.products.all():
             total += p.get_total_price()
+        # total -= self.coupon.amount
         return total
+
+
+class Refund(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    reason = models.TextField()
+    accepted = models.BooleanField()
+
+    def __str__(self):
+        return f"{self.pk}"
 
 
 class DeliveryMan(models.Model):
@@ -130,6 +202,11 @@ class DeliveryMan(models.Model):
     tel = models.CharField(max_length=10)
     city = models.CharField(max_length=50)
     available = models.BooleanField()
+    orders = models.ManyToManyField(Order, null=True, blank=True)
+    orders_delivered = models.IntegerField(default=0)
 
     def __str__(self):
         return "delivery man " + self.user.username
+
+
+

@@ -1,0 +1,2061 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/add_to_cart/{slug}:
+    get:
+      operationId: Retrieveadd_to_cart
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/remove_from_cart/{slug}:
+    get:
+      operationId: Retrieveremove_from_cart
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/cart_item_count/:
+    get:
+      operationId: listcart_item_counts
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/order_summary/:
+    get:
+      operationId: listorder_summarys
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/remove_single_product_from_cart/{slug}:
+    get:
+      operationId: Retrieveremove_single_product_from_cart
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/payment/{id}:
+    get:
+      operationId: Retrievepayment
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/total/:
+    get:
+      operationId: listtotals
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/request_refund/:
+    get:
+      operationId: listrequest_refunds
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+    post:
+      operationId: Createrequest_refund
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/product/:
+    get:
+      operationId: listProducts
+      description: A viewset for viewing and editing product instances.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    title:
+                      type: string
+                      maxLength: 100
+                    price:
+                      type: number
+                    discount_price:
+                      type: number
+                      nullable: true
+                    badge:
+                      enum:
+                      - P
+                      - S
+                      - D
+                      - W
+                      nullable: true
+                    badge_tag:
+                      type: string
+                      nullable: true
+                      maxLength: 30
+                    slug:
+                      type: string
+                      maxLength: 50
+                      pattern: ^[-a-zA-Z0-9_]+$
+                    photo:
+                      type: string
+                      format: binary
+                      nullable: true
+                    description:
+                      type: string
+                    category:
+                      type: integer
+                      nullable: true
+                    subcategory:
+                      type: integer
+                      nullable: true
+                  required:
+                  - title
+                  - price
+          description: ''
+    post:
+      operationId: createProduct
+      description: A viewset for viewing and editing product instances.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                price:
+                  type: number
+                discount_price:
+                  type: number
+                  nullable: true
+                badge:
+                  enum:
+                  - P
+                  - S
+                  - D
+                  - W
+                  nullable: true
+                badge_tag:
+                  type: string
+                  nullable: true
+                  maxLength: 30
+                slug:
+                  type: string
+                  maxLength: 50
+                  pattern: ^[-a-zA-Z0-9_]+$
+                photo:
+                  type: string
+                  format: binary
+                  nullable: true
+                description:
+                  type: string
+                category:
+                  type: integer
+                  nullable: true
+                subcategory:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - price
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  price:
+                    type: number
+                  discount_price:
+                    type: number
+                    nullable: true
+                  badge:
+                    enum:
+                    - P
+                    - S
+                    - D
+                    - W
+                    nullable: true
+                  badge_tag:
+                    type: string
+                    nullable: true
+                    maxLength: 30
+                  slug:
+                    type: string
+                    maxLength: 50
+                    pattern: ^[-a-zA-Z0-9_]+$
+                  photo:
+                    type: string
+                    format: binary
+                    nullable: true
+                  description:
+                    type: string
+                  category:
+                    type: integer
+                    nullable: true
+                  subcategory:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - price
+          description: ''
+  /api/product/{id}/:
+    get:
+      operationId: retrieveProduct
+      description: A viewset for viewing and editing product instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  price:
+                    type: number
+                  discount_price:
+                    type: number
+                    nullable: true
+                  badge:
+                    enum:
+                    - P
+                    - S
+                    - D
+                    - W
+                    nullable: true
+                  badge_tag:
+                    type: string
+                    nullable: true
+                    maxLength: 30
+                  slug:
+                    type: string
+                    maxLength: 50
+                    pattern: ^[-a-zA-Z0-9_]+$
+                  photo:
+                    type: string
+                    format: binary
+                    nullable: true
+                  description:
+                    type: string
+                  category:
+                    type: integer
+                    nullable: true
+                  subcategory:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - price
+          description: ''
+    put:
+      operationId: updateProduct
+      description: A viewset for viewing and editing product instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                price:
+                  type: number
+                discount_price:
+                  type: number
+                  nullable: true
+                badge:
+                  enum:
+                  - P
+                  - S
+                  - D
+                  - W
+                  nullable: true
+                badge_tag:
+                  type: string
+                  nullable: true
+                  maxLength: 30
+                slug:
+                  type: string
+                  maxLength: 50
+                  pattern: ^[-a-zA-Z0-9_]+$
+                photo:
+                  type: string
+                  format: binary
+                  nullable: true
+                description:
+                  type: string
+                category:
+                  type: integer
+                  nullable: true
+                subcategory:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - price
+          application/x-www-form-urlencoded:
+            schema: *id002
+          multipart/form-data:
+            schema: *id002
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  price:
+                    type: number
+                  discount_price:
+                    type: number
+                    nullable: true
+                  badge:
+                    enum:
+                    - P
+                    - S
+                    - D
+                    - W
+                    nullable: true
+                  badge_tag:
+                    type: string
+                    nullable: true
+                    maxLength: 30
+                  slug:
+                    type: string
+                    maxLength: 50
+                    pattern: ^[-a-zA-Z0-9_]+$
+                  photo:
+                    type: string
+                    format: binary
+                    nullable: true
+                  description:
+                    type: string
+                  category:
+                    type: integer
+                    nullable: true
+                  subcategory:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - price
+          description: ''
+    patch:
+      operationId: partial_updateProduct
+      description: A viewset for viewing and editing product instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                price:
+                  type: number
+                discount_price:
+                  type: number
+                  nullable: true
+                badge:
+                  enum:
+                  - P
+                  - S
+                  - D
+                  - W
+                  nullable: true
+                badge_tag:
+                  type: string
+                  nullable: true
+                  maxLength: 30
+                slug:
+                  type: string
+                  maxLength: 50
+                  pattern: ^[-a-zA-Z0-9_]+$
+                photo:
+                  type: string
+                  format: binary
+                  nullable: true
+                description:
+                  type: string
+                category:
+                  type: integer
+                  nullable: true
+                subcategory:
+                  type: integer
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  price:
+                    type: number
+                  discount_price:
+                    type: number
+                    nullable: true
+                  badge:
+                    enum:
+                    - P
+                    - S
+                    - D
+                    - W
+                    nullable: true
+                  badge_tag:
+                    type: string
+                    nullable: true
+                    maxLength: 30
+                  slug:
+                    type: string
+                    maxLength: 50
+                    pattern: ^[-a-zA-Z0-9_]+$
+                  photo:
+                    type: string
+                    format: binary
+                    nullable: true
+                  description:
+                    type: string
+                  category:
+                    type: integer
+                    nullable: true
+                  subcategory:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - price
+          description: ''
+    delete:
+      operationId: destroyProduct
+      description: A viewset for viewing and editing product instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/order_product/:
+    get:
+      operationId: listOrderProducts
+      description: A viewset for viewing and editing OrderProduct instances.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    ordered:
+                      type: boolean
+                    quantity:
+                      type: integer
+                    user:
+                      type: integer
+                    product:
+                      type: integer
+                  required:
+                  - user
+                  - product
+          description: ''
+    post:
+      operationId: createOrderProduct
+      description: A viewset for viewing and editing OrderProduct instances.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                ordered:
+                  type: boolean
+                quantity:
+                  type: integer
+                user:
+                  type: integer
+                product:
+                  type: integer
+              required:
+              - user
+              - product
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  quantity:
+                    type: integer
+                  user:
+                    type: integer
+                  product:
+                    type: integer
+                required:
+                - user
+                - product
+          description: ''
+  /api/order_product/{id}/:
+    get:
+      operationId: retrieveOrderProduct
+      description: A viewset for viewing and editing OrderProduct instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order product.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  quantity:
+                    type: integer
+                  user:
+                    type: integer
+                  product:
+                    type: integer
+                required:
+                - user
+                - product
+          description: ''
+    put:
+      operationId: updateOrderProduct
+      description: A viewset for viewing and editing OrderProduct instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                ordered:
+                  type: boolean
+                quantity:
+                  type: integer
+                user:
+                  type: integer
+                product:
+                  type: integer
+              required:
+              - user
+              - product
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  quantity:
+                    type: integer
+                  user:
+                    type: integer
+                  product:
+                    type: integer
+                required:
+                - user
+                - product
+          description: ''
+    patch:
+      operationId: partial_updateOrderProduct
+      description: A viewset for viewing and editing OrderProduct instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                ordered:
+                  type: boolean
+                quantity:
+                  type: integer
+                user:
+                  type: integer
+                product:
+                  type: integer
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  quantity:
+                    type: integer
+                  user:
+                    type: integer
+                  product:
+                    type: integer
+                required:
+                - user
+                - product
+          description: ''
+    delete:
+      operationId: destroyOrderProduct
+      description: A viewset for viewing and editing OrderProduct instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order product.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/order/:
+    get:
+      operationId: listOrders
+      description: A viewset for viewing and editing  Order instances.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    order_date:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    ordered:
+                      type: boolean
+                    ordered_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    status:
+                      enum:
+                      - ND
+                      - D
+                      - Q
+                      - W
+                    ref_code:
+                      type: string
+                      maxLength: 20
+                    received:
+                      type: boolean
+                    refund_requested:
+                      type: boolean
+                    refund_granted:
+                      type: boolean
+                    user:
+                      type: integer
+                    payment:
+                      type: integer
+                      nullable: true
+                    shipping_address:
+                      type: integer
+                      nullable: true
+                    products:
+                      type: array
+                      items:
+                        type: integer
+                  required:
+                  - ref_code
+                  - user
+                  - products
+          description: ''
+    post:
+      operationId: createOrder
+      description: A viewset for viewing and editing  Order instances.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                ordered:
+                  type: boolean
+                ordered_date:
+                  type: string
+                  format: date-time
+                  nullable: true
+                status:
+                  enum:
+                  - ND
+                  - D
+                  - Q
+                  - W
+                ref_code:
+                  type: string
+                  maxLength: 20
+                received:
+                  type: boolean
+                refund_requested:
+                  type: boolean
+                refund_granted:
+                  type: boolean
+                user:
+                  type: integer
+                payment:
+                  type: integer
+                  nullable: true
+                shipping_address:
+                  type: integer
+                  nullable: true
+                products:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - ref_code
+              - user
+              - products
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  order_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  ordered_date:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  status:
+                    enum:
+                    - ND
+                    - D
+                    - Q
+                    - W
+                  ref_code:
+                    type: string
+                    maxLength: 20
+                  received:
+                    type: boolean
+                  refund_requested:
+                    type: boolean
+                  refund_granted:
+                    type: boolean
+                  user:
+                    type: integer
+                  payment:
+                    type: integer
+                    nullable: true
+                  shipping_address:
+                    type: integer
+                    nullable: true
+                  products:
+                    type: array
+                    items:
+                      type: integer
+                required:
+                - ref_code
+                - user
+                - products
+          description: ''
+  /api/order/{id}/:
+    get:
+      operationId: retrieveOrder
+      description: A viewset for viewing and editing  Order instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  order_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  ordered_date:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  status:
+                    enum:
+                    - ND
+                    - D
+                    - Q
+                    - W
+                  ref_code:
+                    type: string
+                    maxLength: 20
+                  received:
+                    type: boolean
+                  refund_requested:
+                    type: boolean
+                  refund_granted:
+                    type: boolean
+                  user:
+                    type: integer
+                  payment:
+                    type: integer
+                    nullable: true
+                  shipping_address:
+                    type: integer
+                    nullable: true
+                  products:
+                    type: array
+                    items:
+                      type: integer
+                required:
+                - ref_code
+                - user
+                - products
+          description: ''
+    put:
+      operationId: updateOrder
+      description: A viewset for viewing and editing  Order instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                ordered:
+                  type: boolean
+                ordered_date:
+                  type: string
+                  format: date-time
+                  nullable: true
+                status:
+                  enum:
+                  - ND
+                  - D
+                  - Q
+                  - W
+                ref_code:
+                  type: string
+                  maxLength: 20
+                received:
+                  type: boolean
+                refund_requested:
+                  type: boolean
+                refund_granted:
+                  type: boolean
+                user:
+                  type: integer
+                payment:
+                  type: integer
+                  nullable: true
+                shipping_address:
+                  type: integer
+                  nullable: true
+                products:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - ref_code
+              - user
+              - products
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  order_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  ordered_date:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  status:
+                    enum:
+                    - ND
+                    - D
+                    - Q
+                    - W
+                  ref_code:
+                    type: string
+                    maxLength: 20
+                  received:
+                    type: boolean
+                  refund_requested:
+                    type: boolean
+                  refund_granted:
+                    type: boolean
+                  user:
+                    type: integer
+                  payment:
+                    type: integer
+                    nullable: true
+                  shipping_address:
+                    type: integer
+                    nullable: true
+                  products:
+                    type: array
+                    items:
+                      type: integer
+                required:
+                - ref_code
+                - user
+                - products
+          description: ''
+    patch:
+      operationId: partial_updateOrder
+      description: A viewset for viewing and editing  Order instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              properties:
+                ordered:
+                  type: boolean
+                ordered_date:
+                  type: string
+                  format: date-time
+                  nullable: true
+                status:
+                  enum:
+                  - ND
+                  - D
+                  - Q
+                  - W
+                ref_code:
+                  type: string
+                  maxLength: 20
+                received:
+                  type: boolean
+                refund_requested:
+                  type: boolean
+                refund_granted:
+                  type: boolean
+                user:
+                  type: integer
+                payment:
+                  type: integer
+                  nullable: true
+                shipping_address:
+                  type: integer
+                  nullable: true
+                products:
+                  type: array
+                  items:
+                    type: integer
+          application/x-www-form-urlencoded:
+            schema: *id009
+          multipart/form-data:
+            schema: *id009
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  order_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  ordered:
+                    type: boolean
+                  ordered_date:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  status:
+                    enum:
+                    - ND
+                    - D
+                    - Q
+                    - W
+                  ref_code:
+                    type: string
+                    maxLength: 20
+                  received:
+                    type: boolean
+                  refund_requested:
+                    type: boolean
+                  refund_granted:
+                    type: boolean
+                  user:
+                    type: integer
+                  payment:
+                    type: integer
+                    nullable: true
+                  shipping_address:
+                    type: integer
+                    nullable: true
+                  products:
+                    type: array
+                    items:
+                      type: integer
+                required:
+                - ref_code
+                - user
+                - products
+          description: ''
+    delete:
+      operationId: destroyOrder
+      description: A viewset for viewing and editing  Order instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/category/:
+    get:
+      operationId: listCategorys
+      description: A viewset for viewing and editing Category instances.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    title:
+                      type: string
+                      maxLength: 100
+                  required:
+                  - title
+          description: ''
+    post:
+      operationId: createCategory
+      description: A viewset for viewing and editing Category instances.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+              required:
+              - title
+          application/x-www-form-urlencoded:
+            schema: *id010
+          multipart/form-data:
+            schema: *id010
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                required:
+                - title
+          description: ''
+  /api/category/{id}/:
+    get:
+      operationId: retrieveCategory
+      description: A viewset for viewing and editing Category instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this category.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                required:
+                - title
+          description: ''
+    put:
+      operationId: updateCategory
+      description: A viewset for viewing and editing Category instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this category.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+              required:
+              - title
+          application/x-www-form-urlencoded:
+            schema: *id011
+          multipart/form-data:
+            schema: *id011
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                required:
+                - title
+          description: ''
+    patch:
+      operationId: partial_updateCategory
+      description: A viewset for viewing and editing Category instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this category.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id012
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+          application/x-www-form-urlencoded:
+            schema: *id012
+          multipart/form-data:
+            schema: *id012
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                required:
+                - title
+          description: ''
+    delete:
+      operationId: destroyCategory
+      description: A viewset for viewing and editing Category instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this category.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/subcategory/:
+    get:
+      operationId: listSubCategorys
+      description: A viewset for viewing and editing SubCategory instances.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    title:
+                      type: string
+                      maxLength: 100
+                    category:
+                      type: integer
+                  required:
+                  - title
+                  - category
+          description: ''
+    post:
+      operationId: createSubCategory
+      description: A viewset for viewing and editing SubCategory instances.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id013
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                category:
+                  type: integer
+              required:
+              - title
+              - category
+          application/x-www-form-urlencoded:
+            schema: *id013
+          multipart/form-data:
+            schema: *id013
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  category:
+                    type: integer
+                required:
+                - title
+                - category
+          description: ''
+  /api/subcategory/{id}/:
+    get:
+      operationId: retrieveSubCategory
+      description: A viewset for viewing and editing SubCategory instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this sub category.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  category:
+                    type: integer
+                required:
+                - title
+                - category
+          description: ''
+    put:
+      operationId: updateSubCategory
+      description: A viewset for viewing and editing SubCategory instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this sub category.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id014
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                category:
+                  type: integer
+              required:
+              - title
+              - category
+          application/x-www-form-urlencoded:
+            schema: *id014
+          multipart/form-data:
+            schema: *id014
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  category:
+                    type: integer
+                required:
+                - title
+                - category
+          description: ''
+    patch:
+      operationId: partial_updateSubCategory
+      description: A viewset for viewing and editing SubCategory instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this sub category.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id015
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                category:
+                  type: integer
+          application/x-www-form-urlencoded:
+            schema: *id015
+          multipart/form-data:
+            schema: *id015
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  category:
+                    type: integer
+                required:
+                - title
+                - category
+          description: ''
+    delete:
+      operationId: destroySubCategory
+      description: A viewset for viewing and editing SubCategory instances.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this sub category.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /rest-auth/logout/:
+    get:
+      operationId: listLogouts
+      description: 'Calls Django logout method and delete the Token object
+
+        assigned to the current User object.
+
+
+        Accepts/Returns nothing.'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+    post:
+      operationId: CreateLogout
+      description: 'Calls Django logout method and delete the Token object
+
+        assigned to the current User object.
+
+
+        Accepts/Returns nothing.'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /rest-auth/user/:
+    get:
+      operationId: RetrieveUserDetails
+      description: 'Reads and updates UserModel fields
+
+        Accepts GET, PUT, PATCH methods.
+
+
+        Default accepted fields: username, first_name, last_name
+
+        Default display fields: pk, username, email, first_name, last_name
+
+        Read-only fields: pk, email
+
+
+        Returns UserModel fields.'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  pk:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  email:
+                    type: string
+                    format: email
+                    readOnly: true
+                  first_name:
+                    type: string
+                    maxLength: 30
+                  last_name:
+                    type: string
+                    maxLength: 150
+                required:
+                - username
+          description: ''
+    put:
+      operationId: UpdateUserDetails
+      description: 'Reads and updates UserModel fields
+
+        Accepts GET, PUT, PATCH methods.
+
+
+        Default accepted fields: username, first_name, last_name
+
+        Default display fields: pk, username, email, first_name, last_name
+
+        Read-only fields: pk, email
+
+
+        Returns UserModel fields.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id016
+              properties:
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                first_name:
+                  type: string
+                  maxLength: 30
+                last_name:
+                  type: string
+                  maxLength: 150
+              required:
+              - username
+          application/x-www-form-urlencoded:
+            schema: *id016
+          multipart/form-data:
+            schema: *id016
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  pk:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  email:
+                    type: string
+                    format: email
+                    readOnly: true
+                  first_name:
+                    type: string
+                    maxLength: 30
+                  last_name:
+                    type: string
+                    maxLength: 150
+                required:
+                - username
+          description: ''
+    patch:
+      operationId: PartialUpdateUserDetails
+      description: 'Reads and updates UserModel fields
+
+        Accepts GET, PUT, PATCH methods.
+
+
+        Default accepted fields: username, first_name, last_name
+
+        Default display fields: pk, username, email, first_name, last_name
+
+        Read-only fields: pk, email
+
+
+        Returns UserModel fields.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id017
+              properties:
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                first_name:
+                  type: string
+                  maxLength: 30
+                last_name:
+                  type: string
+                  maxLength: 150
+          application/x-www-form-urlencoded:
+            schema: *id017
+          multipart/form-data:
+            schema: *id017
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  pk:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  email:
+                    type: string
+                    format: email
+                    readOnly: true
+                  first_name:
+                    type: string
+                    maxLength: 30
+                  last_name:
+                    type: string
+                    maxLength: 150
+                required:
+                - username
+          description: ''
+  /rest-auth/password/reset/:
+    post:
+      operationId: CreatePasswordReset
+      description: 'Calls Django Auth PasswordResetForm save method.
+
+
+        Accepts the following POST parameters: email
+
+        Returns the success/fail message.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id018
+              properties:
+                email:
+                  type: string
+                  format: email
+              required:
+              - email
+          application/x-www-form-urlencoded:
+            schema: *id018
+          multipart/form-data:
+            schema: *id018
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    format: email
+                required:
+                - email
+          description: ''
+  /rest-auth/password/reset/confirm/:
+    post:
+      operationId: CreatePasswordResetConfirm
+      description: "Password reset e-mail link is confirmed, therefore\nthis resets\
+        \ the user's password.\n\nAccepts the following POST parameters: token, uid,\n\
+        \    new_password1, new_password2\nReturns the success/fail message."
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id019
+              properties:
+                new_password1:
+                  type: string
+                  maxLength: 128
+                new_password2:
+                  type: string
+                  maxLength: 128
+                uid:
+                  type: string
+                token:
+                  type: string
+              required:
+              - new_password1
+              - new_password2
+              - uid
+              - token
+          application/x-www-form-urlencoded:
+            schema: *id019
+          multipart/form-data:
+            schema: *id019
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  new_password1:
+                    type: string
+                    maxLength: 128
+                  new_password2:
+                    type: string
+                    maxLength: 128
+                  uid:
+                    type: string
+                  token:
+                    type: string
+                required:
+                - new_password1
+                - new_password2
+                - uid
+                - token
+          description: ''
+  /rest-auth/login/:
+    post:
+      operationId: CreateLogin
+      description: 'Check the credentials and return the REST Token
+
+        if the credentials are valid and authenticated.
+
+        Calls Django Auth login method to register User ID
+
+        in Django session framework
+
+
+        Accept the following POST parameters: username, password
+
+        Return the REST Framework Token Object''s key.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id020
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+              required:
+              - password
+          application/x-www-form-urlencoded:
+            schema: *id020
+          multipart/form-data:
+            schema: *id020
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+                  password:
+                    type: string
+                required:
+                - password
+          description: ''
+  /rest-auth/password/change/:
+    post:
+      operationId: CreatePasswordChange
+      description: 'Calls Django Auth SetPasswordForm save method.
+
+
+        Accepts the following POST parameters: new_password1, new_password2
+
+        Returns the success/fail message.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id021
+              properties:
+                new_password1:
+                  type: string
+                  maxLength: 128
+                new_password2:
+                  type: string
+                  maxLength: 128
+              required:
+              - new_password1
+              - new_password2
+          application/x-www-form-urlencoded:
+            schema: *id021
+          multipart/form-data:
+            schema: *id021
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  new_password1:
+                    type: string
+                    maxLength: 128
+                  new_password2:
+                    type: string
+                    maxLength: 128
+                required:
+                - new_password1
+                - new_password2
+          description: ''
+  /rest-auth/registration/:
+    post:
+      operationId: CreateRegister
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id022
+              properties:
+                username:
+                  type: string
+                  maxLength: 150
+                  minLength: 1
+                email:
+                  type: string
+                  format: email
+                password1:
+                  type: string
+                  writeOnly: true
+                password2:
+                  type: string
+                  writeOnly: true
+              required:
+              - username
+              - password1
+              - password2
+          application/x-www-form-urlencoded:
+            schema: *id022
+          multipart/form-data:
+            schema: *id022
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                    maxLength: 150
+                    minLength: 1
+                  email:
+                    type: string
+                    format: email
+                required:
+                - username
+          description: ''
+  /rest-auth/registration/verify-email/:
+    post:
+      operationId: CreateVerifyEmail
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id023
+              properties:
+                key:
+                  type: string
+              required:
+              - key
+          application/x-www-form-urlencoded:
+            schema: *id023
+          multipart/form-data:
+            schema: *id023
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  key:
+                    type: string
+                required:
+                - key
+          description: ''

@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView, \
     get_object_or_404
-from core.models import Product, Order, OrderProduct, Category, SubCategory
+from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment
 from .serializers import ProductSerializer, OrderProductSerializer, OrderSerializer, SubCategorySerializer, \
     CategorySerializer
 from rest_framework import viewsets
@@ -14,6 +14,8 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.permissions import AllowAny
 from django.shortcuts import redirect
+import random
+import string
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -55,21 +57,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
-
-
-class CustomAuthToken(ObtainAuthToken):
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data,
-                                           context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        return Response({
-            'token': token.key,
-            'user_id': user.pk,
-            'email': user.email
-        })
 
 
 @api_view()
@@ -151,6 +138,7 @@ def remove_single_product_from_cart(request, slug):
     else:
         return Response({'message': 'You do not have an active order'})
 
+
 @api_view()
 @login_required
 def cart_item_count(request):
@@ -177,7 +165,67 @@ def cart_item_count(request):
 def order_summary(request):
     order = Order.objects.get(user=request.user, ordered=False)
 
-    serializer = OrderProductSerializer(order.products,many=True)
+    serializer = OrderProductSerializer(order.products, many=True)
     serializer2 = OrderSerializer(order)
 
     return Response()
+
+
+def get_ref_code():
+    return ''.join(random.choices(string.ascii_lowercase+string.digits, k=20))
+
+
+@api_view()
+@login_required()
+def payment(request, pk):
+    order = Order.objects.get(pk=pk)
+    if order.ordered:
+        return Response({'message': 'this order is already ordered'})
+    else:
+        # TODO :payment = Payment()
+
+        mans = DeliveryMan.objects.order_by('orders_delivered')
+        for man in mans:
+            if man.available:
+                man.orders.add(order)
+                man.orders_delivered += 1
+                man.save()
+                order.ordered = True
+                order.status = 'W'
+                order_products = Order.objects.filter(pk=pk)[0].products.all()
+                for order_product in order_products:
+                    order_product.ordered = True
+                    order_product.save()
+                order.ref_code = get_ref_code()
+                order.save()
+                return Response({'message': 'the order has been assigned'})
+        if not order.ordered:
+            order.ordered = True
+            order.status = 'Q'
+            order.save()
+            return Response({'message': 'the order has been put in the queue'})
+
+
+@api_view()
+@login_required()
+def total(request):
+    order_products = OrderProduct.objects.filter(ordered=True)
+    orders = [product.product.title for product in OrderProduct.objects.filter(ordered=True)]
+    total_money = 0
+    total_quantity: int = 0
+    for order_product in order_products:
+        total_money += order_product.quantity * order_product.product.price
+        total_quantity += order_product.quantity
+        # {'money': total_money, 'quantity': total_quantity}
+    return Response({'money': total_money, 'quantity': total_quantity, 'product': orders})
+
+
+@api_view(['GET', 'POST'])
+def request_refund(request):
+    if request.method == 'POST':
+        f = request.data()
+
+        return Response({"message": "Got some data!", "data": f})
+    return Response({"message": "Hello, world!"})
+
+
