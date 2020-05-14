@@ -96,6 +96,7 @@ class OrderProduct(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    additional_items = models.ManyToManyField(AdditionalItem, blank=True, null=True)
     quantity = models.IntegerField(default=1)
 
     def get_total_price(self):
@@ -109,6 +110,12 @@ class OrderProduct(models.Model):
             return self.get_total_price() - self.product.price
         else:
             return 0
+
+    def __str__(self):
+        if self.additional_items.exists():
+            return "%s %s with %s" % (self.user.username, self.product,
+                                      [add.title for add in self.additional_items.all()])
+        return "%s %s " % (self.user.username, self.product)
 
 
 class Client(models.Model):

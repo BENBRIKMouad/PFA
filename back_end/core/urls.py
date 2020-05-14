@@ -11,10 +11,10 @@ urlpatterns = [
     path('product/<slug>/',ProductDetail.as_view(),name='product'),
     path('check_out/',CheckOut.as_view(),name='CheckOut'),
     path('add_to_cart/<slug>',views.AddToCart,name='add_to_cart'),
-    path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
     path('api/', include('core.api.urls')),
-    path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    # path('rest-auth/', include('rest_auth.urls')),
+    # path('rest-auth/registration/', include('rest_auth.registration.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

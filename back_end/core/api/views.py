@@ -1,9 +1,9 @@
 from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView, \
     get_object_or_404
-from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment
+from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund
 from .serializers import ProductSerializer, OrderProductSerializer, OrderSerializer, SubCategorySerializer, \
-    CategorySerializer
+    CategorySerializer, RefundSerializer
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -57,6 +57,14 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+
+
+class RefundViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing Category instances.
+    """
+    serializer_class = RefundSerializer
+    queryset = Refund.objects.all()
 
 
 @api_view()

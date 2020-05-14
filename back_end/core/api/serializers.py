@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Product, Category, SubCategory, Order, OrderProduct
+from core.models import Product, Category, SubCategory, Order, OrderProduct, Refund
 from django.conf import settings
 
 
@@ -24,6 +24,12 @@ class CategorySerializer(serializers.ModelSerializer):
 class SubCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCategory
+        fields = '__all__'
+
+
+class RefundSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Refund
         fields = '__all__'
 
 
