@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView, \
     get_object_or_404
-from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund
+from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund, Client
 from .serializers import ProductSerializer, OrderProductSerializer, OrderSerializer, SubCategorySerializer, \
     CategorySerializer, RefundSerializer
 from rest_framework import viewsets
@@ -16,6 +16,9 @@ from rest_framework.permissions import AllowAny
 from django.shortcuts import redirect
 import random
 import string
+from django.utils import timezone
+import datetime
+from datetime import timedelta
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -180,38 +183,46 @@ def order_summary(request):
 
 
 def get_ref_code():
-    return ''.join(random.choices(string.ascii_lowercase+string.digits, k=20))
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
 
 @api_view()
 @login_required()
-def payment(request, pk):
+def payment(request, pk, cpk):
     order = Order.objects.get(pk=pk)
     if order.ordered:
         return Response({'message': 'this order is already ordered'})
     else:
         # TODO :payment = Payment()
-
-        mans = DeliveryMan.objects.order_by('orders_delivered')
-        for man in mans:
-            if man.available:
-                man.orders.add(order)
-                man.orders_delivered += 1
-                man.save()
+        client = Client.objects.get(user=request.user)
+        if client.amount >= order.total_price:
+            client.amount -= order.total_price
+            client.save()
+            Payment.objects.create(user=request.user, payment_type='S', amount=order.total_price,
+                                   payment_date=timezone.now())
+            mans = DeliveryMan.objects.order_by('orders_delivered')
+            for man in mans:
+                if man.available:
+                    man.orders.add(order)
+                    man.orders_delivered += 1
+                    man.save()
+                    order.ordered = True
+                    order.status = 'W'
+                    order_products = Order.objects.filter(pk=pk)[0].products.all()
+                    for order_product in order_products:
+                        order_product.ordered = True
+                        order_product.save()
+                    order.ref_code = get_ref_code()
+                    order.save()
+                    return Response({'message': 'the order has been assigned'})
+                # delete
+            if not order.ordered:
                 order.ordered = True
-                order.status = 'W'
-                order_products = Order.objects.filter(pk=pk)[0].products.all()
-                for order_product in order_products:
-                    order_product.ordered = True
-                    order_product.save()
-                order.ref_code = get_ref_code()
+                order.status = 'Q'
                 order.save()
-                return Response({'message': 'the order has been assigned'})
-        if not order.ordered:
-            order.ordered = True
-            order.status = 'Q'
-            order.save()
-            return Response({'message': 'the order has been put in the queue'})
+                return Response({'message': 'the order has been put in the queue'})
+        else:
+            return Response({'message': "you don't have enough money"})
 
 
 @api_view()
@@ -237,3 +248,70 @@ def request_refund(request):
     return Response({"message": "Hello, world!"})
 
 
+class OrderView(APIView):
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        start_date = request.data.get('star_date', None)
+        end_date = request.data.get('end_date', None)
+        ordered = request.data.get('ordered', None)
+        if start_date is not None and end_date is not None and ordered is not None:
+            order = Order.objects.filter(ordered_date__range=[start_date, end_date], ordered=ordered)
+            serializer = OrderSerializer(order, many=True)
+            return Response(serializer.data)
+        else:
+            if ordered is None:
+                order = Order.objects.filter(ordered_date__range=[start_date, end_date])
+                serializer = OrderSerializer(order, many=True)
+                return Response(serializer.data)
+            else:
+                if end_date is None:
+                    order = Order.objects.filter(ordered_date=start_date)
+                    serializer = OrderSerializer(order, many=True)
+                    return Response(serializer.data)
+                else:
+                    return Response({'error': 'missing argument'})
+
+
+class ProfitView(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        star_date = request.data.get('star_date')
+        end_date = request.data.get('end_date')
+        orders = Order.objects.filter(ordered_date__range=[star_date, end_date], ordered=True)
+        profit = 0
+        for order in orders:
+            profit += order.total_price
+
+        return Response({"profit": profit})
+
+
+# merged_dict = {key: value for (key, value) in (dictA.items() + dictB.items())}
+
+class OrderGraph(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        time_range = int(request.data.get('range'))
+        star_date = datetime.datetime.strptime(request.data.get('star_date'), '%Y-%m-%d')
+        by = request.data.get('by')
+        # counter = {i: i for (i,order) in (range(time_range)+)}
+        counter = {}
+        for i in range(time_range):
+            # counter += [Order.objects.filter(ordered_date__range=[star_date, star_date + timedelta(minutes=1439,
+            # seconds=59)]).count()]
+            # counter.update({str(star_date.date()): Order.objects.filter(
+            # ordered_date__range=[star_date, star_date + timedelta(minutes=1439, seconds=59)]).count()})
+            if by == 'days':
+                counter.update({str(star_date.date()): Order.objects.filter(
+                    ordered_date__range=[star_date, star_date + timedelta(minutes=1439, seconds=59)]).count()})
+                star_date += timedelta(days=1)
+            if by == 'years':
+                counter.update({str(star_date.date()): Order.objects.filter(
+                    ordered_date__range=[star_date, star_date + timedelta(minutes=1439, seconds=59, days=365)]).count()})
+                star_date += timedelta(days=365)
+            if by == 'months':
+                counter.update({str(star_date.date()): Order.objects.filter(
+                    ordered_date__range=[star_date, star_date + timedelta(minutes=1439, seconds=59, days=30)]).count()})
+                star_date += timedelta(days=30)
+        # res = {i: val for (i, val) in (range(time_range), counter)}
+        return Response(counter)

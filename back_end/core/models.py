@@ -41,7 +41,8 @@ STATUS_CHOICES = (
 
 PAYMENTS_CHOICES = (
     ('C', 'Credit card'),
-    ('P', 'PayPal')
+    ('P', 'PayPal'),
+    ('S', 'site curency')
 )
 
 
@@ -99,15 +100,17 @@ class OrderProduct(models.Model):
     additional_items = models.ManyToManyField(AdditionalItem, blank=True, null=True)
     quantity = models.IntegerField(default=1)
 
+    @property
     def get_total_price(self):
         if self.product.discount_price > 0:
             return self.quantity * self.product.discount_price
         else:
             return self.quantity * self.product.price
 
+    @property
     def saved_price(self):
         if self.product.discount_price > 0:
-            return self.get_total_price() - self.product.price
+            return self.get_total_price - self.product.price
         else:
             return 0
 
@@ -124,6 +127,7 @@ class Client(models.Model):
     tel = models.CharField(max_length=10)
     city = models.CharField(max_length=50)
     postal_code = models.CharField(max_length=8)
+    amount = models.FloatField(default=300)
 
     def __str__(self):
         return "client " + self.user.username
@@ -151,12 +155,16 @@ class CreditCardInfo(models.Model):
 
 
 class Payment(models.Model):
-    user = models.ForeignKey(Client, null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
     amount = models.FloatField()
+    payment_date = models.DateTimeField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     payment_type = models.CharField(choices=PAYMENTS_CHOICES, max_length=1)
     PayPal_email = models.EmailField(null=True, blank=True)
     credit_card_info = models.ForeignKey(CreditCardInfo, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return "%s %s" % (self.user.username, self.payment_date)
 
 
 class Order(models.Model):
@@ -184,13 +192,14 @@ class Order(models.Model):
     def total_saved_price(self):
         save = 0
         for p in self.products.all():
-            save += p.saved_price()
+            save += p.saved_price
         return save
 
+    @property
     def total_price(self):
         total = 0
         for p in self.products.all():
-            total += p.get_total_price()
+            total += p.get_total_price
         # total -= self.coupon.amount
         return total
 
