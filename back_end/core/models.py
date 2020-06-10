@@ -61,9 +61,9 @@ class Product(models.Model):
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory, blank=True, null=True, on_delete=models.CASCADE)
     # badge = models.CharField(choices=BADGES_CHOICES, blank=True, null=True, max_length=1)
-    badge_tag = models.CharField(blank=True, null=True, max_length=30)
+    # badge_tag = models.CharField(blank=True, null=True, max_length=30)
     slug = models.SlugField(blank=True)
-    photo = models.ImageField(upload_to="gallery", null=True)
+    photo = models.ImageField(upload_to="gallery")
     description = models.TextField(default="No description available for this product")
     additional_items = models.ManyToManyField(AdditionalItem, blank=True, null=True)
 
