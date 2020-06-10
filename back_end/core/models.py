@@ -207,7 +207,8 @@ class Order(models.Model):
 class Refund(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     reason = models.TextField()
-    accepted = models.BooleanField()
+    accepted = models.BooleanField(default=False)
+    in_queue = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.pk}"
