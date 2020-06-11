@@ -258,6 +258,46 @@ def request_refund(request):
     return Response({"message": "Hello, world!"})
 
 
+class RefundView(APIView):
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        option = request.data.get('option', None)
+        pk = request.data.get('pk', None)
+        if pk is not None:
+            if option == "request":
+                reason = request.data.get('reason', None)
+                order_qs = Order.objects.filter(pk=pk)
+                if order_qs.exists():
+                    order = order_qs[0]
+                    if not order.refund_requested:
+                        refund = Refund.objects.create(reason=reason, accepted=False, in_queue=True, order=order)
+                        order.refund_requested = True
+                        order.save()
+                        return Response({'message': 'all good'})
+                    else:
+                        return Response({'error': 'refund is already requested'})
+                else:
+                    return Response({'error': 'order does not exist'})
+        else:
+            return Response({'error': 'please enter a pk'})
+        if option == "grant":
+            if pk is not None:
+                order_qs = Order.objects.filter(pk=pk)
+                if order_qs.exists():
+                    order = order_qs[0]
+                    if order.refund_requested and not order.refund_granted:
+                        order.refund_granted = True
+                        refund_qs = Refund.objects.filter(order=order)
+                        refund = refund_qs[0]
+                        refund.accepted = True
+                        refund.in_queue = False
+
+
+
+
+
+
 class OrderView(APIView):
 
     @staticmethod
