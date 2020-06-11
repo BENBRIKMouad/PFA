@@ -265,37 +265,52 @@ class RefundView(APIView):
         option = request.data.get('option', None)
         pk = request.data.get('pk', None)
         if pk is not None:
-            if option == "request":
-                reason = request.data.get('reason', None)
-                order_qs = Order.objects.filter(pk=pk)
-                if order_qs.exists():
-                    order = order_qs[0]
+            order_qs = Order.objects.filter(pk=pk)
+            if order_qs.exists() and order_qs[0].ordered:
+                order = order_qs[0]
+                if option == "request":
                     if not order.refund_requested:
-                        refund = Refund.objects.create(reason=reason, accepted=False, in_queue=True, order=order)
+                        reason = request.data.get('reason', None)
+                        Refund.objects.create(reason=reason, accepted=False, in_queue=True, order=order)
                         order.refund_requested = True
                         order.save()
                         return Response({'message': 'all good'})
                     else:
                         return Response({'error': 'refund is already requested'})
-                else:
-                    return Response({'error': 'order does not exist'})
-        else:
-            return Response({'error': 'please enter a pk'})
-        if option == "grant":
-            if pk is not None:
-                order_qs = Order.objects.filter(pk=pk)
-                if order_qs.exists():
-                    order = order_qs[0]
+                if option == "grant":
                     if order.refund_requested and not order.refund_granted:
                         order.refund_granted = True
                         refund_qs = Refund.objects.filter(order=order)
                         refund = refund_qs[0]
                         refund.accepted = True
                         refund.in_queue = False
+                        refund.save()
+                        order.save()
+                        return Response({'message': 'all good refund granted'})
+                    else:
+                        return Response({'error': 'refund is already granted or not requested on this order'})
+                if option == "deny":
+                    if order.refund_requested and not order.refund_granted:
+                        refund_qs = Refund.objects.filter(order=order)
+                        if refund_qs.exists():
+                            if not refund_qs[0].accepted and refund_qs[0].in_queue:
+                                refund = refund_qs[0]
+                                refund.accepted = False
+                                refund.in_queue = False
+                                refund.save()
+                                return Response({'message': 'all good refund denied'})
+                            else:
+                                return Response({'error': 'refund is already denied'+str(refund_qs[0].accepted)+ str(refund_qs[0].in_queue)})
+                        else:
+                            return Response({'error': 'refund not found'})
 
-
-
-
+                    else:
+                        return Response(
+                            {'error': 'refund is granted and cannot be denied or not requested on this order'})
+            else:
+                return Response({'error': 'order does not found or not ordered'})
+        else:
+            return Response({'error': 'please enter a pk'})
 
 
 class OrderView(APIView):
