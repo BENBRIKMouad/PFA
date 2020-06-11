@@ -20,7 +20,7 @@ Running Front end:
 1. cd ./frontend
 2. Run npm install to install dependancies
 3. Run npm Start to start your local server
-4. Visit hhtp://localhost:3000
+4. Visit http://localhost:3000
 
 Running Back end:
 1. Run pip install virtualenv
