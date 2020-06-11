@@ -269,7 +269,7 @@ class RefundView(APIView):
             if order_qs.exists() and order_qs[0].ordered:
                 order = order_qs[0]
                 if option == "request":
-                    if not order.refund_requested:
+                    if not order.refund_requested :
                         reason = request.data.get('reason', None)
                         Refund.objects.create(reason=reason, accepted=False, in_queue=True, order=order)
                         order.refund_requested = True
