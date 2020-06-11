@@ -24,5 +24,5 @@ Running Front end:
 
 Running Back end:
 1. Run pip install virtualenv
-2. Run env/Scripts/activate
+2. Run env\Scripts\activate
 3. Run python manage.py runserver
