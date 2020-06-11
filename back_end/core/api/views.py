@@ -1,9 +1,10 @@
 from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView, \
     get_object_or_404
-from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund, Client
+from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund, Client,\
+    AdditionalItem
 from .serializers import ProductSerializer, OrderProductSerializer, OrderSerializer, SubCategorySerializer, \
-    CategorySerializer, RefundSerializer
+    CategorySerializer, RefundSerializer, AdditionalItemSerializer
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -68,6 +69,14 @@ class RefundViewSet(viewsets.ModelViewSet):
     """
     serializer_class = RefundSerializer
     queryset = Refund.objects.all()
+
+
+class AdditionalItemViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing Category instances.
+    """
+    serializer_class = AdditionalItemSerializer
+    queryset = AdditionalItem.objects.all()
 
 
 @api_view()
@@ -193,7 +202,7 @@ def payment(request, pk, cpk):
     if order.ordered:
         return Response({'message': 'this order is already ordered'})
     else:
-        # TODO :payment = Payment()
+        # TODO :payment = Payment() , update to post class
         client = Client.objects.get(user=request.user)
         if client.amount >= order.total_price:
             client.amount -= order.total_price
@@ -228,6 +237,7 @@ def payment(request, pk, cpk):
 @api_view()
 @login_required()
 def total(request):
+    # ToDo fix that count more than one item in orders
     order_products = OrderProduct.objects.filter(ordered=True)
     orders = [product.product.title for product in OrderProduct.objects.filter(ordered=True)]
     total_money = 0
