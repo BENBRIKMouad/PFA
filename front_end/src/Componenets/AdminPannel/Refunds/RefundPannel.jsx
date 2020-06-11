@@ -13,11 +13,12 @@ class RefundPannel extends Component {
       option: [
         { value: true, label: "Accepter" },
         { value: false, label: "Annulé" },
-        { value: "hold", label: "attente" },
+        { value: "attente", label: "attente" },
       ],
       isLoading: true,
-      vide: true,
+      Selected: null,
     };
+
     this.debugItem = this.debugItem.bind(this);
   }
 
@@ -32,26 +33,35 @@ class RefundPannel extends Component {
     if (e == null) {
       this.setState({
         SelectedItem: [],
-        vide: true,
+        Selected: null,
       });
-    } else if (e.value === "hold") {
+    } else if (e.value === "attente") {
       this.setState({
         SelectedItem: this.state.refundList.filter(
           (element) => element.in_queue === true
         ),
-        vide: false,
+        Selected: "attente",
       });
-    } else {
+    } else if (e.value === true) {
       this.setState({
         SelectedItem: this.state.refundList.filter(
-          (element) => element.accepted === e.value
+          (element) =>
+            element.accepted === e.value && element.in_queue === false
         ),
-        vide: false,
+        Selected: "accepter",
+      });
+    } else if (e.value === false) {
+      this.setState({
+        SelectedItem: this.state.refundList.filter(
+          (element) =>
+            element.accepted === e.value && element.in_queue === false
+        ),
+        Selected: "annuler",
       });
     }
   }
   output = () => {
-    if (this.state.SelectedItem.length === 0 && this.state.vide === true) {
+    if (this.state.Selected === null) {
       return this.state.refundList.map((item) => (
         <tr key={item.id}>
           <td>{item.id}</td>
@@ -60,7 +70,9 @@ class RefundPannel extends Component {
           </td>
           <td>{item.reason}</td>
           <td>
-            {item.accepted ? (
+            {item.in_queue ? (
+              <span className="text-warning">attente</span>
+            ) : item.accepted ? (
               <span className="text-success">Accepter</span>
             ) : (
               <span className="text-danger">Annulé</span>
@@ -77,7 +89,9 @@ class RefundPannel extends Component {
           </td>
           <td>{item.reason}</td>
           <td>
-            {item.accepted ? (
+            {item.in_queue ? (
+              <span className="text-warning">attente</span>
+            ) : item.accepted ? (
               <span className="text-success">Accepter</span>
             ) : (
               <span className="text-danger">Annulé</span>
@@ -110,7 +124,16 @@ class RefundPannel extends Component {
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>{this.output()}</tbody>
+
+            <tbody>
+              {this.state.isLoading ? (
+                <tr>
+                  <td>Loading</td>
+                </tr>
+              ) : (
+                this.output()
+              )}
+            </tbody>
           </Table>
         </Container>
       </>

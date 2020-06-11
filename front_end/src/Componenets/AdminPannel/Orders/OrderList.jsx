@@ -8,6 +8,8 @@ export class OrderList extends Component {
 
     this.state = {
       orders: [],
+      refunds: [],
+      isLoading: true,
     };
   }
 
@@ -16,7 +18,12 @@ export class OrderList extends Component {
       .get("http://127.0.0.1:8000/api/order/")
       .then(({ data }) => this.setState({ orders: data }))
       .catch((err) => console.log(err));
+    axios
+      .get("http://127.0.0.1:8000/api/refund/")
+      .then(({ data }) => this.setState({ refunds: data, isLoading: false }))
+      .catch((err) => console.log(err));
   }
+
   render() {
     console.log(this.state);
     console.log(this.props);
@@ -38,6 +45,12 @@ export class OrderList extends Component {
               </tr>
             </thead>
             <tbody>
+              {this.state.isLoading ? (
+                <tr>
+                  <td>Loading</td>
+                </tr>
+              ) : null}
+
               {this.state.orders.map((order) => (
                 <tr key={order.id}>
                   <td>
@@ -48,17 +61,16 @@ export class OrderList extends Component {
                   </td>
                   <td>{order.status}</td>
                   <td>
-                    {order.refund_requested ? (
-                      <span>
-                        Un Remboursemnt a été demander est il est{" "}
-                        {order.refund_granted ? (
-                          <span className="text-success">Accépter </span>
+                    {this.state.refunds.map((refund) =>
+                      order.id === refund.order ? (
+                        refund.in_queue ? (
+                          <span className="text-warning">attente</span>
+                        ) : refund.accepted ? (
+                          <span className="text-success">Accepter</span>
                         ) : (
-                          <span>Refusser</span>
-                        )}
-                      </span>
-                    ) : (
-                      <span>Aucun Remboursment a été demandez</span>
+                          <span className="text-danger">Annulé</span>
+                        )
+                      ) : null
                     )}
                   </td>
                   <td>
@@ -91,3 +103,17 @@ export class OrderList extends Component {
 }
 
 export default OrderList;
+{
+  /* {order.refund_requested ? (
+                      <span>
+                        Un Remboursemnt a été demander est il est{" "}
+                        {order.refund_granted ? (
+                          <span className="text-success">Accépter </span>
+                        ) : (
+                          <span>Refuser</span>
+                        )}
+                      </span>
+                    ) : (
+                      <span>Aucun Remboursment a été demandez</span>
+                    )} */
+}
