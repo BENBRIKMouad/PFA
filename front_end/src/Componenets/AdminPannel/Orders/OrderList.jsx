@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Container, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 export class OrderList extends Component {
   constructor(props) {
     super(props);
@@ -28,27 +29,56 @@ export class OrderList extends Component {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Slot 1</th>
-                <th>Slot 2</th>
-                <th>Slot 3</th>
-                <th>Slot 4</th>
-                <th>Slot 5</th>
-                <th>Slot 6</th>
+                <th>Status</th>
+                <th>Remboursment</th>
+                <th>Recu</th>
+                <th>Utilisateur </th>
+                <th>Produit</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {this.state.orders.map((order) => (
                 <tr key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{order.order_date}</td>
-                  <td>{order.ref_code}</td>
-                  <td>{order.received}</td>
-                  <td>{order.refund_requested}</td>
-                  <td>{order.refund_granted}</td>
+                  <td>
+                    <Link to={`${this.props.match.path}/${order.id}`}>
+                      {" "}
+                      {order.id}
+                    </Link>
+                  </td>
+                  <td>{order.status}</td>
+                  <td>
+                    {order.refund_requested ? (
+                      <span>
+                        Un Remboursemnt a été demander est il est{" "}
+                        {order.refund_granted ? (
+                          <span className="text-success">Accépter </span>
+                        ) : (
+                          <span>Refusser</span>
+                        )}
+                      </span>
+                    ) : (
+                      <span>Aucun Remboursment a été demandez</span>
+                    )}
+                  </td>
+                  <td>
+                    {order.received ? (
+                      <span className="text-success"> Recu</span>
+                    ) : (
+                      <span className="text-danger"> Pas Recu</span>
+                    )}
+                  </td>
+                  <td>{order.user}</td>
                   {order.products.length === 1 ? (
                     <td>{order.products}</td>
                   ) : (
-                    <td>Multi pRODUCTS</td>
+                    <td>
+                      {order.products.map((product) => (
+                        <span key={product}>
+                          {product} <br />
+                        </span>
+                      ))}
+                    </td>
                   )}
                 </tr>
               ))}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Dropdown, Container, Table } from "react-bootstrap";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 class RefundPannel extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class RefundPannel extends Component {
         { value: "hold", label: "attente" },
       ],
       isLoading: true,
+      vide: true,
     };
     this.debugItem = this.debugItem.bind(this);
   }
@@ -30,44 +32,57 @@ class RefundPannel extends Component {
     if (e == null) {
       this.setState({
         SelectedItem: [],
+        vide: true,
+      });
+    } else if (e.value === "hold") {
+      this.setState({
+        SelectedItem: this.state.refundList.filter(
+          (element) => element.in_queue === true
+        ),
+        vide: false,
       });
     } else {
       this.setState({
         SelectedItem: this.state.refundList.filter(
           (element) => element.accepted === e.value
         ),
+        vide: false,
       });
     }
   }
   output = () => {
-    if (this.state.SelectedItem.length === 0) {
+    if (this.state.SelectedItem.length === 0 && this.state.vide === true) {
       return this.state.refundList.map((item) => (
-        <tr>
-          <th>{item.id}</th>
-          <th>{item.order}</th>
-          <th>{item.reason}</th>
-          <th>
+        <tr key={item.id}>
+          <td>{item.id}</td>
+          <td>
+            <Link to={`/Admin/OrderList/${item.order}`}> {item.order}</Link>
+          </td>
+          <td>{item.reason}</td>
+          <td>
             {item.accepted ? (
               <span className="text-success">Accepter</span>
             ) : (
               <span className="text-danger">Annulé</span>
             )}
-          </th>
+          </td>
         </tr>
       ));
     } else {
       return this.state.SelectedItem.map((item) => (
-        <tr>
-          <th>{item.id}</th>
-          <th>{item.order}</th>
-          <th>{item.reason}</th>
-          <th>
+        <tr key={item.id}>
+          <td>{item.id}</td>
+          <td>
+            <Link to={`/Admin/OrderList/${item.order}`}>{item.order}</Link>
+          </td>
+          <td>{item.reason}</td>
+          <td>
             {item.accepted ? (
               <span className="text-success">Accepter</span>
             ) : (
               <span className="text-danger">Annulé</span>
             )}
-          </th>
+          </td>
         </tr>
       ));
     }
