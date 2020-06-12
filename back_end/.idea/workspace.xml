@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9986a849-3a1f-4b09-b5ed-4f9001c9d883" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/migrations/0040_order_refunded.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
