@@ -387,7 +387,7 @@ class OrderGraph(APIView):
 
 class OrderDetail(APIView):
     @staticmethod
-    def post(request, *args, **kwargs):
+    def get(request, *args, **kwargs):
         orders = Order.objects.filter(ordered=True)
         products = Product.objects.all()
         data = [{'id': order.pk, 'order_date': order.order_date,
