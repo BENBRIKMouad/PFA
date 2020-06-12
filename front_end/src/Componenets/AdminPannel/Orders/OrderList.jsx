@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Container, Table } from "react-bootstrap";
+import { Container, Table, Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Select from "react-select";
+
 export class OrderList extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +12,12 @@ export class OrderList extends Component {
       orders: [],
       refunds: [],
       isLoading: true,
+      option: [
+        { value: true, label: "Accepter" },
+        { value: false, label: "Annulé" },
+        { value: "attente", label: "attente" },
+      ],
+      show: false,
     };
   }
 
@@ -23,7 +31,40 @@ export class OrderList extends Component {
       .then(({ data }) => this.setState({ refunds: data, isLoading: false }))
       .catch((err) => console.log(err));
   }
+  modalShow = (id) => {
+    this.setState({});
 
+    return (
+      <>
+        <Modal
+          show={this.state.show}
+          onHide={() => this.setState({ show: false })}
+          animation={true}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              <span className="text-danger">Sppresion </span>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Etes Vous sur de Vouloir supprimer</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => this.setState({ show: false })}
+            >
+              Close
+            </Button>
+            <Button
+              variant="outline-danger"
+              onClick={() => this.suppresedProduct()}
+            >
+              Spprimer
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  };
   render() {
     console.log(this.state);
     console.log(this.props);
@@ -40,8 +81,8 @@ export class OrderList extends Component {
                 <th>Remboursment</th>
                 <th>Recu</th>
                 <th>Utilisateur </th>
-                <th>Produit</th>
-                <th>Action</th>
+                {/* <th>Produit</th> */}
+                {/* <th>Action</th> */}
               </tr>
             </thead>
             <tbody>
@@ -81,17 +122,22 @@ export class OrderList extends Component {
                     )}
                   </td>
                   <td>{order.user}</td>
-                  {order.products.length === 1 ? (
+                  {/* {order.products.length === 1 ? (
                     <td>{order.products}</td>
-                  ) : (
-                    <td>
-                      {order.products.map((product) => (
-                        <span key={product}>
-                          {product} <br />
-                        </span>
-                      ))}
-                    </td>
-                  )}
+                  ) : ( */}
+                  {/* <td>
+                    {order.products.map((product) => (
+                      <span key={product}>
+                        {product}
+                        {"  =>"}
+                        <Button onClick={() => console.log("test")}>
+                          {" "}
+                          Info
+                        </Button>{" "}
+                        <br />
+                      </span>
+                    ))}
+                  </td> */}
                 </tr>
               ))}
             </tbody>
@@ -103,17 +149,3 @@ export class OrderList extends Component {
 }
 
 export default OrderList;
-{
-  /* {order.refund_requested ? (
-                      <span>
-                        Un Remboursemnt a été demander est il est{" "}
-                        {order.refund_granted ? (
-                          <span className="text-success">Accépter </span>
-                        ) : (
-                          <span>Refuser</span>
-                        )}
-                      </span>
-                    ) : (
-                      <span>Aucun Remboursment a été demandez</span>
-                    )} */
-}

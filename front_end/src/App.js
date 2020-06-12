@@ -16,6 +16,7 @@ import OrderList from "./Componenets/AdminPannel/Orders/OrderList";
 import OrderOne from "./Componenets/AdminPannel/Orders/OrderOne";
 import ClientPannel from "./Componenets/ClientPannel/ClientPannl";
 import RefundPannelC from "./Componenets/ClientPannel/Refunds/RefundPannelC";
+import AdditionalItem from "./Componenets/AdminPannel/AdditionalProduct";
 class App extends Component {
   // componentDidMount() {
   //   this.props.onTryAutoSignup();
@@ -39,6 +40,11 @@ class App extends Component {
             <Route exact path="/Admin/OrderList/:ID" component={OrderOne} />
             <Route exact path="/Client/:ID" component={ClientPannel} />
             <Route exact path="/Client/:ID/Refund" component={RefundPannelC} />
+            <Route
+              exact
+              path="/Admin/AdditionalItem"
+              component={AdditionalItem}
+            />
 
             <Route component={ErrorPage} />
           </Switch>

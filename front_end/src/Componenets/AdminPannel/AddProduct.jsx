@@ -14,6 +14,7 @@ class AddProduct extends Component {
       photo: null,
       isPromo: false,
       discount: null,
+      addi_item: [],
     };
 
     this.ChangeForm = this.ChangeForm.bind(this);
@@ -21,7 +22,11 @@ class AddProduct extends Component {
     this.debugItem = this.debugItem.bind(this);
     this.SendItem = this.SendItem.bind(this);
   }
-
+  componentDidMount() {
+    axios
+      .get("http://127.0.0.1:8000/api/additional_item/")
+      .then(({ data }) => this.setState({ addi_item: data }));
+  }
   ChangeForm(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -118,7 +123,15 @@ class AddProduct extends Component {
                 />
               </Form.Group>
             ) : null}
-            <input type="file" onChange={this.debugItem} name="photo" />
+            <Form.Group>
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label="Mettre Le Produit en Promo"
+                name="isPromo"
+                onChange={this.ChangePromo}
+              />
+            </Form.Group>
             <Button variant="primary" onClick={this.SendItem}>
               Envoyer
             </Button>

@@ -152,6 +152,13 @@ class AdminPannel extends Component {
             <FaPlus className="mx-1" /> Ajouter un Produit
           </Link>
           <Link
+            to={`${this.props.match.path}/AdditionalItem`}
+            className="btn btn-success m-2 "
+          >
+            {" "}
+            <FaPlus className="mx-1" /> Produit Additionel
+          </Link>
+          <Link
             to={`${this.props.match.path}/RefundList`}
             className="btn btn-success m-2 "
           >
