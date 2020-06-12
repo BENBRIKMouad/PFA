@@ -315,7 +315,7 @@ class RefundView(APIView):
             return Response({'error': 'please enter a pk'})
 
 
-class OrderView(APIView):
+class OrderByDate(APIView):
 
     @staticmethod
     def post(request, *args, **kwargs):
@@ -385,7 +385,7 @@ class OrderGraph(APIView):
         return Response(counter)
 
 
-class OrderDetail(APIView):
+class OrderView(APIView):
     @staticmethod
     def get(request, *args, **kwargs):
         orders = Order.objects.filter(ordered=True)
@@ -427,3 +427,4 @@ class OrderDetail(APIView):
                 for order in orders]
 
         return Response(data)
+
