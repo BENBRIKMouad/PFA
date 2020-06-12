@@ -390,8 +390,7 @@ class OrderView(APIView):
     def get(request, *args, **kwargs):
         orders = Order.objects.filter(ordered=True)
         products = Product.objects.all()
-        data = [{'id': order.pk, 'order_date': order.order_date,
-                 'ordered': order.ordered,
+        data = [{'id': order.pk,
                  'ordered_date': order.ordered_date,
                  'ref_code': order.ref_code,
                  'received': order.received,
@@ -441,6 +440,7 @@ class ProductView(APIView):
             'price': product.price,
             'discount_price': product.discount_price,
             'slug': product.slug,
+            'photo': "http://127.0.0.1:8000/media/gallery/" + str(product.photo),
             'description': product.description,
             'category': product.category,
             'subcategory': product.subcategory,
