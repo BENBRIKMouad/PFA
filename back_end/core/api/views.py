@@ -1,10 +1,10 @@
 from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView, \
     get_object_or_404
-from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund, Client,\
+from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund, Client, \
     AdditionalItem
 from .serializers import ProductSerializer, OrderProductSerializer, OrderSerializer, SubCategorySerializer, \
-    CategorySerializer, RefundSerializer, AdditionalItemSerializer
+    CategorySerializer, RefundSerializer, AdditionalItemSerializer, ClientSerializer
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -20,6 +20,8 @@ import string
 from django.utils import timezone
 import datetime
 from datetime import timedelta
+from django.contrib.auth.models import User
+import json
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -65,7 +67,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class RefundViewSet(viewsets.ModelViewSet):
     """
-    A viewset for viewing and editing Category instances.
+    A viewset for viewing and editing Refund instances.
     """
     serializer_class = RefundSerializer
     queryset = Refund.objects.all()
@@ -73,10 +75,18 @@ class RefundViewSet(viewsets.ModelViewSet):
 
 class AdditionalItemViewSet(viewsets.ModelViewSet):
     """
-    A viewset for viewing and editing Category instances.
+    A viewset for viewing and editing AdditionalItem instances.
     """
     serializer_class = AdditionalItemSerializer
     queryset = AdditionalItem.objects.all()
+
+
+class ClientViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing Client instances.
+    """
+    serializer_class = ClientSerializer
+    queryset = Client.objects.all()
 
 
 @api_view()
@@ -197,7 +207,7 @@ def get_ref_code():
 
 @api_view()
 @login_required()
-def payment(request, pk, cpk):
+def payment(request, pk):
     order = Order.objects.get(pk=pk)
     if order.ordered:
         return Response({'message': 'this order is already ordered'})
@@ -249,15 +259,6 @@ def total(request):
     return Response({'money': total_money, 'quantity': total_quantity, 'product': orders})
 
 
-@api_view(['GET', 'POST'])
-def request_refund(request):
-    if request.method == 'POST':
-        f = request.data()
-
-        return Response({"message": "Got some data!", "data": f})
-    return Response({"message": "Hello, world!"})
-
-
 class RefundView(APIView):
 
     @staticmethod
@@ -269,7 +270,7 @@ class RefundView(APIView):
             if order_qs.exists() and order_qs[0].ordered:
                 order = order_qs[0]
                 if option == "request":
-                    if not order.refund_requested :
+                    if not order.refund_requested:
                         reason = request.data.get('reason', None)
                         Refund.objects.create(reason=reason, accepted=False, in_queue=True, order=order)
                         order.refund_requested = True
@@ -300,7 +301,8 @@ class RefundView(APIView):
                                 refund.save()
                                 return Response({'message': 'all good refund denied'})
                             else:
-                                return Response({'error': 'refund is already denied'+str(refund_qs[0].accepted)+ str(refund_qs[0].in_queue)})
+                                return Response({'error': 'refund is already denied' + str(refund_qs[0].accepted) + str(
+                                    refund_qs[0].in_queue)})
                         else:
                             return Response({'error': 'refund not found'})
 
@@ -325,17 +327,16 @@ class OrderView(APIView):
             serializer = OrderSerializer(order, many=True)
             return Response(serializer.data)
         else:
-            if ordered is None:
+            if ordered is None and end_date:
                 order = Order.objects.filter(ordered_date__range=[start_date, end_date])
                 serializer = OrderSerializer(order, many=True)
                 return Response(serializer.data)
+            if end_date is None:
+                order = Order.objects.filter(ordered_date__range=[start_date, timezone.now()])
+                serializer = OrderSerializer(order, many=True)
+                return Response(serializer.data)
             else:
-                if end_date is None:
-                    order = Order.objects.filter(ordered_date=start_date)
-                    serializer = OrderSerializer(order, many=True)
-                    return Response(serializer.data)
-                else:
-                    return Response({'error': 'missing argument'})
+                return Response({'error': 'missing argument'})
 
 
 class ProfitView(APIView):
@@ -352,6 +353,7 @@ class ProfitView(APIView):
 
 
 # merged_dict = {key: value for (key, value) in (dictA.items() + dictB.items())}
+
 
 class OrderGraph(APIView):
     @staticmethod
@@ -372,7 +374,8 @@ class OrderGraph(APIView):
                 star_date += timedelta(days=1)
             if by == 'years':
                 counter.update({str(star_date.date()): Order.objects.filter(
-                    ordered_date__range=[star_date, star_date + timedelta(minutes=1439, seconds=59, days=365)]).count()})
+                    ordered_date__range=[star_date,
+                                         star_date + timedelta(minutes=1439, seconds=59, days=365)]).count()})
                 star_date += timedelta(days=365)
             if by == 'months':
                 counter.update({str(star_date.date()): Order.objects.filter(
@@ -380,3 +383,47 @@ class OrderGraph(APIView):
                 star_date += timedelta(days=30)
         # res = {i: val for (i, val) in (range(time_range), counter)}
         return Response(counter)
+
+
+class OrderDetail(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        orders = Order.objects.filter(ordered=True)
+        products = Product.objects.all()
+        data = [{'id': order.pk, 'order_date': order.order_date,
+                 'ordered': order.ordered,
+                 'ordered_date': order.ordered_date,
+                 'ref_code': order.ref_code,
+                 'received': order.received,
+                 'refund_requested': order.refund_requested,
+                 'refund_granted': order.refund_granted,
+                 'refund': ([{'id': Refund.objects.get(order=order).id,
+                              'reason': Refund.objects.get(order=order).reason,
+                              'accepted': str(Refund.objects.get(order=order).accepted),
+                              'in_queue': str(Refund.objects.get(order=order).in_queue),
+                              }
+                             if Refund.objects.filter(order=order).exists() else 'none']),
+                 'user': order.user.id,
+                 'user_name': str(User.objects.get(pk=1).username),
+                 'product': ([{'id': Product.objects.get(pk=order.products.all()[i].product.id).id,
+                               'title': Product.objects.get(pk=order.products.all()[i].product.id).title,
+                               'price': Product.objects.get(pk=order.products.all()[i].product.id).price,
+                               'discount_price':
+                                   Product.objects.get(pk=order.products.all()[i].product.id).discount_price,
+                               'slug': Product.objects.get(pk=order.products.all()[i].product.id).slug,
+                               'photo': "http://127.0.0.1:8000/media/gallery/"+str(Product.objects.get(pk=order.products.all()[i].product.id).photo),
+                               'description': Product.objects.get(pk=order.products.all()[i].product.id).description,
+                               'category': Product.objects.get(pk=order.products.all()[i].product.id).category,
+                               'subcategory': Product.objects.get(pk=order.products.all()[i].product.id).subcategory,
+                               'quantity': order.products.all()[i].quantity,
+                               'additional_items':([{'id': order.products.all()[i].additional_items.all()[j].id,
+                                                     'title': order.products.all()[i].additional_items.all()[j].title,
+                                                     'price': order.products.all()[i].additional_items.all()[j].price
+                                                     }
+                                                    for j in range(order.products.all()[i].additional_items.all().count())])
+                               }
+                              for i in range(order.products.count())])
+                 }
+                for order in orders]
+
+        return Response(data)
