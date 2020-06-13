@@ -259,7 +259,7 @@ def total(request):
     return Response({'money': total_money, 'quantity': total_quantity, 'product': orders})
 
 
-class RefundView(APIView):
+class RefundHandler(APIView):
 
     @staticmethod
     def post(request, *args, **kwargs):
@@ -298,6 +298,9 @@ class RefundView(APIView):
                                 refund = refund_qs[0]
                                 refund.accepted = False
                                 refund.in_queue = False
+                                client = Client.objects.get(user=order.user)
+                                client.amount -= order.total_price
+                                client.save()
                                 refund.save()
                                 return Response({'message': 'all good refund denied'})
                             else:
@@ -315,7 +318,7 @@ class RefundView(APIView):
             return Response({'error': 'please enter a pk'})
 
 
-class OrderView(APIView):
+class OrderByDate(APIView):
 
     @staticmethod
     def post(request, *args, **kwargs):
@@ -385,13 +388,12 @@ class OrderGraph(APIView):
         return Response(counter)
 
 
-class OrderDetail(APIView):
+class OrderView(APIView):
     @staticmethod
     def get(request, *args, **kwargs):
         orders = Order.objects.filter(ordered=True)
         products = Product.objects.all()
-        data = [{'id': order.pk, 'order_date': order.order_date,
-                 'ordered': order.ordered,
+        data = [{'id': order.pk,
                  'ordered_date': order.ordered_date,
                  'ref_code': order.ref_code,
                  'received': order.received,
@@ -411,19 +413,64 @@ class OrderDetail(APIView):
                                'discount_price':
                                    Product.objects.get(pk=order.products.all()[i].product.id).discount_price,
                                'slug': Product.objects.get(pk=order.products.all()[i].product.id).slug,
-                               'photo': "http://127.0.0.1:8000/media/gallery/"+str(Product.objects.get(pk=order.products.all()[i].product.id).photo),
+                               'photo': "http://127.0.0.1:8000/media/gallery/" + str(
+                                   Product.objects.get(pk=order.products.all()[i].product.id).photo),
                                'description': Product.objects.get(pk=order.products.all()[i].product.id).description,
                                'category': Product.objects.get(pk=order.products.all()[i].product.id).category,
                                'subcategory': Product.objects.get(pk=order.products.all()[i].product.id).subcategory,
                                'quantity': order.products.all()[i].quantity,
-                               'additional_items':([{'id': order.products.all()[i].additional_items.all()[j].id,
-                                                     'title': order.products.all()[i].additional_items.all()[j].title,
-                                                     'price': order.products.all()[i].additional_items.all()[j].price
-                                                     }
-                                                    for j in range(order.products.all()[i].additional_items.all().count())])
+                               'additional_items': ([{'id': order.products.all()[i].additional_items.all()[j].id,
+                                                      'title': order.products.all()[i].additional_items.all()[j].title,
+                                                      'price': order.products.all()[i].additional_items.all()[j].price
+                                                      }
+                                                     for j in
+                                                     range(order.products.all()[i].additional_items.all().count())])
                                }
                               for i in range(order.products.count())])
                  }
                 for order in orders]
 
+        return Response(data)
+
+
+class ProductView(APIView):
+    @staticmethod
+    def get(request, *args, **kwargs):
+        products = Product.objects.all()
+        data = [{
+            'id': product.id,
+            'title': product.title,
+            'price': product.price,
+            'discount_price': product.discount_price,
+            'slug': product.slug,
+            'photo': "http://127.0.0.1:8000/media/gallery/" + str(product.photo),
+            'description': product.description,
+            'category': product.category,
+            'subcategory': product.subcategory,
+            'additional_items': ([{'id': product.additional_items.all()[j].id,
+                                   'title': product.additional_items.all()[j].title,
+                                   'price': product.additional_items.all()[j].price
+                                   }
+                                  for j in
+                                  range(product.additional_items.all().count())])
+        }
+            for product in products]
+        return Response(data)
+
+
+class ClientView(APIView):
+    @staticmethod
+    def get(request, *args, **kwargs):
+        clients = Client.objects.all()
+        data = [{
+            "id": client.id,
+            "address": client.address,
+            "tel": client.tel,
+            "city": client.city,
+            "postal_code": client.postal_code,
+            "amount": client.amount,
+            "user": client.user_id,
+            'user_name': str(User.objects.get(pk=1).username),
+        }
+            for client in clients]
         return Response(data)
