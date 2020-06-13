@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../../Store/Actions/auth";
 
 export class NavBarComp extends Component {
   render() {
@@ -13,10 +15,20 @@ export class NavBarComp extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link>A propos</Nav.Link>
-            <Link className="btn btn-outline-secondary mx-2" to="/SignUp">
-              {" "}
-              S'inscrire / Se connecter{" "}
-            </Link>
+            {this.props.isAuthenticated ? (
+              <button
+                className="btn btn-outline-secondary mx-2"
+                onClick={this.props.logout}
+              >
+                {" "}
+                déconnecter
+              </button>
+            ) : (
+              <Link className="btn btn-outline-secondary mx-2" to="/SignUp">
+                {" "}
+                S'inscrire / Se connecter{" "}
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -24,4 +36,15 @@ export class NavBarComp extends Component {
   }
 }
 
-export default NavBarComp;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.token !== null,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(actions.logout()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NavBarComp);
