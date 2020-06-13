@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from core.models import Product, Category, SubCategory, Order, OrderProduct, Refund, AdditionalItem, Client
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -48,4 +49,10 @@ class AdditionalItemSerializer(serializers.ModelSerializer):
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
+        fields = '__all__'
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
         fields = '__all__'

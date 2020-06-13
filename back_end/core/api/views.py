@@ -4,8 +4,8 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView,
 from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund, Client, \
     AdditionalItem
 from .serializers import ProductSerializer, OrderProductSerializer, OrderSerializer, SubCategorySerializer, \
-    CategorySerializer, RefundSerializer, AdditionalItemSerializer, ClientSerializer
-from rest_framework import viewsets
+    CategorySerializer, RefundSerializer, AdditionalItemSerializer, ClientSerializer, UserSerializer
+from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.contrib.auth.decorators import login_required
@@ -22,6 +22,7 @@ import datetime
 from datetime import timedelta
 from django.contrib.auth.models import User
 import json
+from rest_framework.authtoken.models import Token
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -474,3 +475,20 @@ class ClientView(APIView):
         }
             for client in clients]
         return Response(data)
+
+
+class CreateAuth(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        serialized = UserSerializer(data=request.data)
+        if serialized.is_valid():
+            user = User.objects.create_user(
+                request.data.get('username'),
+                request.data.get('email'),
+                request.data.get('password'),
+            )
+            Client.objects.create(amount=0, address="0", tel="0", city="0", postal_code="0", user=user)
+            token = Token.objects.create(user=user)
+            return Response({"token": token.key}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)

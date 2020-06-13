@@ -2,7 +2,7 @@ from django.urls import path, include
 # from .views import ProductList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete
 from .views import ProductViewSet, OrderProductViewSet, OrderViewSet, CategoryViewSet, SubCategoryViewSet, \
     RefundViewSet, OrderView, ProfitView, OrderGraph, AdditionalItemViewSet, RefundHandler, ClientViewSet, OrderByDate, \
-    ProductView, ClientView
+    ProductView, ClientView, CreateAuth
 from rest_framework.routers import DefaultRouter
 from .views import add_to_cart, remove_from_cart, cart_item_count, order_summary, remove_single_product_from_cart, \
     payment, total
@@ -15,7 +15,7 @@ router.register(r'category', CategoryViewSet, basename='category')
 router.register(r'subcategory', SubCategoryViewSet, basename='subcategory')
 router.register(r'RefundView', RefundViewSet, basename='refund')
 router.register(r'additional_item', AdditionalItemViewSet, basename='additional_item')
-router.register(r'client', ClientViewSet, basename='client')
+router.register(r'ClientHandler', ClientViewSet, basename='client')
 
 app_name = 'api'
 urlpatterns = [
@@ -34,5 +34,6 @@ urlpatterns = [
     path('OrderView/', OrderView.as_view()),
     path('ProductView/', ProductView.as_view()),
     path('ClientView/', ClientView.as_view()),
+    path('CreateAuth/', CreateAuth.as_view()),
 ]
 urlpatterns += router.urls
