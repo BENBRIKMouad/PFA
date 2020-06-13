@@ -13,7 +13,7 @@ router.register(r'order_product', OrderProductViewSet, basename='order_product')
 router.register(r'order', OrderViewSet, basename='order')
 router.register(r'category', CategoryViewSet, basename='category')
 router.register(r'subcategory', SubCategoryViewSet, basename='subcategory')
-router.register(r'refund', RefundViewSet, basename='refund')
+router.register(r'RefundView', RefundViewSet, basename='refund')
 router.register(r'additional_item', AdditionalItemViewSet, basename='additional_item')
 router.register(r'client', ClientViewSet, basename='client')
 

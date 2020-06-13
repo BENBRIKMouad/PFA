@@ -298,6 +298,9 @@ class RefundHandler(APIView):
                                 refund = refund_qs[0]
                                 refund.accepted = False
                                 refund.in_queue = False
+                                client = Client.objects.get(user=order.user)
+                                client.amount -= order.total_price
+                                client.save()
                                 refund.save()
                                 return Response({'message': 'all good refund denied'})
                             else:

@@ -128,7 +128,7 @@ class Client(models.Model):
     city = models.CharField(max_length=50)
     postal_code = models.CharField(max_length=8)
     amount = models.FloatField(default=300)
-    photo = models.ImageField(upload_to="gallery")
+    photo = models.ImageField(upload_to="gallery", default="http://127.0.0.1:8000/media/gallery/avataar.png")
 
     def __str__(self):
         return "client " + self.user.username
