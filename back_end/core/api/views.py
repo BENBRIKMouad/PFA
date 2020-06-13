@@ -497,6 +497,6 @@ class CreateAuth(APIView):
                                   city=city,
                                   postal_code=postal_code, user=user)
             token = Token.objects.create(user=user)
-            return Response({"token": token.key}, status=status.HTTP_201_CREATED)
+            return Response({"key": token.key}, status=status.HTTP_201_CREATED)
         else:
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
