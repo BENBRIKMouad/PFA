@@ -481,7 +481,7 @@ class CreateAuth(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         serialized = UserSerializer(data=request.data)
-        address = request.data.get('username', None)
+        address = request.data.get('address', None)
         tel = request.data.get('tel', None)
         city = request.data.get('city', None)
         postal_code = request.data.get('postal_code', None)
