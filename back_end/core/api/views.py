@@ -481,13 +481,21 @@ class CreateAuth(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         serialized = UserSerializer(data=request.data)
-        if serialized.is_valid():
+        address = request.data.get('username', None)
+        tel = request.data.get('tel', None)
+        city = request.data.get('city', None)
+        postal_code = request.data.get('postal_code', None)
+        if serialized.is_valid() and tel is not None and city is not None and postal_code is not None and\
+                address is not None:
             user = User.objects.create_user(
                 request.data.get('username'),
                 request.data.get('email'),
                 request.data.get('password'),
             )
-            Client.objects.create(amount=0, address="0", tel="0", city="0", postal_code="0", user=user)
+            Client.objects.create(amount=0, address=request.data.get('username'),
+                                  tel=tel,
+                                  city=city,
+                                  postal_code=postal_code, user=user)
             token = Token.objects.create(user=user)
             return Response({"token": token.key}, status=status.HTTP_201_CREATED)
         else:
