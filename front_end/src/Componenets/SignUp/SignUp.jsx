@@ -12,7 +12,10 @@ class SignUp extends Component {
       username: "",
       email: "",
       mdp: "",
-      confirmmdp: "",
+      tel: "",
+      city: "",
+      postal_code: "",
+      address: "",
     };
     this.ChangeForm = this.ChangeForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,10 +30,14 @@ class SignUp extends Component {
       this.state.username,
       this.state.email,
       this.state.mdp,
-      this.state.confirmmdp
+      this.state.tel,
+      this.state.city,
+      this.state.postal_code,
+      this.state.address
     );
     this.props.history.push("/SignIn");
   }
+
   render() {
     console.log(this.state);
 
@@ -73,11 +80,38 @@ class SignUp extends Component {
                     </Form.Text>
                   </Form.Group>
                   <Form.Group controlId="formGroupPassword">
-                    <Form.Label>ConfirmmerleMot de pass : </Form.Label>
+                    <Form.Label>tel : </Form.Label>
                     <Form.Control
-                      type="password"
-                      placeholder="*****"
-                      name="confirmmdp"
+                      type="text"
+                      placeholder="0667"
+                      name="tel"
+                      onChange={this.ChangeForm}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formGroupPassword">
+                    <Form.Label>city : </Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="0667"
+                      name="city"
+                      onChange={this.ChangeForm}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formGroupPassword">
+                    <Form.Label>address : </Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="0667"
+                      name="address"
+                      onChange={this.ChangeForm}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formGroupPassword">
+                    <Form.Label>PostalCode : </Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="0667"
+                      name="postal_code"
                       onChange={this.ChangeForm}
                     />
                   </Form.Group>

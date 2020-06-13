@@ -60,16 +60,44 @@ export const authLogin = (username, password) => {
   };
 };
 
-export const authSignup = (username, email, password1, password2) => {
+export const authSignup = (
+  username,
+  email,
+  password,
+  tel,
+  city,
+  postal_code,
+  address
+) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/rest-auth/registration/", {
-        username: username,
-        email: email,
-        password1: password1,
-        password2: password2,
-      })
+      .post(
+        "http://127.0.0.1:8000/api/CreateAuth/",
+        {
+          username: username,
+          email: email,
+          password: password,
+          tel: tel,
+          city: city,
+          postal_code: postal_code,
+          address: address,
+        }
+
+        // export const authSignup = (username, email, password1, password2) => {
+        //       return (dispatch) => {
+        //         dispatch(authStart());
+        //         axios
+        //           .post("http://127.0.0.1:8000/rest-auth/registration/", {
+        //             username: username,
+        //             email: email,
+        //             password1: password1,
+        //             password2: password2,
+        //             tel: tel,
+        //             city: city,
+        //             address, address
+        //           }
+      )
       .then((res) => {
         const token = res.data.key;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
