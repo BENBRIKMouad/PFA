@@ -485,18 +485,20 @@ class CreateAuth(APIView):
         tel = request.data.get('tel', None)
         city = request.data.get('city', None)
         postal_code = request.data.get('postal_code', None)
-        if serialized.is_valid() and tel is not None and city is not None and postal_code is not None and\
-                address is not None:
-            user = User.objects.create_user(
-                request.data.get('username'),
-                request.data.get('email'),
-                request.data.get('password'),
-            )
-            Client.objects.create(amount=0, address=request.data.get('username'),
-                                  tel=tel,
-                                  city=city,
-                                  postal_code=postal_code, user=user)
-            token = Token.objects.create(user=user)
-            return Response({"key": token.key}, status=status.HTTP_201_CREATED)
+        if serialized.is_valid():
+            if tel is not None and city is not None and postal_code is not None and address is not None:
+                user = User.objects.create_user(
+                    request.data.get('username'),
+                    request.data.get('email'),
+                    request.data.get('password'),
+                )
+                Client.objects.create(amount=0, address=request.data.get('username'),
+                                      tel=tel,
+                                      city=city,
+                                      postal_code=postal_code, user=user)
+                token = Token.objects.create(user=user)
+                return Response({"key": token.key}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({"errrr": "missing arg"})
         else:
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
