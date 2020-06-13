@@ -7,8 +7,8 @@ import SignIn from "./Componenets/SignIn/SignIn";
 import ProductDetail from "./Componenets/ProductDetail/ProductDetail";
 import NavBarComp from "./Componenets/NavBarComp/NavBarComp";
 import ErrorPage from "./Componenets/Error/ErrorPage";
-// import { connect } from "react-redux";
-// import * as actions from "./Store/Actions/auth";
+import { connect } from "react-redux";
+import * as actions from "./Store/Actions/auth";
 import AdminPannel from "./Componenets/AdminPannel/AdminPannel";
 import AddProduct from "./Componenets/AdminPannel/AddProduct";
 import RefundPannel from "./Componenets/AdminPannel/Refunds/RefundPannel";
@@ -17,12 +17,13 @@ import OrderOne from "./Componenets/AdminPannel/Orders/OrderOne";
 import ClientPannel from "./Componenets/ClientPannel/ClientPannl";
 import RefundPannelC from "./Componenets/ClientPannel/Refunds/RefundPannelC";
 import AdditionalItem from "./Componenets/AdminPannel/AdditionalProduct";
+import AdminPannelv2 from "./Componenets/AdminPannel/AdminPannelv2";
 class App extends Component {
-  // componentDidMount() {
-  //   this.props.onTryAutoSignup();
-  // }
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+  }
   render() {
-    // console.log(this.state.products);
+    console.log(this.props);
 
     return (
       <>
@@ -34,6 +35,7 @@ class App extends Component {
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/Product/:ID" component={ProductDetail} />
             <Route exact path="/Admin" component={AdminPannel} />
+            <Route exact path="/Adminv2" component={AdminPannelv2} />
             <Route exact path="/Admin/AddProducts" component={AddProduct} />
             <Route exact path="/Admin/RefundList" component={RefundPannel} />
             <Route exact path="/Admin/OrderList" component={OrderList} />
@@ -54,16 +56,15 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {s
-//     isAuthenticated: state.token !== null,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.token !== null,
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onTryAutoSignup: () => dispatch(actions.authCheckState()),
-//   };
-// };
-export default App;
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

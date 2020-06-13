@@ -13,14 +13,11 @@ export default class ProductList extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("http://127.0.0.1:8000/api/product/")
-      .then((res) =>
-        this.setState({
-          Products: res.data,
-        })
-      )
-      .then(console.log(this.state.Products));
+    axios.get("http://127.0.0.1:8000/api/product/").then((res) =>
+      this.setState({
+        Products: res.data,
+      })
+    );
   }
 
   render() {
@@ -69,7 +66,6 @@ export default class ProductList extends Component {
                 </Link> */}
               </Card.Footer>
             </Card>
-            {console.log(item)}
           </div>
         ))}
       </div>
