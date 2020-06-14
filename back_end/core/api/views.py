@@ -2,7 +2,7 @@ from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView, \
     get_object_or_404
 from core.models import Product, Order, OrderProduct, Category, SubCategory, DeliveryMan, Payment, Refund, Client, \
-    AdditionalItem
+    AdditionalItem, ShippingAddress
 from .serializers import ProductSerializer, OrderProductSerializer, OrderSerializer, SubCategorySerializer, \
     CategorySerializer, RefundSerializer, AdditionalItemSerializer, ClientSerializer, UserSerializer
 from rest_framework import viewsets, status
@@ -92,9 +92,9 @@ class ClientViewSet(viewsets.ModelViewSet):
 
 @api_view()
 @login_required
-def add_to_cart(request, slug):
+def add_to_cart(request, pk):
     # find the product
-    product = get_object_or_404(Product, slug=slug)
+    product = get_object_or_404(Product, pk=pk)
     order_product, created = OrderProduct.objects.get_or_create(
         product=product, user=request.user, ordered=False)
     # find the orders of current user that has not benn ordered (payed)
@@ -109,7 +109,7 @@ def add_to_cart(request, slug):
         else:
             order.products.add(order_product)
     else:
-        order = Order.objects.create(user=request.user, ordered_date=timezone.now())
+        order = Order.objects.create(user=request.user)
         order.products.add(order_product)
     return Response(
         {'message': 'product ' + product.title + ' has been added to ' + request.user.username + ' cart successfully'})
@@ -117,8 +117,8 @@ def add_to_cart(request, slug):
 
 @api_view()
 @login_required
-def remove_from_cart(request, slug):
-    product = get_object_or_404(Product, slug=slug)
+def remove_from_cart(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     order_qs = Order.objects.filter(
         user=request.user,
         ordered=False
@@ -143,8 +143,8 @@ def remove_from_cart(request, slug):
 
 @api_view()
 @login_required
-def remove_single_product_from_cart(request, slug):
-    product = get_object_or_404(Product, slug=slug)
+def remove_single_product_from_cart(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     order_qs = Order.objects.filter(
         user=request.user,
         ordered=False
@@ -159,7 +159,7 @@ def remove_single_product_from_cart(request, slug):
                 ordered=False
             )[0]
             if order_product.quantity == 1:
-                return redirect("core:api:remove_from_cart", slug=slug)
+                return redirect("core:api:remove_from_cart", pk=pk)
             else:
                 order_product.quantity -= 1
             order_product.save()
@@ -171,16 +171,6 @@ def remove_single_product_from_cart(request, slug):
 
 
 @api_view()
-@login_required
-def cart_item_count(request):
-    user = request.user
-    if user.is_authenticated:
-        qs = Order.objects.filter(user=user, ordered=False)
-        if qs.exists():
-            return Response({'message': qs[0].products.count()})
-
-
-@api_view()
 def cart_item_count(request):
     user = request.user
     if user.is_authenticated:
@@ -189,17 +179,6 @@ def cart_item_count(request):
             return Response({'message': qs[0].products.count()})
         else:
             return Response({'message': 'your cart is empty'})
-
-
-@api_view()
-@login_required()
-def order_summary(request):
-    order = Order.objects.get(user=request.user, ordered=False)
-
-    serializer = OrderProductSerializer(order.products, many=True)
-    serializer2 = OrderSerializer(order)
-
-    return Response()
 
 
 def get_ref_code():
@@ -218,29 +197,33 @@ def payment(request, pk):
         if client.amount >= order.total_price:
             client.amount -= order.total_price
             client.save()
-            Payment.objects.create(user=request.user, payment_type='S', amount=order.total_price,
-                                   payment_date=timezone.now())
+            payment_obj = Payment.objects.create(user=request.user, payment_type='S', amount=order.total_price,
+                                                 payment_date=timezone.now())
+            order.ordered = True
+            order.ordered_date = timezone.now()
+            order.shipping_address = ShippingAddress.objects.get(user=client, default=True)
+            order.payment = payment_obj
+            order_products = Order.objects.filter(pk=pk)[0].products.all()
+            for order_product in order_products:
+                order_product.ordered = True
+                order_product.save()
+            order.ref_code = get_ref_code()
+            order.save()
             mans = DeliveryMan.objects.order_by('orders_delivered')
             for man in mans:
                 if man.available:
                     man.orders.add(order)
                     man.orders_delivered += 1
                     man.save()
-                    order.ordered = True
                     order.status = 'W'
                     order_products = Order.objects.filter(pk=pk)[0].products.all()
-                    for order_product in order_products:
-                        order_product.ordered = True
-                        order_product.save()
-                    order.ref_code = get_ref_code()
-                    order.save()
                     return Response({'message': 'the order has been assigned'})
-                # delete
-            if not order.ordered:
-                order.ordered = True
+            if order.status != 'W':
                 order.status = 'Q'
                 order.save()
-                return Response({'message': 'the order has been put in the queue'})
+                return Response({
+                    'message': 'the order has been payed and put in the queue due to unavailablity delivery stuff'
+                })
         else:
             return Response({'message': "you don't have enough money"})
 
@@ -286,6 +269,8 @@ class RefundHandler(APIView):
                         refund = refund_qs[0]
                         refund.accepted = True
                         refund.in_queue = False
+                        client = Client.objects.get(user=order.user)
+                        client.amount += order.total_price
                         refund.save()
                         order.save()
                         return Response({'message': 'all good refund granted'})
@@ -299,9 +284,6 @@ class RefundHandler(APIView):
                                 refund = refund_qs[0]
                                 refund.accepted = False
                                 refund.in_queue = False
-                                client = Client.objects.get(user=order.user)
-                                client.amount -= order.total_price
-                                client.save()
                                 refund.save()
                                 return Response({'message': 'all good refund denied'})
                             else:
@@ -471,7 +453,7 @@ class ClientView(APIView):
             "postal_code": client.postal_code,
             "amount": client.amount,
             "user": client.user_id,
-            'user_name': str(User.objects.get(pk=1).username),
+            'user_name': str(User.objects.get(pk=client.user_id).username),
         }
             for client in clients]
         return Response(data)
@@ -492,13 +474,14 @@ class CreateAuth(APIView):
                     request.data.get('email'),
                     request.data.get('password'),
                 )
-                Client.objects.create(amount=0, address=request.data.get('username'),
-                                      tel=tel,
-                                      city=city,
-                                      postal_code=postal_code, user=user)
+                client = Client.objects.create(amount=0, address=request.data.get('address'),
+                                               tel=tel,
+                                               city=city,
+                                               postal_code=postal_code, user=user)
                 token = Token.objects.create(user=user)
+                ShippingAddress.objects.create(user=client, address=address, postal_code=postal_code, default=True)
                 return Response({"key": token.key}, status=status.HTTP_201_CREATED)
             else:
-                return Response({"errrr": "missing arg"},status=status.HTTP_204_NO_CONTENT)
+                return Response({"errrr": "missing arg"}, status=status.HTTP_204_NO_CONTENT)
         else:
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
