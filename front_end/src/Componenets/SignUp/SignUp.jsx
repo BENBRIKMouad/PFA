@@ -11,7 +11,7 @@ class SignUp extends Component {
     this.state = {
       username: "",
       email: "",
-      mdp: "",
+      password: "",
       tel: "",
       city: "",
       postal_code: "",
@@ -29,13 +29,13 @@ class SignUp extends Component {
     this.props.onAuth(
       this.state.username,
       this.state.email,
-      this.state.mdp,
+      this.state.password,
       this.state.tel,
       this.state.city,
       this.state.postal_code,
       this.state.address
     );
-    this.props.history.push("/SignIn");
+    this.props.history.push("/");
   }
 
   render() {
@@ -72,7 +72,7 @@ class SignUp extends Component {
                     <Form.Control
                       type="password"
                       placeholder="*****"
-                      name="mdp"
+                      name="password"
                       onChange={this.ChangeForm}
                     />
                     <Form.Text id="passwordHelpBlock" muted>
@@ -145,8 +145,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (username, email, password1, password2) =>
-      dispatch(actions.authSignup(username, email, password1, password2)),
+    onAuth: (username, email, password, tel, city, postal_code, address) =>
+      dispatch(
+        actions.authSignup(
+          username,
+          email,
+          password,
+          tel,
+          city,
+          postal_code,
+          address
+        )
+      ),
   };
 };
 

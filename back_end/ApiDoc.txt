@@ -1,0 +1,32 @@
+--->Views
+127../api/ClientView =>{
+Ne retourne Pas Tous les Client a REVOIR 
+
+}
+--->Handler
+127../api/CreateAuth  => {
+{
+    "username": "mouadghopi",
+    "email": "userpi@email.com",
+    "password": "ouad48rm",
+    "tel": "ouad48rm",
+    "city": "4",
+    "postal_code": "12",
+    "address": "45"
+}
+L'enregistrement marche bien Pour le reste j'ai pas pu tester car la View ne marhe Pas 
+}
+
+
+Order: {
+--->View
+
+--->Handler
+	}
+
+Refund:{
+--->View
+
+--->Handler 
+	}
+
