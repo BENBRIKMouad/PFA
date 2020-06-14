@@ -453,7 +453,7 @@ class ClientView(APIView):
             "postal_code": client.postal_code,
             "amount": client.amount,
             "user": client.user_id,
-            'user_name': str(User.objects.get(pk=1).username),
+            'user_name': str(User.objects.get(pk=client.user_id).username),
         }
             for client in clients]
         return Response(data)
@@ -474,7 +474,7 @@ class CreateAuth(APIView):
                     request.data.get('email'),
                     request.data.get('password'),
                 )
-                client = Client.objects.create(amount=0, address=request.data.get('username'),
+                client = Client.objects.create(amount=0, address=request.data.get('address'),
                                                tel=tel,
                                                city=city,
                                                postal_code=postal_code, user=user)
