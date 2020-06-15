@@ -53,6 +53,10 @@ class AdditionalItem(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def add_i_price(self):
+        return self.price
+
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
@@ -102,10 +106,14 @@ class OrderProduct(models.Model):
 
     @property
     def get_total_price(self):
+        a = 0
+        if self.additional_items.exists():
+            for p in self.additional_items.all():
+                a += p.add_i_price
         if self.product.discount_price > 0:
-            return self.quantity * self.product.discount_price
+            return self.quantity * self.product.discount_price + a
         else:
-            return self.quantity * self.product.price
+            return self.quantity * self.product.price + a
 
     @property
     def saved_price(self):
