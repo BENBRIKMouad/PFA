@@ -14,7 +14,6 @@ export class NavBarComp extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link>A propos</Nav.Link>
             {this.props.isAuthenticated ? (
               <button
                 className="btn btn-outline-secondary mx-2"
@@ -24,10 +23,13 @@ export class NavBarComp extends Component {
                 déconnecter
               </button>
             ) : (
-              <Link className="btn btn-outline-secondary mx-2" to="/SignUp">
-                {" "}
-                S'inscrire / Se connecter{" "}
-              </Link>
+              <>
+                <Nav.Link>A propos</Nav.Link>
+                <Link className="btn btn-outline-secondary mx-2" to="/SignUp">
+                  {" "}
+                  S'inscrire / Se connecter{" "}
+                </Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>
