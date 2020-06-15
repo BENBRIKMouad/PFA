@@ -389,7 +389,7 @@ class OrderView(APIView):
                               }
                              if Refund.objects.filter(order=order).exists() else 'none']),
                  'user': order.user.id,
-                 'user_name': str(User.objects.get(pk=1).username),
+                 'user_name': str(User.objects.get(pk=order.user.id).username),
                  'product': ([{'id': Product.objects.get(pk=order.products.all()[i].product.id).id,
                                'title': Product.objects.get(pk=order.products.all()[i].product.id).title,
                                'price': Product.objects.get(pk=order.products.all()[i].product.id).price,
