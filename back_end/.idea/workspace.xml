@@ -20,8 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9986a849-3a1f-4b09-b5ed-4f9001c9d883" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/745df31c-f267-4e5f-ad1f-0a644db8b118.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/745df31c-f267-4e5f-ad1f-0a644db8b118.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +116,7 @@
       <workItem from="1591995210576" duration="21861000" />
       <workItem from="1592134049115" duration="10875000" />
       <workItem from="1592229498432" duration="222000" />
-      <workItem from="1592229820781" duration="8591000" />
+      <workItem from="1592229820781" duration="10276000" />
     </task>
     <servers />
   </component>
@@ -145,13 +147,13 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="568" y="232" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1591800194113" />
-    <state x="-1270" y="121" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588772388410">
-      <screen x="-1366" y="121" width="1366" height="730" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592241639445">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="-1270" y="121" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1366.121.1366.730/0.0.1536.834@-1366.121.1366.730" timestamp="1588772388410" />
     <state x="206" y="21" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1588283363720" />
     <state x="1456" y="-121" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1588464869880" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1587913478124" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1592241639445" />
     <state x="413" y="116" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587920358009">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
