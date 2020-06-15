@@ -505,7 +505,7 @@ class TokenView(APIView):
                 "amount": client.amount,
                 "user": client.user_id,
                 'user_name': str(User.objects.get(pk=client.user_id).username),
-                'is_admin': str(user.is_superuser)
+                'is_admin': user.is_superuser
             }
         else:
             data = {
@@ -516,6 +516,6 @@ class TokenView(APIView):
                 "postal_code": None,
                 "amount": None,
                 'user_name': str(user.username),
-                'is_admin': str(user.is_superuser)
+                'is_admin': user.is_superuser
             }
         return Response(data)
