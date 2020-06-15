@@ -10,13 +10,14 @@ import {
   FaPlus,
   FaCog,
   FaAngleDoubleRight,
+  FaUsers,
 } from "react-icons/fa";
 class AdminPannel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      Products: [],
+      Orders: [],
       SelectedProduct: [],
       showModalInfo: false,
       showModalDelete: false,
@@ -29,10 +30,10 @@ class AdminPannel extends Component {
       .get("http://127.0.0.1:8000/api/OrderView")
       .then((res) =>
         this.setState({
-          Products: res.data,
+          Orders: res.data,
         })
       )
-      .then(console.log(this.state.Products))
+      .then(console.log(this.state.Orders))
       .catch((err) => console.log(err));
   }
 
@@ -98,18 +99,18 @@ class AdminPannel extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.Products.map((Product) => (
-                        <tr key={Product.id}>
-                          <td>{Product.id}</td>
-                          <td>{Product.user_name}</td>
+                      {this.state.Orders.map((Order) => (
+                        <tr key={Order.id}>
+                          <td>{Order.id}</td>
+                          <td>{Order.user_name}</td>
                           <td>
-                            {Product.received ? (
+                            {Order.received ? (
                               <span className="text-success">Recu</span>
                             ) : (
                               <span className="text-danger"> Pas Recu</span>
                             )}
                           </td>
-                          <td>{this.DateFix(Product.ordered_date)}</td>
+                          <td>{this.DateFix(Order.ordered_date)}</td>
 
                           <td>
                             <Link
@@ -129,48 +130,54 @@ class AdminPannel extends Component {
                 <div className="card text-center bg-primary text-white mb-3">
                   <div className="card-body">
                     <h3>
-                      <FaClipboardList />
+                      <span className="display-4">
+                        <FaClipboardList />
+                      </span>
                       Remboursement
                     </h3>
-                    {/* <h4 className="display-4">
-                      <i className="fas fa-pencil-alt"></i> 6
-                    </h4> */}
+
                     <Link
                       to={`/Admin/RefundList`}
                       className="btn btn-outline-light btn-sm"
                     >
-                      View
+                      Consulter
                     </Link>
                   </div>
                 </div>
-
                 <div className="card text-center bg-success text-white mb-3">
                   <div className="card-body">
-                    <h3>Plat</h3>
-                    <h4 className="display-4">
-                      <i className="fas fa-folder"></i> 4
-                    </h4>
-                    <a
-                      href="categories.html"
+                    <h3>
+                      <span className="display-4">
+                        <FaClipboardList />
+                      </span>
+                      <br />
+                      Plats
+                    </h3>
+
+                    <Link
+                      to={`/Admin/OrderList`}
                       className="btn btn-outline-light btn-sm"
                     >
-                      View
-                    </a>
+                      Consulter
+                    </Link>
                   </div>
                 </div>
-
                 <div className="card text-center bg-warning text-white mb-3">
                   <div className="card-body">
-                    <h3>Users</h3>
-                    <h4 className="display-4">
-                      <i className="fas fa-users"></i> 4
-                    </h4>
-                    <a
-                      href="users.html"
+                    <h3>
+                      <span className="display-4">
+                        <FaUsers />
+                      </span>
+                      <br />
+                      Client
+                    </h3>
+
+                    <Link
+                      to={`/Admin/ClientList`}
                       className="btn btn-outline-light btn-sm"
                     >
-                      View
-                    </a>
+                      Consulter
+                    </Link>
                   </div>
                 </div>
               </div>
