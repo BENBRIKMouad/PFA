@@ -2,7 +2,7 @@ from django.urls import path, include
 # from .views import ProductList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete
 from .views import ProductViewSet, OrderProductViewSet, OrderViewSet, CategoryViewSet, SubCategoryViewSet, \
     RefundViewSet, OrderView, ProfitView, OrderGraph, AdditionalItemViewSet, RefundHandler, ClientViewSet, OrderByDate, \
-    ProductView, ClientView, CreateAuth
+    ProductView, ClientView, CreateAuth, TokenView
 from rest_framework.routers import DefaultRouter
 from .views import add_to_cart, remove_from_cart, cart_item_count, remove_single_product_from_cart, \
     payment, total
@@ -34,5 +34,6 @@ urlpatterns = [
     path('ProductView/', ProductView.as_view()),
     path('ClientView/', ClientView.as_view()),
     path('CreateAuth/', CreateAuth.as_view()),
+    path('TokenView/', TokenView.as_view()),
 ]
 urlpatterns += router.urls

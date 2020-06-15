@@ -389,7 +389,7 @@ class OrderView(APIView):
                               }
                              if Refund.objects.filter(order=order).exists() else 'none']),
                  'user': order.user.id,
-                 'user_name': str(User.objects.get(pk=1).username),
+                 'user_name': str(User.objects.get(pk=order.user.id).username),
                  'product': ([{'id': Product.objects.get(pk=order.products.all()[i].product.id).id,
                                'title': Product.objects.get(pk=order.products.all()[i].product.id).title,
                                'price': Product.objects.get(pk=order.products.all()[i].product.id).price,
@@ -485,3 +485,37 @@ class CreateAuth(APIView):
                 return Response({"errrr": "missing arg"}, status=status.HTTP_204_NO_CONTENT)
         else:
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TokenView(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        token = request.data.get('token')
+        f_token = Token.objects.get(key=token)
+        user = User.objects.get(pk=f_token.user_id)
+        client_qs = Client.objects.filter(user=user)
+        if client_qs.exists():
+            client = client_qs[0]
+            data = {
+                "id": client.id,
+                "address": client.address,
+                "tel": client.tel,
+                "city": client.city,
+                "postal_code": client.postal_code,
+                "amount": client.amount,
+                "user": client.user_id,
+                'user_name': str(User.objects.get(pk=client.user_id).username),
+                'is_admin': str(user.is_superuser)
+            }
+        else:
+            data = {
+                "id": user.id,
+                "address": None,
+                "tel": None,
+                "city": None,
+                "postal_code": None,
+                "amount": None,
+                'user_name': str(user.username),
+                'is_admin': str(user.is_superuser)
+            }
+        return Response(data)
