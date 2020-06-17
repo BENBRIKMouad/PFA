@@ -13,9 +13,15 @@ export class NavBarComp extends Component {
       Info: {},
       loading: true,
     };
+    this.handleLogout = this.handleLogout.bind(this);
+    this.ApiCall = this.ApiCall.bind(this);
   }
+  componentDidUpdate() {
+    // this.ApiCall();
+  }
+  componentWillMount() {}
 
-  ApiCall = () => {
+  ApiCall() {
     const token = localStorage.getItem("token");
     axios
       .post("http://127.0.0.1:8000/api/TokenView/", {
@@ -23,9 +29,12 @@ export class NavBarComp extends Component {
       })
       .then(({ data }) => this.setState({ Info: data, loading: false }))
       .catch((err) => console.log(err));
-  };
+  }
+  handleLogout() {
+    this.setState({ loading: true });
+    this.props.logout();
+  }
   render() {
-    console.log(this.state);
     return (
       <Navbar bg="light" expand="lg">
         <Link className="navbar-brand" to="/">
@@ -40,26 +49,37 @@ export class NavBarComp extends Component {
                   this.ApiCall()
                 ) : (
                   <>
-                    <NavDropdown title="Dropdown" id="nav-dropdown">
-                      {this.state.Info.is_admin === "True" ? (
-                        <NavDropdown.Item eventKey="4.1">
-                          <Link to="/adminv2">Admin Pannel</Link>
-                        </NavDropdown.Item>
+                    <NavDropdown title="Menu" id="nav-dropdown">
+                      {this.state.Info.is_admin ? (
+                        // <NavDropdown.Item eventKey="4.1">
+                        <Link
+                          to="/adminv2"
+                          className=" text-reset text-decoration-none"
+                        >
+                          Admin Pannel
+                        </Link>
                       ) : (
-                        <NavDropdown.Item eventKey="4.1">
-                          <Link to="/adminv2">Client Pannel</Link>
-                        </NavDropdown.Item>
+                        // </NavDropdown.Item>
+                        // <NavDropdown.Item eventKey="4.1">
+                        <Link
+                          to="/adminv2"
+                          className="text-reset text-decoration-none"
+                        >
+                          Client Pannel
+                        </Link>
+                        // </NavDropdown.Item>
                       )}
 
                       <NavDropdown.Item eventKey="4.2">
-                        <Link>Settings</Link>
+                        <Link to="/">Settings</Link>
                       </NavDropdown.Item>
                     </NavDropdown>
                   </>
                 )}
                 <button
                   className="btn btn-outline-secondary mx-2"
-                  onClick={this.props.logout}
+                  // onClick={this.props.logout}
+                  onClick={this.handleLogout}
                 >
                   déconnecter
                 </button>

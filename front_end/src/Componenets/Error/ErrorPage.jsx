@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-
 export default class ErrorPage extends Component {
   render() {
-    return <div>EroorPage</div>;
+    return (
+      <>
+        <div id="clouds"></div>
+      </>
+    );
   }
 }
