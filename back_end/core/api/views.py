@@ -89,86 +89,178 @@ class ClientViewSet(viewsets.ModelViewSet):
     serializer_class = ClientSerializer
     queryset = Client.objects.all()
 
-
-@api_view()
-@login_required
-def add_to_cart(request, pk):
-    # find the product
-    product = get_object_or_404(Product, pk=pk)
-    order_product, created = OrderProduct.objects.get_or_create(
-        product=product, user=request.user, ordered=False)
-    # find the orders of current user that has not benn ordered (payed)
-    orders = Order.objects.filter(user=request.user, ordered=False)
-
-    if orders.exists():
-        order = orders[0]
-        # check product already exist in order product increase quantity
-        if order.products.filter(product__slug=product.slug).exists():
-            order_product.quantity += 1
-            order_product.save()
-        else:
-            order.products.add(order_product)
-    else:
-        order = Order.objects.create(user=request.user)
-        order.products.add(order_product)
-    return Response(
-        {'message': 'product ' + product.title + ' has been added to ' + request.user.username + ' cart successfully'})
-
-
-@api_view()
-@login_required
-def remove_from_cart(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    order_qs = Order.objects.filter(
-        user=request.user,
-        ordered=False
-    )
-    if order_qs.exists():
-        order = order_qs[0]
-        # check if the order item is in the order
-        if order.products.filter(product__slug=product.slug).exists():
-            order_product = OrderProduct.objects.filter(
-                product=product,
-                user=request.user,
-                ordered=False
-            )[0]
-            order.products.remove(order_product)
-            order_product.delete()
-            return Response({'message': 'This item was removed from your cart.'})
-        else:
-            return Response({'message': 'This item was not in your cart'})
-    else:
-        return Response({'message': 'You do not have an active order'})
+#
+# @api_view()
+# @login_required
+# def add_to_cart(request, pk):
+#     # find the product
+#     product = get_object_or_404(Product, pk=pk)
+#     order_product, created = OrderProduct.objects.get_or_create(
+#         product=product, user=request.user, ordered=False)
+#     # find the orders of current user that has not benn ordered (payed)
+#     orders = Order.objects.filter(user=request.user, ordered=False)
+#
+#     if orders.exists():
+#         order = orders[0]
+#         # check product already exist in order product increase quantity
+#         if order.products.filter(product__slug=product.slug).exists():
+#             order_product.quantity += 1
+#             order_product.save()
+#         else:
+#             order.products.add(order_product)
+#     else:
+#         order = Order.objects.create(user=request.user)
+#         order.products.add(order_product)
+#     return Response(
+#         {'message': 'product ' + product.title + ' has been added to ' + request.user.username + ' cart successfully'})
 
 
-@api_view()
-@login_required
-def remove_single_product_from_cart(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    order_qs = Order.objects.filter(
-        user=request.user,
-        ordered=False
-    )
-    if order_qs.exists():
-        order = order_qs[0]
-        # check if the order item is in the order
-        if order.products.filter(product__slug=product.slug).exists():
-            order_product = OrderProduct.objects.filter(
-                product=product,
-                user=request.user,
-                ordered=False
-            )[0]
-            if order_product.quantity == 1:
-                return redirect("core:api:remove_from_cart", pk=pk)
+class AddToCart(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        pk = int(request.data.get('pk', None))
+        # find the product
+        product = get_object_or_404(Product, pk=pk)
+        order_product, created = OrderProduct.objects.get_or_create(
+            product=product, user=request.user, ordered=False)
+        # find the orders of current user that has not benn ordered (payed)
+        orders = Order.objects.filter(user=request.user, ordered=False)
+
+        if orders.exists():
+            order = orders[0]
+            # check product already exist in order product increase quantity
+            if order.products.filter(product__slug=product.slug).exists():
+                order_product.quantity += 1
+                order_product.save()
             else:
-                order_product.quantity -= 1
-            order_product.save()
-            return Response({'message': 'This item was removed from your cart.'})
+                order.products.add(order_product)
         else:
-            return Response({'message': 'This item was not in your cart'})
-    else:
-        return Response({'message': 'You do not have an active order'})
+            order = Order.objects.create(user=request.user)
+            order.products.add(order_product)
+        return Response(
+            {'message': 'product ' + product.title + ' has been added to ' + request.user.username + ' cart successfully'})
 
+
+# @api_view()
+# @login_required
+# def remove_from_cart(request, pk):
+#     product = get_object_or_404(Product, pk=pk)
+#     order_qs = Order.objects.filter(
+#         user=request.user,
+#         ordered=False
+#     )
+#     if order_qs.exists():
+#         order = order_qs[0]
+#         # check if the order item is in the order
+#         if order.user == request.user:
+#             if order.products.filter(product__slug=product.slug).exists():
+#                 order_product = OrderProduct.objects.filter(
+#                     product=product,
+#                     user=request.user,
+#                     ordered=False
+#                 )[0]
+#                 order.products.remove(order_product)
+#                 order_product.delete()
+#                 return Response({'message': 'This item was removed from your cart.'})
+#             else:
+#                 return Response({'message': 'This item was not in your cart'})
+#         else:
+#             return Response({'message': "you don't own this order"})
+#     else:
+#         return Response({'message': 'You do not have an active order'})
+
+
+class RemoveFromCart(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        pk = int(request.data.get('pk', None))
+        product = get_object_or_404(Product, pk=pk)
+        order_qs = Order.objects.filter(
+            user=request.user,
+            ordered=False
+        )
+        if order_qs.exists():
+            order = order_qs[0]
+            # check if the order item is in the order
+            if order.user == request.user:
+                if order.products.filter(product__slug=product.slug).exists():
+                    order_product = OrderProduct.objects.filter(
+                        product=product,
+                        user=request.user,
+                        ordered=False
+                    )[0]
+                    order.products.remove(order_product)
+                    order_product.delete()
+                    return Response({'message': 'This item was removed from your cart.'})
+                else:
+                    return Response({'message': 'This item was not in your cart'})
+            else:
+                return Response({'message': "you don't own this order"})
+        else:
+            return Response({'message': 'You do not have an active order'})
+
+
+# @api_view()
+# @login_required
+# def remove_single_product_from_cart(request, pk):
+#     product = get_object_or_404(Product, pk=pk)
+#     order_qs = Order.objects.filter(
+#         user=request.user,
+#         ordered=False
+#     )
+#     if order_qs.exists():
+#         order = order_qs[0]
+#         # check if the order item is in the order
+#         if order.products.filter(product__slug=product.slug).exists():
+#             order_product = OrderProduct.objects.filter(
+#                 product=product,
+#                 user=request.user,
+#                 ordered=False
+#             )[0]
+#             if order_product.quantity == 1:
+#                 return redirect("core:api:remove_from_cart", pk=pk)
+#             else:
+#                 order_product.quantity -= 1
+#             order_product.save()
+#             return Response({'message': 'This item was removed from your cart.'})
+#         else:
+#             return Response({'message': 'This item was not in your cart'})
+#     else:
+#         return Response({'message': 'You do not have an active order'})
+
+
+class RemoveSingleProductFromCart(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        pk = int(request.data.get('pk', None))
+        product = get_object_or_404(Product, pk=pk)
+        order_qs = Order.objects.filter(
+            user=request.user,
+            ordered=False
+        )
+        if order_qs.exists():
+            order = order_qs[0]
+            # check if the order item is in the order
+            if order.products.filter(product__slug=product.slug).exists():
+                order_product = OrderProduct.objects.filter(
+                    product=product,
+                    user=request.user,
+                    ordered=False
+                )[0]
+                if order_product.quantity == 1:
+                    order.products.remove(order_product)
+                    order_product.delete()
+                    if order.products.count() == 0:
+                        order.delete()
+                    return Response({'message': 'This item was removed from your cart completely'})
+                else:
+                    order_product.quantity -= 1
+                order_product.save()
+                return Response({'message': 'This item was removed from your cart.'})
+            else:
+                return Response({'message': 'This item was not in your cart'})
+        else:
+            return Response({'message': 'You do not have an active order'})
 
 @api_view()
 def cart_item_count(request):

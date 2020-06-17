@@ -2,9 +2,9 @@ from django.urls import path, include
 # from .views import ProductList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete
 from .views import ProductViewSet, OrderProductViewSet, OrderViewSet, CategoryViewSet, SubCategoryViewSet, \
     RefundViewSet, OrderView, ProfitView, OrderGraph, AdditionalItemViewSet, RefundHandler, ClientViewSet, OrderByDate, \
-    ProductView, ClientView, CreateAuth, TokenView
+    ProductView, ClientView, CreateAuth, TokenView, AddToCart, RemoveFromCart, RemoveSingleProductFromCart
 from rest_framework.routers import DefaultRouter
-from .views import add_to_cart, remove_from_cart, cart_item_count, remove_single_product_from_cart, \
+from .views import cart_item_count,  \
     payment, total
 
 router = DefaultRouter()
@@ -19,10 +19,10 @@ router.register(r'ClientHandler', ClientViewSet, basename='client')
 
 app_name = 'api'
 urlpatterns = [
-    path('add_to_cart/<pk>', add_to_cart),
-    path('remove_from_cart/<pk>', remove_from_cart, name="remove_from_cart"),
+    path('add_to_cart/', AddToCart.as_view()),
+    path('remove_from_cart/', RemoveFromCart.as_view(), name="remove_from_cart"),
     path('cart_item_count/', cart_item_count),
-    path('remove_single_product_from_cart/<pk>', remove_single_product_from_cart, name="remove"),
+    path('remove_single_product_from_cart/', RemoveSingleProductFromCart.as_view(), name="remove"),
     path('payment/<pk>', payment),
     path('total/', total),
     # path('request_refund/', request_refund),
