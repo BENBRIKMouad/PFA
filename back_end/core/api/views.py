@@ -476,7 +476,7 @@ class OrderView(APIView):
         if kwargs.get('pk') is not None:
             user = kwargs.get('pk')
             user = User.objects.get(pk=user)
-            orders = Order.objects.filter(user=user,ordered=False)
+            orders = Order.objects.filter(user=user, ordered=False)
         data = [{'id': order.pk,
                  'ordered_date': order.ordered_date,
                  'ref_code': order.ref_code,
