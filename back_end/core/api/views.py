@@ -119,7 +119,7 @@ class AddToCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
-        user = int(request.data.get('user', None))
+        user = User.objects.get(pk=int(request.data.get('user', None)))
         # find the product
         product = get_object_or_404(Product, pk=pk)
         order_product, created = OrderProduct.objects.get_or_create(
@@ -175,7 +175,7 @@ class RemoveFromCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
-        user = int(request.data.get('user', None))
+        user = User.objects.get(pk=int(request.data.get('user', None)))
         product = get_object_or_404(Product, pk=pk)
         order_qs = Order.objects.filter(
             user=user,
@@ -235,7 +235,7 @@ class RemoveSingleProductFromCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
-        user = int(request.data.get('user', None))
+        user = User.objects.get(pk=int(request.data.get('user', None)))
         product = get_object_or_404(Product, pk=pk)
         order_qs = Order.objects.filter(
             user=user,
@@ -268,7 +268,7 @@ class RemoveSingleProductFromCart(APIView):
 
 @api_view()
 def cart_item_count(request):
-    user = int(request.data.get('user', None))
+    user = User.objects.get(pk=int(request.data.get('user', None)))
     if user.is_authenticated:
         qs = Order.objects.filter(user=user, ordered=False)
         if qs.exists():
@@ -285,7 +285,7 @@ def get_ref_code():
 @login_required()
 def payment(request, pk):
     order = Order.objects.get(pk=pk)
-    user = int(request.data.get('user', None))
+    user = User.objects.get(pk=int(request.data.get('user', None)))
     if order.ordered:
         return Response({'message': 'this order is already ordered'})
     else:
@@ -493,7 +493,7 @@ class OrderView(APIView):
                                'discount_price':
                                    Product.objects.get(pk=order.products.all()[i].product.id).discount_price,
                                'slug': Product.objects.get(pk=order.products.all()[i].product.id).slug,
-                               'photo': "http://127.0.0.1:8000/media/gallery/" + str(
+                               'photo': "http://127.0.0.1:8000/media/" + str(
                                    Product.objects.get(pk=order.products.all()[i].product.id).photo),
                                'description': Product.objects.get(pk=order.products.all()[i].product.id).description,
                                'category': Product.objects.get(pk=order.products.all()[i].product.id).category,
@@ -525,7 +525,7 @@ class ProductView(APIView):
             'price': product.price,
             'discount_price': product.discount_price,
             'slug': product.slug,
-            'photo': "http://127.0.0.1:8000/media/gallery/" + str(product.photo),
+            'photo': "http://127.0.0.1:8000/media/" + str(product.photo),
             'description': product.description,
             'category': product.category,
             'subcategory': product.subcategory,
@@ -550,7 +550,7 @@ class ProductView(APIView):
                 'price': product.price,
                 'discount_price': product.discount_price,
                 'slug': product.slug,
-                'photo': "http://127.0.0.1:8000/media/gallery/" + str(product.photo),
+                'photo': "http://127.0.0.1:8000/media/" + str(product.photo),
                 'description': product.description,
                 'category': product.category,
                 'subcategory': product.subcategory,
@@ -568,7 +568,7 @@ class ProductView(APIView):
                 'price': product.price,
                 'discount_price': product.discount_price,
                 'slug': product.slug,
-                'photo': "http://127.0.0.1:8000/media/gallery/" + str(product.photo),
+                'photo': "http://127.0.0.1:8000/media/" + str(product.photo),
                 'description': product.description,
                 'category': product.category,
                 'subcategory': product.subcategory,
