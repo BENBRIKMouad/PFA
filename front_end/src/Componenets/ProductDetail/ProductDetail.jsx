@@ -3,6 +3,7 @@ import { Container, Button } from "react-bootstrap";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,7 @@ class ProductDetail extends Component {
       id: this.props.match.params.ID,
       data: {},
       isFetched: false,
+      Info: {},
     };
     this.AddItem = this.AddItem.bind(this);
   }
@@ -19,18 +21,38 @@ class ProductDetail extends Component {
       .get(`http://127.0.0.1:8000/api/ProductView/${this.state.id}`)
       .then(({ data }) => this.setState({ data: data, isFetched: true }))
       .catch((err) => console.log(err));
+    const token = localStorage.getItem("token");
+    axios
+      .post("http://127.0.0.1:8000/api/TokenView/", {
+        token: token,
+      })
+      .then(({ data }) => this.setState({ Info: data }))
+      .catch((err) => console.log(err));
   }
+
+  notify = () =>
+    toast.success("Produit Ajouté avec succés", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   AddItem() {
     axios
-      .post(`http://127.0.0.1:8000/api/add_to_cart/`, { pk: 1, id: 29 })
-      .then((res) => console.log(res.data))
+      .post(`http://127.0.0.1:8000/api/add_to_cart/`, {
+        pk: this.state.id,
+        user: this.state.Info.user,
+      })
+      .then((res) => (res.data ? this.notify() : null))
+
       .catch((err) => console.log(err));
   }
-  render() {
-    console.log(this.props.match.params.ID);
-    console.log(this.state.data);
 
+  render() {
     return (
       <React.Fragment>
         <br />

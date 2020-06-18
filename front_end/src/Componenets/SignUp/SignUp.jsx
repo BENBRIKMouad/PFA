@@ -40,6 +40,7 @@ class SignUp extends Component {
 
   render() {
     console.log(this.state);
+    console.log(this.props.error);
 
     return (
       <div className="container">

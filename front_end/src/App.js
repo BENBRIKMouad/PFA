@@ -21,6 +21,8 @@ import AdminPannelv2 from "./Componenets/AdminPannel/AdminPannelv2";
 import ClientList from "./Componenets/AdminPannel/Clients/ClientList";
 import ProductList from "./Componenets/AdminPannel/Products/ProductsList";
 import FooterComp from "./Componenets/FooterComp/FooterComp";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
@@ -30,6 +32,19 @@ class App extends Component {
 
     return (
       <>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
         <Router>
           <NavBarComp />
           <Switch>

@@ -113,6 +113,15 @@ class RefundPannel extends Component {
     console.log(this.state);
     return (
       <>
+        <header id="main-header" className="py-2 bg-primary text-white">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6">
+                <h1>Refund Pannel</h1>
+              </div>
+            </div>
+          </div>
+        </header>
         <Container>
           <h1 className="display-1 text-center">Refund Pannel</h1>
           <Select
