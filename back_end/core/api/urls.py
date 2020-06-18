@@ -32,6 +32,7 @@ urlpatterns = [
     path('RefundHandler/', RefundHandler.as_view()),
     path('OrderView/', OrderView.as_view()),
     path('ProductView/', ProductView.as_view()),
+    path('ProductView/<pk>', ProductView.as_view()),
     path('ClientView/', ClientView.as_view()),
     path('CreateAuth/', CreateAuth.as_view()),
     path('TokenView/', TokenView.as_view()),

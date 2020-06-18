@@ -119,12 +119,13 @@ class AddToCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
+        user = int(request.data.get('user', None))
         # find the product
         product = get_object_or_404(Product, pk=pk)
         order_product, created = OrderProduct.objects.get_or_create(
-            product=product, user=request.user, ordered=False)
+            product=product, user=user, ordered=False)
         # find the orders of current user that has not benn ordered (payed)
-        orders = Order.objects.filter(user=request.user, ordered=False)
+        orders = Order.objects.filter(user=user, ordered=False)
 
         if orders.exists():
             order = orders[0]
@@ -135,10 +136,10 @@ class AddToCart(APIView):
             else:
                 order.products.add(order_product)
         else:
-            order = Order.objects.create(user=request.user)
+            order = Order.objects.create(user=user)
             order.products.add(order_product)
         return Response(
-            {'message': 'product ' + product.title + ' has been added to ' + request.user.username + ' cart successfully'})
+            {'message': 'product ' + product.title + ' has been added to ' + user.username + ' cart successfully'})
 
 
 # @api_view()
@@ -174,19 +175,20 @@ class RemoveFromCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
+        user = int(request.data.get('user', None))
         product = get_object_or_404(Product, pk=pk)
         order_qs = Order.objects.filter(
-            user=request.user,
+            user=user,
             ordered=False
         )
         if order_qs.exists():
             order = order_qs[0]
             # check if the order item is in the order
-            if order.user == request.user:
+            if order.user == user:
                 if order.products.filter(product__slug=product.slug).exists():
                     order_product = OrderProduct.objects.filter(
                         product=product,
-                        user=request.user,
+                        user=user,
                         ordered=False
                     )[0]
                     order.products.remove(order_product)
@@ -233,9 +235,10 @@ class RemoveSingleProductFromCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
+        user = int(request.data.get('user', None))
         product = get_object_or_404(Product, pk=pk)
         order_qs = Order.objects.filter(
-            user=request.user,
+            user=user,
             ordered=False
         )
         if order_qs.exists():
@@ -244,7 +247,7 @@ class RemoveSingleProductFromCart(APIView):
             if order.products.filter(product__slug=product.slug).exists():
                 order_product = OrderProduct.objects.filter(
                     product=product,
-                    user=request.user,
+                    user=user,
                     ordered=False
                 )[0]
                 if order_product.quantity == 1:
@@ -262,9 +265,10 @@ class RemoveSingleProductFromCart(APIView):
         else:
             return Response({'message': 'You do not have an active order'})
 
+
 @api_view()
 def cart_item_count(request):
-    user = request.user
+    user = int(request.data.get('user', None))
     if user.is_authenticated:
         qs = Order.objects.filter(user=user, ordered=False)
         if qs.exists():
@@ -281,15 +285,16 @@ def get_ref_code():
 @login_required()
 def payment(request, pk):
     order = Order.objects.get(pk=pk)
+    user = int(request.data.get('user', None))
     if order.ordered:
         return Response({'message': 'this order is already ordered'})
     else:
         # TODO :payment = Payment() , update to post class
-        client = Client.objects.get(user=request.user)
+        client = Client.objects.get(user=user)
         if client.amount >= order.total_price:
             client.amount -= order.total_price
             client.save()
-            payment_obj = Payment.objects.create(user=request.user, payment_type='S', amount=order.total_price,
+            payment_obj = Payment.objects.create(user=user, payment_type='S', amount=order.total_price,
                                                  payment_date=timezone.now())
             order.ordered = True
             order.ordered_date = timezone.now()
@@ -507,12 +512,14 @@ class OrderView(APIView):
 
         return Response(data)
 
+######################
+
 
 class ProductView(APIView):
-    @staticmethod
-    def get(request, *args, **kwargs):
-        products = Product.objects.all()
-        data = [{
+    def get_queryset(self):
+        pk = self.request.query_params('pk')
+        product = Product.objects.get(pk=pk)
+        data = {
             'id': product.id,
             'title': product.title,
             'price': product.price,
@@ -529,7 +536,50 @@ class ProductView(APIView):
                                   for j in
                                   range(product.additional_items.all().count())])
         }
-            for product in products]
+        return Response(data)
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        products = Product.objects.all()
+        if kwargs.get('pk') is not None:
+            pk = kwargs.get('pk')
+            product = Product.objects.get(pk=pk)
+            data = {
+                'id': product.id,
+                'title': product.title,
+                'price': product.price,
+                'discount_price': product.discount_price,
+                'slug': product.slug,
+                'photo': "http://127.0.0.1:8000/media/gallery/" + str(product.photo),
+                'description': product.description,
+                'category': product.category,
+                'subcategory': product.subcategory,
+                'additional_items': ([{'id': product.additional_items.all()[j].id,
+                                       'title': product.additional_items.all()[j].title,
+                                       'price': product.additional_items.all()[j].price
+                                       }
+                                      for j in
+                                      range(product.additional_items.all().count())])
+            }
+        else:
+            data = [{
+                'id': product.id,
+                'title': product.title,
+                'price': product.price,
+                'discount_price': product.discount_price,
+                'slug': product.slug,
+                'photo': "http://127.0.0.1:8000/media/gallery/" + str(product.photo),
+                'description': product.description,
+                'category': product.category,
+                'subcategory': product.subcategory,
+                'additional_items': ([{'id': product.additional_items.all()[j].id,
+                                       'title': product.additional_items.all()[j].title,
+                                       'price': product.additional_items.all()[j].price
+                                       }
+                                      for j in
+                                      range(product.additional_items.all().count())])
+            }
+                for product in products]
         return Response(data)
 
 
