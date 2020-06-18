@@ -60,13 +60,12 @@ class AdminPannel extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-3">
-                <button
+                <Link
+                  to="/admin/AddProducts"
                   className="btn btn-primary btn-block"
-                  data-toggle="modal"
-                  data-target="#addPostModal"
                 >
                   <FaPlus className="mx-1" /> Ajouté Plat
-                </button>
+                </Link>
               </div>
               <div className="col-md-3">
                 <button
@@ -155,7 +154,7 @@ class AdminPannel extends Component {
                     </h3>
 
                     <Link
-                      to={`/Admin/OrderList`}
+                      to={`/Admin/ProductList`}
                       className="btn btn-outline-light btn-sm"
                     >
                       Consulter

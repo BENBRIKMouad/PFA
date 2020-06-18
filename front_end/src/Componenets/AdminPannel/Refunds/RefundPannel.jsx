@@ -24,7 +24,7 @@ class RefundPannel extends Component {
 
   componentDidMount() {
     axios
-      .get("http://127.0.0.1:8000/api/refund/")
+      .get("http://127.0.0.1:8000/api/RefundView/")
       .then(({ data }) => this.setState({ refundList: data, isLoading: false }))
       .catch((err) => console.log(err));
   }
@@ -62,24 +62,32 @@ class RefundPannel extends Component {
   }
   output = () => {
     if (this.state.Selected === null) {
-      return this.state.refundList.map((item) => (
-        <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>
-            <Link to={`/Admin/OrderList/${item.order}`}> {item.order}</Link>
-          </td>
-          <td>{item.reason}</td>
-          <td>
-            {item.in_queue ? (
-              <span className="text-warning">attente</span>
-            ) : item.accepted ? (
-              <span className="text-success">Accepter</span>
-            ) : (
-              <span className="text-danger">Annulé</span>
-            )}
-          </td>
-        </tr>
-      ));
+      if (this.state.refundList.length === 0) {
+        return (
+          <tr>
+            <td>Aucun Remboursment en Cours</td>
+          </tr>
+        );
+      } else {
+        return this.state.refundList.map((item) => (
+          <tr key={item.id}>
+            <td>{item.id}</td>
+            <td>
+              <Link to={`/Admin/OrderList/${item.order}`}> {item.order}</Link>
+            </td>
+            <td>{item.reason}</td>
+            <td>
+              {item.in_queue ? (
+                <span className="text-warning">attente</span>
+              ) : item.accepted ? (
+                <span className="text-success">Accepter</span>
+              ) : (
+                <span className="text-danger">Annulé</span>
+              )}
+            </td>
+          </tr>
+        ));
+      }
     } else {
       return this.state.SelectedItem.map((item) => (
         <tr key={item.id}>

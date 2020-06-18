@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import { Redirect, Route } from "react-router-dom";
-
+import Select from "react-select";
 import axios from "axios";
 class AddProduct extends Component {
   constructor(props) {
@@ -15,6 +15,11 @@ class AddProduct extends Component {
       isPromo: false,
       discount: null,
       addi_item: [],
+      option: [
+        { value: true, label: "Accepter" },
+        { value: false, label: "Annulé" },
+        { value: "attente", label: "attente" },
+      ],
     };
 
     this.ChangeForm = this.ChangeForm.bind(this);
@@ -25,7 +30,9 @@ class AddProduct extends Component {
   componentDidMount() {
     axios
       .get("http://127.0.0.1:8000/api/additional_item/")
-      .then(({ data }) => this.setState({ addi_item: data }));
+      .then(({ data }) => console.log(data));
+
+    // data.map((item) => this.setState(option.push({value :item.title,label:item.title})}))
   }
   ChangeForm(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -70,7 +77,7 @@ class AddProduct extends Component {
       <>
         <Container>
           <h1 className="display-2 text-center">Ajouter Un Produits</h1>
-          <Form>
+          <Form onSubmit={this.SendItem}>
             <Form.Group>
               <Form.Label>Nom du produit</Form.Label>
               <Form.Control
@@ -84,6 +91,7 @@ class AddProduct extends Component {
             </Form.Group>{" "}
             <Form.Group>
               <Form.Label>Description</Form.Label>
+
               <Form.Control
                 as="textarea"
                 rows="3"
@@ -124,15 +132,15 @@ class AddProduct extends Component {
               </Form.Group>
             ) : null}
             <Form.Group>
-              <Form.Check
-                type="switch"
-                id="custom-switch"
-                label="Mettre Le Produit en Promo"
-                name="isPromo"
-                onChange={this.ChangePromo}
+              <Form.Label>Produit additionel</Form.Label>
+              <Select
+                options={this.state.addi_item.title}
+                className="m-3"
+                // onChange={this.debugItem}
+                // isLoading={this.state.isLoading}
               />
             </Form.Group>
-            <Button variant="primary" onClick={this.SendItem}>
+            <Button variant="primary" type="submit">
               Envoyer
             </Button>
           </Form>

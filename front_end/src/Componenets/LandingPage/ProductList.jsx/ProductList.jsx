@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
+// import * as actions from "../../Store/Actions/auth";
+// import styles from "./ProductList.module.css";
 
-export default class ProductList extends Component {
+class ProductList extends Component {
   constructor(props) {
     super(props);
 
@@ -26,45 +29,56 @@ export default class ProductList extends Component {
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         {Products.map((item) => (
           <div className="col my-4" key={item.id}>
-            <Card>
+            <Card className="shadow-lg mb-5 bg-white rounded">
               <Card.Img variant="top" src={item.photo} />
               <Card.Body>
                 <Card.Title className="text-center">
                   <Link
                     className="text-reset text-decoration-none"
-                    to={`/products/${item.id}`}
+                    to={`/Product/${item.id}`}
                   >
                     {item.title}
-                  </Link>{" "}
+                  </Link>
                   <br />
                   {item.discount_price ? (
                     <span className="badge  badge-pill badge-danger ">
                       Promo
                     </span>
-                  ) : null}
+                  ) : (
+                    <br />
+                  )}
                 </Card.Title>
 
                 <Card.Text className="text-center overflow-auto">
                   {item.description}
                 </Card.Text>
+                <Card.Text className="text-right">
+                  {item.discount_price ? (
+                    <span className="align-right">
+                      <del className="text-muted">{item.price}</del>{" "}
+                      <span className="text-danger font-weight-bold h3">
+                        {item.discount_price}
+                      </span>
+                    </span>
+                  ) : (
+                    <span className=" h3">{item.price}</span>
+                  )}{" "}
+                  MAD
+                </Card.Text>
               </Card.Body>
-              <Card.Footer>
-                {item.discount_price ? (
-                  <span className="align-right">
-                    <del>{item.price}</del>{" "}
-                    <span className="">{item.discount_price}</span>
-                  </span>
-                ) : (
-                  <span>{item.price}</span>
-                )}{" "}
-                MAD
-                {/* <Link
-                  className="btn btn-primary ml-50"
-                  to={`/products/${item.id}`}
+
+              <div>
+                <Link
+                  to={
+                    this.props.isAuthenticated
+                      ? `/Product/${item.id}`
+                      : "/SignIn"
+                  }
+                  className="btn btn-block  btn-success"
                 >
-                  Details
-                </Link> */}
-              </Card.Footer>
+                  Acheter
+                </Link>
+              </div>
             </Card>
           </div>
         ))}
@@ -72,3 +86,10 @@ export default class ProductList extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.token !== null,
+  };
+};
+
+export default connect(mapStateToProps, null)(ProductList);
