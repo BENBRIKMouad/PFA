@@ -139,7 +139,7 @@ class AddToCart(APIView):
             order = Order.objects.create(user=user)
             order.products.add(order_product)
         return Response(
-            {'message': 'product ' + product.title + ' has been added to ' + user.username + ' cart successfully'})
+            {'message': 'Le produit ' + product.title + ' a été ajouter au panier du' + user.username + ' avec succès'})
 
 
 # @api_view()
@@ -193,13 +193,13 @@ class RemoveFromCart(APIView):
                     )[0]
                     order.products.remove(order_product)
                     order_product.delete()
-                    return Response({'message': 'This item was removed from your cart.'})
+                    return Response({'message': 'Cet article a été supprimé de votre panier'})
                 else:
-                    return Response({'message': 'This item was not in your cart'})
+                    return Response({'message': "ce produit n'existe pas dans le panier"})
             else:
-                return Response({'message': "you don't own this order"})
+                return Response({'message': "vous ne possédez pas cette commande"})
         else:
-            return Response({'message': 'You do not have an active order'})
+            return Response({'message': "vous n'avez pas de commande active"})
 
 
 # @api_view()
@@ -255,15 +255,15 @@ class RemoveSingleProductFromCart(APIView):
                     order_product.delete()
                     if order.products.count() == 0:
                         order.delete()
-                    return Response({'message': 'This item was removed from your cart completely'})
+                    return Response({'message': 'Cet article a été complètement supprimé de votre panier'})
                 else:
                     order_product.quantity -= 1
                 order_product.save()
-                return Response({'message': 'This item was removed from your cart.'})
+                return Response({'message': 'Cet article a été supprimé de votre panier'})
             else:
-                return Response({'message': 'This item was not in your cart'})
+                return Response({'message': "Cet article n'était pas dans votre panier"})
         else:
-            return Response({'message': 'You do not have an active order'})
+            return Response({'message': "Vous n'avez pas de commande active"})
 
 
 @api_view()
@@ -274,7 +274,7 @@ def cart_item_count(request):
         if qs.exists():
             return Response({'message': qs[0].products.count()})
         else:
-            return Response({'message': 'your cart is empty'})
+            return Response({'message': 'panier vide'})
 
 
 def get_ref_code():
@@ -287,7 +287,7 @@ def payment(request, pk):
     order = Order.objects.get(pk=pk)
     user = User.objects.get(pk=int(request.data.get('user', None)))
     if order.ordered:
-        return Response({'message': 'this order is already ordered'})
+        return Response({'message': "cette commande est déjà commandée"})
     else:
         # TODO :payment = Payment() , update to post class
         client = Client.objects.get(user=user)
@@ -314,15 +314,15 @@ def payment(request, pk):
                     man.save()
                     order.status = 'W'
                     order_products = Order.objects.filter(pk=pk)[0].products.all()
-                    return Response({'message': 'the order has been assigned'})
+                    return Response({'message': 'la commande a été commandée'})
             if order.status != 'W':
                 order.status = 'Q'
                 order.save()
                 return Response({
-                    'message': 'the order has been payed and put in the queue due to unavailablity delivery stuff'
+                    'message': "la commande a été payée et mise dans la file d'attente en raison de l'indisponibilité du livreur"
                 })
         else:
-            return Response({'message': "you don't have enough money"})
+            return Response({'message': "tu n'as pas assez d'argent"})
 
 
 @api_view()
@@ -337,7 +337,7 @@ def total(request):
         total_money += order_product.quantity * order_product.product.price
         total_quantity += order_product.quantity
         # {'money': total_money, 'quantity': total_quantity}
-    return Response({'money': total_money, 'quantity': total_quantity, 'product': orders})
+    return Response({'argent': total_money, 'quantité': total_quantity, 'produit': orders})
 
 
 class RefundHandler(APIView):
@@ -356,9 +356,9 @@ class RefundHandler(APIView):
                         Refund.objects.create(reason=reason, accepted=False, in_queue=True, order=order)
                         order.refund_requested = True
                         order.save()
-                        return Response({'message': 'all good'})
+                        return Response({'message': 'refend a été demandé'})
                     else:
-                        return Response({'error': 'refund is already requested'})
+                        return Response({'error': 'le remboursement est déjà demandé'})
                 if option == "grant":
                     if order.refund_requested and not order.refund_granted:
                         order.refund_granted = True
@@ -370,9 +370,9 @@ class RefundHandler(APIView):
                         client.amount += order.total_price
                         refund.save()
                         order.save()
-                        return Response({'message': 'all good refund granted'})
+                        return Response({'message': 'remboursement accordé'})
                     else:
-                        return Response({'error': 'refund is already granted or not requested on this order'})
+                        return Response({'error': 'le remboursement est déjà accordé ou non demandé sur cette commande'})
                 if option == "deny":
                     if order.refund_requested and not order.refund_granted:
                         refund_qs = Refund.objects.filter(order=order)
@@ -382,20 +382,20 @@ class RefundHandler(APIView):
                                 refund.accepted = False
                                 refund.in_queue = False
                                 refund.save()
-                                return Response({'message': 'all good refund denied'})
+                                return Response({'message': 'remboursement refusé'})
                             else:
-                                return Response({'error': 'refund is already denied' + str(refund_qs[0].accepted) + str(
+                                return Response({'error': 'le remboursement est déjà refusé' + str(refund_qs[0].accepted) + str(
                                     refund_qs[0].in_queue)})
                         else:
-                            return Response({'error': 'refund not found'})
+                            return Response({'error': 'remboursement non trouvé'})
 
                     else:
                         return Response(
-                            {'error': 'refund is granted and cannot be denied or not requested on this order'})
+                            {'error': 'le remboursement est accordé et ne peut être ni refusé ni demandé sur cette commande'})
             else:
-                return Response({'error': 'order does not found or not ordered'})
+                return Response({'error': 'commande non trouvée ou non commandée'})
         else:
-            return Response({'error': 'please enter a pk'})
+            return Response({'error': 'veuillez saisir un pk'})
 
 
 class OrderByDate(APIView):
@@ -419,7 +419,7 @@ class OrderByDate(APIView):
                 serializer = OrderSerializer(order, many=True)
                 return Response(serializer.data)
             else:
-                return Response({'error': 'missing argument'})
+                return Response({'error': 'argument manquant'})
 
 
 class ProfitView(APIView):
@@ -473,6 +473,10 @@ class OrderView(APIView):
     def get(request, *args, **kwargs):
         orders = Order.objects.filter(ordered=True)
         products = Product.objects.all()
+        if kwargs.get('pk') is not None:
+            user = kwargs.get('pk')
+            user = User.objects.get(pk=user)
+            orders = Order.objects.filter(user=user,ordered=False)
         data = [{'id': order.pk,
                  'ordered_date': order.ordered_date,
                  'ref_code': order.ref_code,
@@ -516,27 +520,6 @@ class OrderView(APIView):
 
 
 class ProductView(APIView):
-    def get_queryset(self):
-        pk = self.request.query_params('pk')
-        product = Product.objects.get(pk=pk)
-        data = {
-            'id': product.id,
-            'title': product.title,
-            'price': product.price,
-            'discount_price': product.discount_price,
-            'slug': product.slug,
-            'photo': "http://127.0.0.1:8000/media/" + str(product.photo),
-            'description': product.description,
-            'category': product.category,
-            'subcategory': product.subcategory,
-            'additional_items': ([{'id': product.additional_items.all()[j].id,
-                                   'title': product.additional_items.all()[j].title,
-                                   'price': product.additional_items.all()[j].price
-                                   }
-                                  for j in
-                                  range(product.additional_items.all().count())])
-        }
-        return Response(data)
 
     @staticmethod
     def get(request, *args, **kwargs):
