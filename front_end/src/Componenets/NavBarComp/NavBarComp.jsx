@@ -43,6 +43,7 @@ export class NavBarComp extends Component {
     await this.props.logout();
   }
   render() {
+    console.log(this.state);
     return (
       <>
         <Navbar bg="light" expand="lg">
@@ -61,7 +62,6 @@ export class NavBarComp extends Component {
                       <button onClick={this.PanierHandler}>Panier</button>
                       <NavDropdown title="Menu" id="nav-dropdown">
                         {this.state.Info.is_admin ? (
-                          // <NavDropdown.Item eventKey="4.1">
                           <Link
                             to="/adminv2"
                             className=" text-reset text-decoration-none"
@@ -69,15 +69,13 @@ export class NavBarComp extends Component {
                             Admin Pannel
                           </Link>
                         ) : (
-                          // </NavDropdown.Item>
-                          // <NavDropdown.Item eventKey="4.1">
+                          
                           <Link
                             to="/adminv2"
                             className="text-reset text-decoration-none"
                           >
                             Client Pannel
                           </Link>
-                          // </NavDropdown.Item>
                         )}
 
                         <NavDropdown.Item eventKey="4.2">
@@ -116,9 +114,15 @@ export class NavBarComp extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            {this.state.product.map((item) => (
-              <img />
-            ))}
+             {this.state.modalInfo.product.map((item) => (
+                            <img
+                              src={item.photo}
+                              className="img-thumbnail h-25 w-25"
+                              alt={item.slug}
+                            />
+             <span>{item.price}</span>
+                            <hr/>
+                          ))} 
           </Modal.Body>
 
           <Modal.Footer>test</Modal.Footer>

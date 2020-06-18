@@ -86,7 +86,7 @@ class ProductDetail extends Component {
                   <ul>
                     {this.state.data.additional_items.length > 0 ? (
                       this.state.data.additional_items.map((item) => (
-                        <li>
+                        <li key={item.id}>
                           {item.title} : {item.price} DH
                         </li>
                       ))
