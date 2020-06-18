@@ -35,6 +35,7 @@ export class NavBarComp extends Component {
     this.props.logout();
   }
   render() {
+    console.log(this.state.Info);
     return (
       <Navbar bg="light" expand="lg">
         <Link className="navbar-brand" to="/">

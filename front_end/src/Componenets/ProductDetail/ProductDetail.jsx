@@ -22,7 +22,7 @@ class ProductDetail extends Component {
 
   AddItem() {
     axios
-      .post(`http://127.0.0.1:8000/api/add_to_cart/1`)
+      .post(`http://127.0.0.1:8000/api/add_to_cart/`, { pk: 1 })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }
@@ -60,14 +60,6 @@ class ProductDetail extends Component {
               <h3 className="my-3">Prix</h3>
             </div>
           </div>
-
-          {/*  <img
-            src={this.state.data.photo}
-            alt={this.state.data.slug}
-            class="img-thumbnail float-left "
-          ></img>
-          <span className="display-3"> Description :</span>
-          <p className="lead">{this.state.data.description}</p>
           {this.props.isAuthenticated ? (
             <Button variant="primary" onClick={this.AddItem}>
               Ajouter au panier
@@ -77,7 +69,15 @@ class ProductDetail extends Component {
               {" "}
               Connecte Toi
             </Link>
-          )} */}
+          )}
+          {/*  <img
+            src={this.state.data.photo}
+            alt={this.state.data.slug}
+            class="img-thumbnail float-left "
+          ></img>
+          <span className="display-3"> Description :</span>
+          <p className="lead">{this.state.data.description}</p>
+           */}
         </Container>
       </React.Fragment>
     );
