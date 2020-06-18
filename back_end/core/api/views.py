@@ -119,6 +119,7 @@ class AddToCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
+        add_item = int(request.data.get('add_item', None))
         user = User.objects.get(pk=int(request.data.get('user', None)))
         # find the product
         product = get_object_or_404(Product, pk=pk)
@@ -130,10 +131,13 @@ class AddToCart(APIView):
         if orders.exists():
             order = orders[0]
             # check product already exist in order product increase quantity
-            if order.products.filter(product__slug=product.slug).exists():
+            if order.products.filter(product__slug=product.slug, additional_items=add_item).exists():
                 order_product.quantity += 1
                 order_product.save()
             else:
+                if add_item is not None:
+                    add_item_obj = AdditionalItem.objects.get(pk=add_item)
+                    order_product.additional_items.add(add_item_obj)
                 order.products.add(order_product)
         else:
             order = Order.objects.create(user=user)
@@ -477,6 +481,7 @@ class OrderView(APIView):
             user = kwargs.get('pk')
             user = User.objects.get(pk=user)
             orders = Order.objects.filter(user=user, ordered=False)
+
         data = [{'id': order.pk,
                  'ordered_date': order.ordered_date,
                  'ref_code': order.ref_code,
@@ -513,7 +518,8 @@ class OrderView(APIView):
                               for i in range(order.products.count())])
                  }
                 for order in orders]
-
+        if kwargs.get('pk') is not None:
+            return Response(data[0])
         return Response(data)
 
 ######################
