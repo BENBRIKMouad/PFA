@@ -119,7 +119,7 @@ class AddToCart(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
-        add_item = int(request.data.get('add_item', None))
+        add_item = request.data.get('add_item', None)
         user = User.objects.get(pk=int(request.data.get('user', None)))
         # find the product
         product = get_object_or_404(Product, pk=pk)
