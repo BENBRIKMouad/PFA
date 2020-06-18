@@ -31,6 +31,7 @@ urlpatterns = [
     path('OrderGraph/', OrderGraph.as_view()),
     path('RefundHandler/', RefundHandler.as_view()),
     path('OrderView/', OrderView.as_view()),
+    path('OrderView/<pk>', OrderView.as_view()),
     path('ProductView/', ProductView.as_view()),
     path('ProductView/<pk>', ProductView.as_view()),
     path('ClientView/', ClientView.as_view()),
