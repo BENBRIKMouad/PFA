@@ -71,21 +71,17 @@ export const authSignup = (
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post(
-        "http://127.0.0.1:8000/api/CreateAuth/",
-        {
-          username: username,
-          email: email,
-          password: password,
-          tel: tel,
-          city: city,
-          postal_code: postal_code,
-          address: address,
-        }
-
-
-      )
+      .post("http://127.0.0.1:8000/api/CreateAuth/", {
+        username: username,
+        email: email,
+        password: password,
+        tel: tel,
+        city: city,
+        postal_code: postal_code,
+        address: address,
+      })
       .then((res) => {
+        console.log(res);
         const token = res.data.key;
 
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
