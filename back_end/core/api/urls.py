@@ -23,7 +23,7 @@ urlpatterns = [
     path('remove_from_cart/', RemoveFromCart.as_view(), name="remove_from_cart"),
     path('cart_item_count/', cart_item_count),
     path('remove_single_product_from_cart/', RemoveSingleProductFromCart.as_view(), name="remove"),
-    path('payment/', PaymentHandler.as_view()),
+    path('payment/', PaymentHandler.as_view(), name="payment"),
     path('total/', total),
     # path('request_refund/', request_refund),
     path('admin_order/', OrderByDate.as_view()),
