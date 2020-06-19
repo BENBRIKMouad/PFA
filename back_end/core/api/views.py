@@ -121,23 +121,39 @@ class AddToCart(APIView):
         pk = int(request.data.get('pk', None))
         add_item = request.data.get('add_item', None)
         user = User.objects.get(pk=int(request.data.get('user', None)))
+
         # find the product
         product = get_object_or_404(Product, pk=pk)
-        order_product, created = OrderProduct.objects.get_or_create(
-            product=product, user=user, ordered=False)
+
+        # Check if add_item is valid
+        if not product.additional_items.filter(pk=add_item).exists():
+            add_item = None
+        add_item_obj = AdditionalItem.objects.filter(pk=add_item)
+        order_product = OrderProduct.objects.filter(product=product, user=user, ordered=False,
+                                                    additional_items=add_item)
+        # get
+        if order_product.exists():
+            order_product = order_product[0]
+
+        # Create
+        else:
+            order_product = OrderProduct.objects.create(
+                product=product, user=user, ordered=False)
+            if add_item_obj.exists():
+                add_item_obj = AdditionalItem.objects.get(pk=add_item)
+                order_product.additional_items.add(add_item_obj)
+
         # find the orders of current user that has not benn ordered (payed)
         orders = Order.objects.filter(user=user, ordered=False)
 
         if orders.exists():
             order = orders[0]
+
             # check product already exist in order product increase quantity
             if order.products.filter(product__slug=product.slug, additional_items=add_item).exists():
                 order_product.quantity += 1
                 order_product.save()
             else:
-                if add_item is not None:
-                    add_item_obj = AdditionalItem.objects.get(pk=add_item)
-                    order_product.additional_items.add(add_item_obj)
                 order.products.add(order_product)
         else:
             order = Order.objects.create(user=user)
@@ -285,48 +301,50 @@ def get_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
 
-@api_view()
-@login_required()
-def payment(request, pk):
-    order = Order.objects.get(pk=pk)
-    user = User.objects.get(pk=int(request.data.get('user', None)))
-    if order.ordered:
-        return Response({'message': "cette commande est déjà commandée"})
-    else:
-        # TODO :payment = Payment() , update to post class
-        client = Client.objects.get(user=user)
-        if client.amount >= order.total_price:
-            client.amount -= order.total_price
-            client.save()
-            payment_obj = Payment.objects.create(user=user, payment_type='S', amount=order.total_price,
-                                                 payment_date=timezone.now())
-            order.ordered = True
-            order.ordered_date = timezone.now()
-            order.shipping_address = ShippingAddress.objects.get(user=client, default=True)
-            order.payment = payment_obj
-            order_products = Order.objects.filter(pk=pk)[0].products.all()
-            for order_product in order_products:
-                order_product.ordered = True
-                order_product.save()
-            order.ref_code = get_ref_code()
-            order.save()
-            mans = DeliveryMan.objects.order_by('orders_delivered')
-            for man in mans:
-                if man.available:
-                    man.orders.add(order)
-                    man.orders_delivered += 1
-                    man.save()
-                    order.status = 'W'
-                    order_products = Order.objects.filter(pk=pk)[0].products.all()
-                    return Response({'message': 'la commande a été commandée'})
-            if order.status != 'W':
-                order.status = 'Q'
-                order.save()
-                return Response({
-                    'message': "la commande a été payée et mise dans la file d'attente en raison de l'indisponibilité du livreur"
-                })
+class PaymentHandler(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        pk = request.data.get('pk')
+        user = request.data.get('user')
+        order = Order.objects.get(pk=pk)
+        user = User.objects.get(pk=user)
+        if order.ordered:
+            return Response({'message': "cette commande est déjà commandée"})
         else:
-            return Response({'message': "tu n'as pas assez d'argent"})
+            # TODO :payment = Payment() , update to post class
+            client = Client.objects.get(user=user)
+            if client.amount >= order.total_price:
+                client.amount -= order.total_price
+                client.save()
+                payment_obj = Payment.objects.create(user=user, payment_type='S', amount=order.total_price,
+                                                     payment_date=timezone.now())
+                order.ordered = True
+                order.ordered_date = timezone.now()
+                order.shipping_address = ShippingAddress.objects.get(user=client, default=True)
+                order.payment = payment_obj
+                order_products = Order.objects.filter(pk=pk)[0].products.all()
+                for order_product in order_products:
+                    order_product.ordered = True
+                    order_product.save()
+                order.ref_code = get_ref_code()
+                order.save()
+                mans = DeliveryMan.objects.order_by('orders_delivered')
+                for man in mans:
+                    if man.available:
+                        man.orders.add(order)
+                        man.orders_delivered += 1
+                        man.save()
+                        order.status = 'W'
+                        order_products = Order.objects.filter(pk=pk)[0].products.all()
+                        return Response({'message': 'la commande a été commandée'})
+                if order.status != 'W':
+                    order.status = 'Q'
+                    order.save()
+                    return Response({
+                        'message': "la commande a été payée et mise dans la file d'attente en raison de l'indisponibilité du livreur"
+                    })
+            else:
+                return Response({'message': "tu n'as pas assez d'argent"})
 
 
 @api_view()
