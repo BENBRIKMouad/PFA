@@ -301,48 +301,50 @@ def get_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
 
-@api_view()
-@login_required()
-def payment(request, pk):
-    order = Order.objects.get(pk=pk)
-    user = User.objects.get(pk=int(request.data.get('user', None)))
-    if order.ordered:
-        return Response({'message': "cette commande est déjà commandée"})
-    else:
-        # TODO :payment = Payment() , update to post class
-        client = Client.objects.get(user=user)
-        if client.amount >= order.total_price:
-            client.amount -= order.total_price
-            client.save()
-            payment_obj = Payment.objects.create(user=user, payment_type='S', amount=order.total_price,
-                                                 payment_date=timezone.now())
-            order.ordered = True
-            order.ordered_date = timezone.now()
-            order.shipping_address = ShippingAddress.objects.get(user=client, default=True)
-            order.payment = payment_obj
-            order_products = Order.objects.filter(pk=pk)[0].products.all()
-            for order_product in order_products:
-                order_product.ordered = True
-                order_product.save()
-            order.ref_code = get_ref_code()
-            order.save()
-            mans = DeliveryMan.objects.order_by('orders_delivered')
-            for man in mans:
-                if man.available:
-                    man.orders.add(order)
-                    man.orders_delivered += 1
-                    man.save()
-                    order.status = 'W'
-                    order_products = Order.objects.filter(pk=pk)[0].products.all()
-                    return Response({'message': 'la commande a été commandée'})
-            if order.status != 'W':
-                order.status = 'Q'
-                order.save()
-                return Response({
-                    'message': "la commande a été payée et mise dans la file d'attente en raison de l'indisponibilité du livreur"
-                })
+class PaymentHandler(APIView):
+    @staticmethod
+    def post(request, *args, **kwargs):
+        pk = request.data.get('pk')
+        user = request.data.get('user')
+        order = Order.objects.get(pk=pk)
+        user = User.objects.get(pk=user)
+        if order.ordered:
+            return Response({'message': "cette commande est déjà commandée"})
         else:
-            return Response({'message': "tu n'as pas assez d'argent"})
+            # TODO :payment = Payment() , update to post class
+            client = Client.objects.get(user=user)
+            if client.amount >= order.total_price:
+                client.amount -= order.total_price
+                client.save()
+                payment_obj = Payment.objects.create(user=user, payment_type='S', amount=order.total_price,
+                                                     payment_date=timezone.now())
+                order.ordered = True
+                order.ordered_date = timezone.now()
+                order.shipping_address = ShippingAddress.objects.get(user=client, default=True)
+                order.payment = payment_obj
+                order_products = Order.objects.filter(pk=pk)[0].products.all()
+                for order_product in order_products:
+                    order_product.ordered = True
+                    order_product.save()
+                order.ref_code = get_ref_code()
+                order.save()
+                mans = DeliveryMan.objects.order_by('orders_delivered')
+                for man in mans:
+                    if man.available:
+                        man.orders.add(order)
+                        man.orders_delivered += 1
+                        man.save()
+                        order.status = 'W'
+                        order_products = Order.objects.filter(pk=pk)[0].products.all()
+                        return Response({'message': 'la commande a été commandée'})
+                if order.status != 'W':
+                    order.status = 'Q'
+                    order.save()
+                    return Response({
+                        'message': "la commande a été payée et mise dans la file d'attente en raison de l'indisponibilité du livreur"
+                    })
+            else:
+                return Response({'message': "tu n'as pas assez d'argent"})
 
 
 @api_view()
