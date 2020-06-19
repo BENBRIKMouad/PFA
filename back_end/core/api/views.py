@@ -120,37 +120,40 @@ class AddToCart(APIView):
     def post(request, *args, **kwargs):
         pk = int(request.data.get('pk', None))
         add_item = request.data.get('add_item', None)
-        add_item_obj = AdditionalItem.objects.filter(pk=add_item)
         user = User.objects.get(pk=int(request.data.get('user', None)))
+
         # find the product
         product = get_object_or_404(Product, pk=pk)
-        print(9)
-        if add_item is not None:
-            order_product = OrderProduct.objects.filter(product=product, user=user, ordered=False, additional_items=add_item)
-        else:
-            order_product = OrderProduct.objects.filter(product=product, user=user, ordered=False)
+
+        # Check if add_item is valid
+        if not product.additional_items.filter(pk=add_item).exists():
+            add_item = None
+        add_item_obj = AdditionalItem.objects.filter(pk=add_item)
+        order_product = OrderProduct.objects.filter(product=product, user=user, ordered=False,
+                                                    additional_items=add_item)
+        # get
         if order_product.exists():
             order_product = order_product[0]
-            print(10)
+
+        # Create
         else:
             order_product = OrderProduct.objects.create(
                 product=product, user=user, ordered=False)
             if add_item_obj.exists():
                 add_item_obj = AdditionalItem.objects.get(pk=add_item)
                 order_product.additional_items.add(add_item_obj)
+
         # find the orders of current user that has not benn ordered (payed)
         orders = Order.objects.filter(user=user, ordered=False)
 
         if orders.exists():
             order = orders[0]
+
             # check product already exist in order product increase quantity
             if order.products.filter(product__slug=product.slug, additional_items=add_item).exists():
                 order_product.quantity += 1
                 order_product.save()
             else:
-                # if add_item is not None:
-                #     add_item_obj = AdditionalItem.objects.get(pk=add_item)
-                #     order_product.additional_items.add(add_item_obj)
                 order.products.add(order_product)
         else:
             order = Order.objects.create(user=user)
