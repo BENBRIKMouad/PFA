@@ -304,7 +304,6 @@ def get_ref_code():
 class PaymentHandler(APIView):
     @staticmethod
     def post(request, *args, **kwargs):
-        print('payment')
         pk = request.data.get('pk')
         user = request.data.get('user')
         order = Order.objects.get(pk=pk)

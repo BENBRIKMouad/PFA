@@ -20,24 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9986a849-3a1f-4b09-b5ed-4f9001c9d883" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/ComponentTMP_0-image9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/Food___Drinks_Citrus_juice_079756_.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/Shrimp-Spaghetti-Aglio-Olio-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/The-Best-Weeknight-Pasta-Sauce-plate-H1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/download.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/download_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/download_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/download_3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/images.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/gallery/images_1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -136,6 +120,7 @@
       <workItem from="1592425536331" duration="5808000" />
       <workItem from="1592508096966" duration="13778000" />
       <workItem from="1592574118519" duration="10145000" />
+      <workItem from="1592603802536" duration="1451000" />
     </task>
     <servers />
   </component>
