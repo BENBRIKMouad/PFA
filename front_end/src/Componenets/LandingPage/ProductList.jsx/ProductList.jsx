@@ -34,7 +34,7 @@ class ProductList extends Component {
               <Card.Body>
                 <Card.Title className="text-center">
                   <Link
-                    className="text-reset text-decoration-none"
+                    className="text-reset text-decoration-none display-4"
                     to={`/Product/${item.id}`}
                   >
                     {item.title}
@@ -49,7 +49,7 @@ class ProductList extends Component {
                   )}
                 </Card.Title>
 
-                <Card.Text className="text-center overflow-auto">
+                <Card.Text className="text-center overflow-auto lead">
                   {item.description}
                 </Card.Text>
                 <Card.Text className="text-right">

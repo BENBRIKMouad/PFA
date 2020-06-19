@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./Componenets/LandingPage/LandingPage";
 import SignUp from "./Componenets/SignUp/SignUp";
@@ -21,8 +23,6 @@ import AdminPannelv2 from "./Componenets/AdminPannel/AdminPannelv2";
 import ClientList from "./Componenets/AdminPannel/Clients/ClientList";
 import ProductList from "./Componenets/AdminPannel/Products/ProductsList";
 import FooterComp from "./Componenets/FooterComp/FooterComp";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
@@ -32,19 +32,6 @@ class App extends Component {
 
     return (
       <>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        {/* Same as */}
-        <ToastContainer />
         <Router>
           <NavBarComp />
           <Switch>
@@ -68,7 +55,6 @@ class App extends Component {
               path="/Admin/AdditionalItem"
               component={AdditionalItem}
             />
-
             <Route component={ErrorPage} />
           </Switch>
           <FooterComp />

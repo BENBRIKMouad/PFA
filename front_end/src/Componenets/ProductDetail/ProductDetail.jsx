@@ -3,7 +3,7 @@ import { Container, Button } from "react-bootstrap";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -31,9 +31,9 @@ class ProductDetail extends Component {
   }
 
   notify = () =>
-    toast.success("Produit Ajouté avec succés", {
+    toast.success("Ajouté au Panier", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -57,31 +57,24 @@ class ProductDetail extends Component {
       <React.Fragment>
         <br />
         <br />
+        <ToastContainer />
 
         <Container>
           {this.state.isFetched ? (
             <>
-              <h1 className="my-4">
-                {this.state.data.title}
-                <br />
-                {/* this.state.data.discount_price > 0 */}
-                {false ? (
-                  <small className="text-danger">Ce Produit est en Promo</small>
-                ) : null}
-              </h1>
-
               <div className="row">
                 <div className="col-md-8">
                   <img
                     className="img-fluid"
                     src={this.state.data.photo}
-                    alt=""
+                    alt={this.state.data.slug}
                   />
                 </div>
 
                 <div className="col-md-4">
-                  <h3 className="my-3">Description :</h3>
-                  <p>{this.state.data.description}</p>
+                  <h1 className="display-5">{this.state.data.title}</h1>
+                  <hr />
+                  <p className="lead">{this.state.data.description}</p>
                   <h3 className="my-3">Suppléments</h3>
                   <ul>
                     {this.state.data.additional_items.length > 0 ? (
@@ -94,19 +87,37 @@ class ProductDetail extends Component {
                       <li>Rien</li>
                     )}
                   </ul>
-                  <h3 className="my-3">Prix</h3>
+                  <h3 className="my-3 mr-2 d-inline-block">Prix :</h3>
+                  {this.state.data.discount_price ? (
+                    <span className="align-right">
+                      <del className="text-muted">{this.state.data.price}</del>{" "}
+                      <span className="text-danger font-weight-bold h3">
+                        {this.state.data.discount_price}
+                      </span>
+                    </span>
+                  ) : (
+                    <span className=" h3">{this.state.data.price}</span>
+                  )}{" "}
+                  MAD
+                  {this.props.isAuthenticated ? (
+                    <Button
+                      variant="success"
+                      onClick={this.AddItem}
+                      className="btn-block "
+                    >
+                      Ajouter au panier
+                    </Button>
+                  ) : (
+                    <Link
+                      to="/SignIn"
+                      className="btn btn-block btn-outline-dark"
+                    >
+                      {" "}
+                      Connecte Toi
+                    </Link>
+                  )}
                 </div>
               </div>
-              {this.props.isAuthenticated ? (
-                <Button variant="primary" onClick={this.AddItem}>
-                  Ajouter au panier
-                </Button>
-              ) : (
-                <Link to="/SignIn" replace>
-                  {" "}
-                  Connecte Toi
-                </Link>
-              )}
             </>
           ) : null}
         </Container>

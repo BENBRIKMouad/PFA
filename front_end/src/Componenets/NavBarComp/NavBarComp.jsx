@@ -4,44 +4,90 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../Store/Actions/auth";
 import axios from "axios";
+import { FaShoppingCart } from "react-icons/fa";
+import ShoppingCart from "./ShoppingCart";
+import { ToastContainer, toast } from "react-toastify";
 
 export class NavBarComp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      Info: {},
+      Info: {
+        Userid: null,
+        isAdmin: null,
+        username: null,
+      },
       loading: true,
       showmodalPanier: false,
       modalInfo: {},
+      ModalisFetched: false,
+      TotalPrice: null,
     };
     this.handleLogout = this.handleLogout.bind(this);
     this.ApiCall = this.ApiCall.bind(this);
     this.PanierHandler = this.PanierHandler.bind(this);
+    this.quitmodal = this.quitmodal.bind(this);
   }
-  componentDidUpdate() {
-    // this.ApiCall();
-  }
-  componentWillMount() {}
+
   async PanierHandler() {
     await axios
-      .get(`http://127.0.0.1:8000/api/OrderView/${this.state.Info.user}`)
-      .then(({ data }) => this.setState({ modalInfo: data }));
+      .get(`http://127.0.0.1:8000/api/OrderView/${this.state.Info.Userid}`)
+      .then(({ data }) =>
+        this.setState({ modalInfo: data, ModalisFetched: true })
+      );
     await this.setState({ showmodalPanier: true });
   }
+
   ApiCall() {
     const token = localStorage.getItem("token");
+    console.log(token);
     axios
       .post("http://127.0.0.1:8000/api/TokenView/", {
         token: token,
       })
-      .then(({ data }) => this.setState({ Info: data, loading: false }))
+      .then(({ data }) =>
+        this.setState({
+          Info: {
+            Userid: data.user,
+            isAdmin: data.is_admin,
+            username: data.user_name,
+          },
+          loading: false,
+        })
+      )
+      .then(console.log("req sent"))
       .catch((err) => console.log(err));
   }
   async handleLogout() {
-    await this.setState({ loading: true });
     await this.props.logout();
+    await this.setState({
+      Info: {
+        Userid: null,
+        isAdmin: null,
+        username: null,
+      },
+      loading: true,
+      showmodalPanier: false,
+
+      ModalisFetched: false,
+    });
   }
+  handleTotalPrice() {}
+  quitmodal() {
+    toast.error("Produit Supprimer du Panier", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    this.setState({ showmodalPanier: false });
+    return <ToastContainer />;
+  }
+
   render() {
     console.log(this.state);
     return (
@@ -59,9 +105,164 @@ export class NavBarComp extends Component {
                     this.ApiCall()
                   ) : (
                     <>
-                      <button onClick={this.PanierHandler}>Panier</button>
+                      <button
+                        onClick={this.PanierHandler}
+                        className="btn btn-dark"
+                      >
+                        <FaShoppingCart className="m-1" />
+                        Panier
+                      </button>
+
+                      {this.state.ModalisFetched ? (
+                        <>
+                          <Modal
+                            show={this.state.showmodalPanier}
+                            onHide={() =>
+                              this.setState({ showmodalPanier: false })
+                            }
+                            size="lg"
+                          >
+                            {/* <div
+                              className="modal-dialog modal-lg modal-dialog-centered"
+                              role="document"
+                            > */}
+                            <div className="modal-content">
+                              <div className="modal-header border-bottom-0">
+                                <h5
+                                  className="modal-title"
+                                  id="exampleModalLabel"
+                                >
+                                  Panier
+                                </h5>
+                                <button
+                                  type="button"
+                                  className="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                  onClick={() =>
+                                    this.setState({ showmodalPanier: false })
+                                  }
+                                >
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div className="modal-body">
+                                <table className="table table-image">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col"></th>
+                                      <th scope="col">Product</th>
+                                      <th scope="col">Price</th>
+                                      <th scope="col">Qty</th>
+                                      <th scope="col">Total</th>
+                                      <th scope="col">Actions</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {this.state.modalInfo.product.map(
+                                      (item) => (
+                                        <ShoppingCart
+                                          item={item}
+                                          key={item.id}
+                                          user={this.state.modalInfo.user}
+                                          quit={this.quitmodal}
+                                        />
+                                      )
+                                    )}
+                                  </tbody>
+                                </table>
+                                {this.state.TotalPrice != null ? (
+                                  <div className="d-flex justify-content-end">
+                                    <h5>
+                                      Total:{" "}
+                                      <span className="price text-success">
+                                        {this.state.TotalPrice}
+                                      </span>
+                                    </h5>
+                                  </div>
+                                ) : null}
+                              </div>
+                              <div className="modal-footer border-top-0 d-flex justify-content-between">
+                                <button
+                                  type="button"
+                                  className="btn btn-secondary"
+                                  onClick={() =>
+                                    this.setState({ showmodalPanier: false })
+                                  }
+                                >
+                                  Close
+                                </button>
+                                {this.state.modalInfo.product.length > 0 ? (
+                                  <button
+                                    type="button"
+                                    className="btn btn-success"
+                                  >
+                                    Checkout
+                                  </button>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    className="btn btn-success "
+                                    disabled
+                                  >
+                                    Checkout
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                            {/* </div> */}
+                          </Modal>
+                          {/* <Modal
+                            show={this.state.showmodalPanier}
+                            onHide={() =>
+                              this.setState({ showmodalPanier: false })
+                            }
+                            animation={true}
+                          >
+                            <Modal.Header closeButton>
+                              <Modal.Title>Panier </Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>
+                              <table className="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"> </th>
+                                    <th scope="col">Prix</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {this.state.modalInfo.product.map((item) => (
+                                    <tr key={item.id}>
+                                      <td>
+                                        <img
+                                          src={item.photo}
+                                          alt={item.slug}
+                                          className="img-thumbnail"
+                                        />
+                                      </td>
+                                      <td>{item.title}</td>
+
+                                      <td>{item.price}</td>
+                                    </tr>
+                                  ))}
+                                  <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </Modal.Body>
+
+                            <Modal.Footer>test</Modal.Footer>
+                          </Modal> */}
+                        </>
+                      ) : null}
                       <NavDropdown title="Menu" id="nav-dropdown">
-                        {this.state.Info.is_admin ? (
+                        {this.state.Info.isAdmin ? (
                           <Link
                             to="/adminv2"
                             className=" text-reset text-decoration-none"
@@ -69,7 +270,6 @@ export class NavBarComp extends Component {
                             Admin Pannel
                           </Link>
                         ) : (
-                          
                           <Link
                             to="/adminv2"
                             className="text-reset text-decoration-none"
@@ -104,29 +304,6 @@ export class NavBarComp extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Modal
-          show={this.state.showmodalPanier}
-          onHide={() => this.setState({ showmodalPanier: false })}
-          animation={true}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Panier </Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-             {this.state.modalInfo.product.map((item) => (
-                            <img
-                              src={item.photo}
-                              className="img-thumbnail h-25 w-25"
-                              alt={item.slug}
-                            />
-             <span>{item.price}</span>
-                            <hr/>
-                          ))} 
-          </Modal.Body>
-
-          <Modal.Footer>test</Modal.Footer>
-        </Modal>
       </>
     );
   }

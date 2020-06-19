@@ -97,7 +97,13 @@ class AdminPannel extends Component {
                     <tbody>
                       {this.state.Orders.map((Order) => (
                         <tr key={Order.id}>
-                          <td>{Order.id}</td>
+                          <td>
+                            <span className="pill"></span>
+                            <div type="button" class="btn btn-primary">
+                              id:{" "}
+                              <span class="badge badge-light">{Order.id}</span>
+                            </div>
+                          </td>
                           <td>{Order.user_name}</td>
                           <td>
                             {Order.received ? (
