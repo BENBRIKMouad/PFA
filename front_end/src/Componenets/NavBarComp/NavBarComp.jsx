@@ -28,6 +28,7 @@ export class NavBarComp extends Component {
     this.ApiCall = this.ApiCall.bind(this);
     this.PanierHandler = this.PanierHandler.bind(this);
     this.quitmodal = this.quitmodal.bind(this);
+    this.handlePayement = this.handlePayement.bind(this);
   }
 
   async PanierHandler() {
@@ -41,7 +42,6 @@ export class NavBarComp extends Component {
 
   ApiCall() {
     const token = localStorage.getItem("token");
-    console.log(token);
     axios
       .post("http://127.0.0.1:8000/api/TokenView/", {
         token: token,
@@ -56,7 +56,6 @@ export class NavBarComp extends Component {
           loading: false,
         })
       )
-      .then(console.log("req sent"))
       .catch((err) => console.log(err));
   }
   async handleLogout() {
@@ -86,6 +85,16 @@ export class NavBarComp extends Component {
     });
     this.setState({ showmodalPanier: false });
     return <ToastContainer />;
+  }
+
+  handlePayement() {
+    axios
+      .post("http://127.0.0.1:8000/api/payment", {
+        pk: this.state.modalInfo.id,
+        user: this.state.Info.Userid,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -122,10 +131,6 @@ export class NavBarComp extends Component {
                             }
                             size="lg"
                           >
-                            {/* <div
-                              className="modal-dialog modal-lg modal-dialog-centered"
-                              role="document"
-                            > */}
                             <div className="modal-content">
                               <div className="modal-header border-bottom-0">
                                 <h5
@@ -196,6 +201,7 @@ export class NavBarComp extends Component {
                                   <button
                                     type="button"
                                     className="btn btn-success"
+                                    onClick={this.handlePayement}
                                   >
                                     Checkout
                                   </button>
@@ -210,77 +216,32 @@ export class NavBarComp extends Component {
                                 )}
                               </div>
                             </div>
-                            {/* </div> */}
                           </Modal>
-                          {/* <Modal
-                            show={this.state.showmodalPanier}
-                            onHide={() =>
-                              this.setState({ showmodalPanier: false })
-                            }
-                            animation={true}
-                          >
-                            <Modal.Header closeButton>
-                              <Modal.Title>Panier </Modal.Title>
-                            </Modal.Header>
-
-                            <Modal.Body>
-                              <table className="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col"> </th>
-                                    <th scope="col">Prix</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {this.state.modalInfo.product.map((item) => (
-                                    <tr key={item.id}>
-                                      <td>
-                                        <img
-                                          src={item.photo}
-                                          alt={item.slug}
-                                          className="img-thumbnail"
-                                        />
-                                      </td>
-                                      <td>{item.title}</td>
-
-                                      <td>{item.price}</td>
-                                    </tr>
-                                  ))}
-                                  <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </Modal.Body>
-
-                            <Modal.Footer>test</Modal.Footer>
-                          </Modal> */}
                         </>
                       ) : null}
                       <NavDropdown title="Menu" id="nav-dropdown">
                         {this.state.Info.isAdmin ? (
                           <Link
                             to="/adminv2"
-                            className=" text-reset text-decoration-none"
+                            className=" text-reset text-decoration-none d-inline-block mx-auto"
                           >
                             Admin Pannel
                           </Link>
                         ) : (
                           <Link
                             to="/adminv2"
-                            className="text-reset text-decoration-none"
+                            className="text-reset text-decoration-none d-block mx-auto"
                           >
                             Client Pannel
                           </Link>
                         )}
 
-                        <NavDropdown.Item eventKey="4.2">
-                          <Link to="/">Settings</Link>
-                        </NavDropdown.Item>
+                        <Link
+                          to="/"
+                          className="text-reset text-decoration-none"
+                        >
+                          Settings
+                        </Link>
                       </NavDropdown>
                     </>
                   )}
