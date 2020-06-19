@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import ProductList from "./ProductList.jsx/ProductList";
 import CarrouselComp from "./CarrouselComp/CarrouselComp";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import { FcPrivacy, FcApproval, FcHome } from "react-icons/fc";
 
 export class LandingPage extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Dropdown, NavDropdown, Modal } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../Store/Actions/auth";
@@ -84,17 +84,30 @@ export class NavBarComp extends Component {
       progress: undefined,
     });
     this.setState({ showmodalPanier: false });
+
     return <ToastContainer />;
   }
 
   handlePayement() {
     axios
-      .post("http://127.0.0.1:8000/api/payment", {
+      .post("http://127.0.0.1:8000/api/payment/", {
         pk: this.state.modalInfo.id,
         user: this.state.Info.Userid,
       })
-      .then((res) => console.log(res.data))
+      .then((res) =>
+        toast.error(`${res.data.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      )
+
       .catch((err) => console.log(err));
+    return <ToastContainer />;
   }
 
   render() {

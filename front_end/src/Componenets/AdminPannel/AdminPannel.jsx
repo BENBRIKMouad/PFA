@@ -8,7 +8,7 @@ import {
   FaQuestionCircle,
   FaClipboardList,
   FaPlus,
-  FaCog,
+  // FaCog,
 } from "react-icons/fa";
 class AdminPannel extends Component {
   constructor(props) {

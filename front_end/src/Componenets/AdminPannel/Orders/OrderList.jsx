@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Container, Table, Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Select from "react-select";
+// import Select from "react-select";
 
 export class OrderList extends Component {
   constructor(props) {

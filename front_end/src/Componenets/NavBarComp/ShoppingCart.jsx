@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FaTimes } from "react-icons/fa";
+import { ButtonGroup, Button } from "react-bootstrap";
 import axios from "axios";
 export class ShoppingCart extends Component {
   constructor(props) {
@@ -95,14 +96,34 @@ export class ShoppingCart extends Component {
             {item.discount_price > 0 ? item.discount_price : item.price}
             DH
           </td>
-          <td className="qty">
+          <td>
+            <ButtonGroup aria-label="Basic example">
+              {this.state.quantity >= 2 ? (
+                <Button variant="secondary" onClick={this.handlesubItem}>
+                  -
+                </Button>
+              ) : null}
+              <input
+                type="text"
+                disabled={true}
+                value={this.state.quantity}
+                style={{ width: 50 }}
+              />
+
+              <Button variant="primary" onClick={this.handleaddItem}>
+                +
+              </Button>
+            </ButtonGroup>
+          </td>
+          {/* <td className="qty">
+            
             {this.state.quantity > 1 ? (
               <button onClick={this.handlesubItem}>-</button>
             ) : null}
 
             <span>{this.state.quantity}</span>
             <button onClick={this.handleaddItem}>+</button>
-          </td>
+          </td> */}
           <td>{this.state.totalprice}</td>
           <td>
             <button
