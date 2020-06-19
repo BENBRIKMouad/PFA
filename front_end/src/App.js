@@ -28,8 +28,6 @@ class App extends Component {
     this.props.onTryAutoSignup();
   }
   render() {
-    console.log(this.props);
-
     return (
       <>
         <Router>
