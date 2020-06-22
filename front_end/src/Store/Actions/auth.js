@@ -81,7 +81,6 @@ export const authSignup = (
         address: address,
       })
       .then((res) => {
-        console.log(res);
         const token = res.data.key;
 
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
@@ -91,7 +90,7 @@ export const authSignup = (
         dispatch(checkAuthTimeout(3600));
       })
       .catch((err) => {
-        dispatch(authFail(err));
+        dispatch(authFail(err.response.data));
       });
   };
 };

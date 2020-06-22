@@ -65,13 +65,12 @@ class AdminPannel extends Component {
                 </Link>
               </div>
               <div className="col-md-3">
-                <button
+                <Link
                   className="btn btn-success btn-block"
-                  data-toggle="modal"
-                  data-target="#addCategoryModal"
+                  to={`/admin/AdditionalItem`}
                 >
                   <FaPlus className="mx-1" /> Ajouté Sous_Plat
-                </button>
+                </Link>
               </div>
             </div>
           </div>

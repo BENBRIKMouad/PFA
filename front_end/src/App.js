@@ -11,11 +11,11 @@ import NavBarComp from "./Componenets/NavBarComp/NavBarComp";
 import ErrorPage from "./Componenets/Error/ErrorPage";
 import { connect } from "react-redux";
 import * as actions from "./Store/Actions/auth";
-import AdminPannel from "./Componenets/AdminPannel/AdminPannel";
+// import AdminPannel from "./Componenets/AdminPannel/AdminPannel";
 import AddProduct from "./Componenets/AdminPannel/AddProduct";
 import RefundPannel from "./Componenets/AdminPannel/Refunds/RefundPannel";
-import OrderList from "./Componenets/AdminPannel/Orders/OrderList";
-import OrderOne from "./Componenets/AdminPannel/Orders/OrderOne";
+// import OrderList from "./Componenets/AdminPannel/Orders/OrderList";
+// import OrderOne from "./Componenets/AdminPannel/Orders/OrderOne";
 import ClientPannel from "./Componenets/ClientPannel/ClientPannl";
 import RefundPannelC from "./Componenets/ClientPannel/Refunds/RefundPannelC";
 import AdditionalItem from "./Componenets/AdminPannel/AdditionalProduct";
@@ -23,6 +23,7 @@ import AdminPannelv2 from "./Componenets/AdminPannel/AdminPannelv2";
 import ClientList from "./Componenets/AdminPannel/Clients/ClientList";
 import ProductList from "./Componenets/AdminPannel/Products/ProductsList";
 import FooterComp from "./Componenets/FooterComp/FooterComp";
+import Profile from "./Componenets/Profile/Profile";
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
@@ -37,17 +38,18 @@ class App extends Component {
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/Product/:ID" component={ProductDetail} />
-            <Route exact path="/Admin" component={AdminPannel} />
-            <Route exact path="/Adminv2" component={AdminPannelv2} />
+            {/* <Route exact path="/Admin" component={AdminPannel} /> */}
+            <Route exact path="/Admin" component={AdminPannelv2} />
             <Route exact path="/Admin/AddProducts" component={AddProduct} />
             <Route exact path="/Admin/RefundList" component={RefundPannel} />
-            <Route exact path="/Admin/OrderList" component={OrderList} />
-            <Route exact path="/Admin/OrderList/:ID" component={OrderOne} />
+            {/* <Route exact path="/Admin/OrderList" component={OrderList} /> */}
+            {/* <Route exact path="/Admin/OrderList/:ID" component={OrderOne} /> */}
             <Route exact path="/Admin/ClientList" component={ClientList} />
             <Route exact path="/Admin/ProductList" component={ProductList} />
 
-            <Route exact path="/Client/:ID" component={ClientPannel} />
+            <Route exact path="/Client/:ID/Pannel" component={ClientPannel} />
             <Route exact path="/Client/:ID/Refund" component={RefundPannelC} />
+            <Route exact path="/:ID/Profile" component={Profile} />
             <Route
               exact
               path="/Admin/AdditionalItem"

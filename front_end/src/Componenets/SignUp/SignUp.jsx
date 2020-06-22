@@ -36,11 +36,12 @@ class SignUp extends Component {
       this.state.address
     );
     this.props.history.push("/");
+    console.log(this.props.error);
   }
 
   render() {
-    // console.log(this.state);
-    // console.log(this.props.error);
+    console.log(this.state);
+    console.log(this.props.error);
 
     return (
       <div className="container">

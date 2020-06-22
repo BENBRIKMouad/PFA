@@ -72,7 +72,7 @@ export class NavBarComp extends Component {
       ModalisFetched: false,
     });
   }
-  handleTotalPrice() {}
+  // handleTotalPrice() {}
   quitmodal() {
     toast.error("Produit Supprimer du Panier", {
       position: "top-right",
@@ -105,13 +105,13 @@ export class NavBarComp extends Component {
           progress: undefined,
         })
       )
+      .then(this.setState({ showmodalPanier: false }))
 
       .catch((err) => console.log(err));
     return <ToastContainer />;
   }
 
   render() {
-    console.log(this.state);
     return (
       <>
         <Navbar bg="light" expand="lg">
@@ -127,13 +127,15 @@ export class NavBarComp extends Component {
                     this.ApiCall()
                   ) : (
                     <>
-                      <button
-                        onClick={this.PanierHandler}
-                        className="btn btn-dark"
-                      >
-                        <FaShoppingCart className="m-1" />
-                        Panier
-                      </button>
+                      {this.state.Info.isAdmin ? null : (
+                        <button
+                          onClick={this.PanierHandler}
+                          className="btn btn-dark"
+                        >
+                          <FaShoppingCart className="m-1" />
+                          Panier
+                        </button>
+                      )}
 
                       {this.state.ModalisFetched ? (
                         <>
@@ -169,11 +171,11 @@ export class NavBarComp extends Component {
                                   <thead>
                                     <tr>
                                       <th scope="col"></th>
-                                      <th scope="col">Product</th>
-                                      <th scope="col">Price</th>
-                                      <th scope="col">Qty</th>
+                                      <th scope="col">Produit</th>
+                                      <th scope="col">Prix</th>
+                                      <th scope="col">Quantité</th>
                                       <th scope="col">Total</th>
-                                      <th scope="col">Actions</th>
+                                      <th scope="col">Supprimé</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -208,7 +210,7 @@ export class NavBarComp extends Component {
                                     this.setState({ showmodalPanier: false })
                                   }
                                 >
-                                  Close
+                                  Fermé
                                 </button>
                                 {this.state.modalInfo.product.length > 0 ? (
                                   <button
@@ -216,7 +218,7 @@ export class NavBarComp extends Component {
                                     className="btn btn-success"
                                     onClick={this.handlePayement}
                                   >
-                                    Checkout
+                                    Payer
                                   </button>
                                 ) : (
                                   <button
@@ -224,7 +226,7 @@ export class NavBarComp extends Component {
                                     className="btn btn-success "
                                     disabled
                                   >
-                                    Checkout
+                                    Payer
                                   </button>
                                 )}
                               </div>
@@ -235,25 +237,25 @@ export class NavBarComp extends Component {
                       <NavDropdown title="Menu" id="nav-dropdown">
                         {this.state.Info.isAdmin ? (
                           <Link
-                            to="/adminv2"
-                            className=" text-reset text-decoration-none d-inline-block mx-auto"
+                            to="/admin"
+                            className=" text-reset text-decoration-none d-block mx-auto"
                           >
-                            Admin Pannel
+                            Panneau Admin
                           </Link>
                         ) : (
                           <Link
-                            to="/adminv2"
-                            className="text-reset text-decoration-none d-block mx-auto"
+                            to={`/Client/${this.state.Info.Userid}/Pannel`}
+                            className="text-reset text-decoration-none d-block mx-auto "
                           >
-                            Client Pannel
+                            Panneau Client
                           </Link>
                         )}
 
                         <Link
-                          to="/"
+                          to={`${this.state.Info.Userid}/Profile`}
                           className="text-reset text-decoration-none"
                         >
-                          Settings
+                          Profile
                         </Link>
                       </NavDropdown>
                     </>

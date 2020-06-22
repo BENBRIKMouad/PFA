@@ -79,7 +79,7 @@ export class ShoppingCart extends Component {
     });
   }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { item } = this.state;
     return (
       <>
