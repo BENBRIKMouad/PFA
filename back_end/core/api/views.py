@@ -492,16 +492,40 @@ class OrderGraph(APIView):
 
 class OrderView(APIView):
     @staticmethod
-    def get(request, *args, **kwargs):
+    def post(request, *args, **kwargs):
         orders = Order.objects.filter(ordered=True)
         products = Product.objects.all()
-        if kwargs.get('pk') is not None:
-            user = kwargs.get('pk')
-            user = User.objects.get(pk=user)
-            orders = Order.objects.filter(user=user, ordered=False)
+        if request.data.get('pk') is not None:
+            user = User.objects.get(pk=request.data.get('pk'))
+            ordered = request.data.get('ordered', "False")
+            if ordered is not None and ordered == "True":
+                ordered = True
+            else:
+                if ordered is not None and ordered == "False":
+                    ordered = False
+                else:
+                    ordered = False
 
+            refunded = request.data.get('refunded', None)
+            if refunded is not None and refunded == "True":
+                refunded = True
+            else:
+                if refunded is not None and refunded == "False":
+                    refunded = False
+                else:
+                    refunded = None
+
+            print(ordered, refunded)
+            if refunded is not None:
+                if refunded:
+                    orders = Order.objects.filter(user=user, ordered=True, refund_granted=refunded)
+                else:
+                    orders = Order.objects.filter(user=user, ordered=True, refund_requested=True, refund_granted=refunded)
+            else:
+                orders = Order.objects.filter(user=user, ordered=ordered)
         data = [{'id': order.pk,
                  'ordered_date': order.ordered_date,
+                 'ordered': order.ordered,
                  'ref_code': order.ref_code,
                  'received': order.received,
                  'refund_requested': order.refund_requested,
@@ -536,9 +560,10 @@ class OrderView(APIView):
                               for i in range(order.products.count())])
                  }
                 for order in orders]
-        if kwargs.get('pk') is not None:
+        if request.data.get('pk') is not None and orders.count() > 0:
             return Response(data[0])
         return Response(data)
+
 
 ######################
 
@@ -652,6 +677,7 @@ class TokenView(APIView):
                 "city": client.city,
                 "postal_code": client.postal_code,
                 "amount": client.amount,
+                "photo": client.photo,
                 "user": client.user_id,
                 'user_name': str(User.objects.get(pk=client.user_id).username),
                 'is_admin': user.is_superuser
