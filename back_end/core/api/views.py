@@ -518,9 +518,9 @@ class OrderView(APIView):
             print(ordered, refunded)
             if refunded is not None:
                 if refunded:
-                    orders = Order.objects.filter(user=user, ordered=ordered, refund_granted=refunded)
+                    orders = Order.objects.filter(user=user, ordered=True, refund_granted=refunded)
                 else:
-                    orders = Order.objects.filter(user=user, ordered=ordered, refund_requested=True, refund_granted=refunded)
+                    orders = Order.objects.filter(user=user, ordered=True, refund_requested=True, refund_granted=refunded)
             else:
                 orders = Order.objects.filter(user=user, ordered=ordered)
         data = [{'id': order.pk,
