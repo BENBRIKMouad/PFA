@@ -560,7 +560,7 @@ class OrderView(APIView):
                               for i in range(order.products.count())])
                  }
                 for order in orders]
-        if request.data.get('pk') is not None and orders.count() > 0:
+        if request.data.get('pk') is not None and not ordered:
             return Response(data[0])
         return Response(data)
 
