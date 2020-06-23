@@ -33,11 +33,17 @@ export class NavBarComp extends Component {
 
   async PanierHandler() {
     await axios
-      .get(`http://127.0.0.1:8000/api/OrderView/${this.state.Info.Userid}`)
+      .post("http://127.0.0.1:8000/api/OrderView/", {
+        pk: this.state.Info.Userid,
+      })
       .then(({ data }) =>
-        this.setState({ modalInfo: data, ModalisFetched: true })
+        this.setState({
+          modalInfo: data,
+          ModalisFetched: true,
+          showmodalPanier: true,
+        })
       );
-    await this.setState({ showmodalPanier: true });
+    // await this.setState({});
   }
 
   ApiCall() {
@@ -127,6 +133,9 @@ export class NavBarComp extends Component {
                     this.ApiCall()
                   ) : (
                     <>
+                      <span className="mx-4 lead my-auto">
+                        Bonjour ,{this.state.Info.username}
+                      </span>
                       {this.state.Info.isAdmin ? null : (
                         <button
                           onClick={this.PanierHandler}
