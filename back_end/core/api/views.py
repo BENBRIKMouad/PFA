@@ -677,7 +677,7 @@ class TokenView(APIView):
                 "city": client.city,
                 "postal_code": client.postal_code,
                 "amount": client.amount,
-                "photo": client.photo,
+                "photo": "http://127.0.0.1:8000/media/" + str(client.photo),
                 "user": client.user_id,
                 'user_name': str(User.objects.get(pk=client.user_id).username),
                 'is_admin': user.is_superuser
