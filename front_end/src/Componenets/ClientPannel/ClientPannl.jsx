@@ -14,7 +14,13 @@ export class ClientPannl extends Component {
         ordered: "True",
       })
       .then(({ data }) => this.setState({ Info: data, isFetched: true }));
+    // .then(this.setState({ }));
   }
+  DateFix = (x) => {
+    var Newdate = new Date(x);
+
+    return Newdate.toLocaleString();
+  };
   render() {
     console.log(this.state);
     return (
@@ -33,7 +39,7 @@ export class ClientPannl extends Component {
             <div className="row">
               <div className="col-md-3">
                 <Link to="/" className="btn btn-light btn-block">
-                  <FaArrowLeft className="mx-1" /> Retour a la Buotique
+                  <FaArrowLeft className="mx-1" /> Retour a la Boutique
                 </Link>
               </div>
             </div>
@@ -50,7 +56,7 @@ export class ClientPannl extends Component {
                         Liste des Commandes{" "}
                         <span className="h6">
                           {" "}
-                          ({this.state.Info.product.length} Commandes)
+                          ({this.state.Info.length} Commandes)
                         </span>
                       </h4>{" "}
                     </div>
@@ -58,42 +64,36 @@ export class ClientPannl extends Component {
                       <thead className="thead-dark">
                         <tr>
                           <th>#</th>
-                          <th>Commande</th>
-                          <th>Récéption</th>
+                          <th>RéfCode</th>
                           <th>Date</th>
                           <th></th>
                         </tr>
                       </thead>
                       <tbody>
-                        {/* {this.state.Orders.map((Order) => (
-                        <tr key={Order.id}>
-                          <td>
-                            <span className="pill"></span>
-                            <div type="button" class="btn btn-primary">
-                              id:{" "}
-                              <span class="badge badge-light">{Order.id}</span>
-                            </div>
-                          </td>
-                          <td>{Order.user_name}</td>
-                          <td>
-                            {Order.received ? (
-                              <span className="text-success">Recu</span>
-                            ) : (
-                              <span className="text-danger"> Pas Recu</span>
-                            )}
-                          </td>
-                          <td>{this.DateFix(Order.ordered_date)}</td>
+                        {this.state.Info.map((Commande) => (
+                          <tr key={Commande.id}>
+                            <td>
+                              <span className="pill"></span>
+                              <div type="button" className="btn btn-primary">
+                                id:{" "}
+                                <span className="badge badge-light">
+                                  {Commande.id}
+                                </span>
+                              </div>
+                            </td>
+                            <td>{Commande.ref_code}</td>
+                            <td>{this.DateFix(Commande.ordered_date)}</td>
 
-                          <td>
-                            <Link
-                              to={`${this.props.match.path}/RefundList`}
-                              className="btn btn-secondary"
-                            >
-                              <FaAngleDoubleRight className="m-1" /> Details
-                            </Link>
-                          </td>
-                        </tr>
-                      ))} */}
+                            <td>
+                              <Link
+                                to={`${this.props.match.path}/RefundList`}
+                                className="btn btn-secondary"
+                              >
+                                <FaAngleDoubleRight className="m-1" /> Details
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>

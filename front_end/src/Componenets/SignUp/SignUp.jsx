@@ -55,7 +55,7 @@ class SignUp extends Component {
                     <Form.Label>Email address : </Form.Label>
                     <Form.Control
                       type="email"
-                      placeholder="XXX@XXX.XX"
+                      placeholder="xxx@xxxxx.x"
                       name="email"
                       onChange={this.ChangeForm}
                     />
@@ -64,7 +64,7 @@ class SignUp extends Component {
                     <Form.Label>Nom d'utilisateur : </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="UserName"
+                      placeholder="Nom d'utilisateur"
                       name="username"
                       onChange={this.ChangeForm}
                     />
@@ -73,7 +73,7 @@ class SignUp extends Component {
                     <Form.Label>Mot de Passe : </Form.Label>
                     <Form.Control
                       type="password"
-                      placeholder="*****"
+                      placeholder="******"
                       name="password"
                       onChange={this.ChangeForm}
                     />
@@ -82,37 +82,37 @@ class SignUp extends Component {
                     </Form.Text>
                   </Form.Group>
                   <Form.Group controlId="formGroupPassword">
-                    <Form.Label>tel : </Form.Label>
+                    <Form.Label>Téléphone : </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="0667"
+                      placeholder="06.."
                       name="tel"
                       onChange={this.ChangeForm}
                     />
                   </Form.Group>
                   <Form.Group controlId="formGroupPassword">
-                    <Form.Label>city : </Form.Label>
+                    <Form.Label>Ville : </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="0667"
+                      // placeholder="Paris "
                       name="city"
                       onChange={this.ChangeForm}
                     />
                   </Form.Group>
                   <Form.Group controlId="formGroupPassword">
-                    <Form.Label>address : </Form.Label>
+                    <Form.Label>Address : </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="0667"
+                      // placeholder="0667"
                       name="address"
                       onChange={this.ChangeForm}
                     />
                   </Form.Group>
                   <Form.Group controlId="formGroupPassword">
-                    <Form.Label>PostalCode : </Form.Label>
+                    <Form.Label>Code Postale : </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="0667"
+                      // placeholder="0667"
                       name="postal_code"
                       onChange={this.ChangeForm}
                     />
