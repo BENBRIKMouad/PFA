@@ -20,8 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9986a849-3a1f-4b09-b5ed-4f9001c9d883" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/media/gallery/food.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/core/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/core/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiDoc.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +37,13 @@
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -45,6 +58,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
@@ -54,6 +68,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\benbrik\Documents\GitHub\PFA\back_end" />
+      <recent name="C:\Users\benbrik\Documents\GitHub\PFA\back_end\templates\core" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="MyFood" type="Python.DjangoServer" factoryName="Django server">
@@ -121,7 +141,9 @@
       <workItem from="1592574118519" duration="10145000" />
       <workItem from="1592603802536" duration="4759000" />
       <workItem from="1592829937164" duration="11932000" />
-      <workItem from="1593010335770" duration="1907000" />
+      <workItem from="1593010335770" duration="3540000" />
+      <workItem from="1593020092011" duration="2485000" />
+      <workItem from="1593028584015" duration="1665000" />
     </task>
     <servers />
   </component>
@@ -172,41 +194,41 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1366.738@0.0.1366.738" timestamp="1592239655252" />
-    <state width="1323" height="169" key="GridCell.Tab.0.bottom" timestamp="1592926684916">
+    <state width="1323" height="169" key="GridCell.Tab.0.bottom" timestamp="1593024584395">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="661" height="150" key="GridCell.Tab.0.bottom/-1366.121.1366.730/0.0.1536.834@-1366.121.1366.730" timestamp="1588772509044" />
     <state width="1237" height="150" key="GridCell.Tab.0.bottom/0.0.1280.690@0.0.1280.690" timestamp="1588256812286" />
     <state width="1323" height="151" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1588441106562" />
     <state width="1237" height="150" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1588514761921" />
-    <state width="1323" height="169" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1592926684916" />
+    <state width="1323" height="169" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1593024584395" />
     <state width="745" height="176" key="GridCell.Tab.0.bottom/0.0.1536.834/-1366.121.1366.738@0.0.1536.834" timestamp="1588796824345" />
-    <state width="1323" height="169" key="GridCell.Tab.0.center" timestamp="1592926684915">
+    <state width="1323" height="169" key="GridCell.Tab.0.center" timestamp="1593024584395">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="661" height="150" key="GridCell.Tab.0.center/-1366.121.1366.730/0.0.1536.834@-1366.121.1366.730" timestamp="1588772509043" />
     <state width="1237" height="150" key="GridCell.Tab.0.center/0.0.1280.690@0.0.1280.690" timestamp="1588256812286" />
     <state width="1323" height="151" key="GridCell.Tab.0.center/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1588441106561" />
     <state width="1237" height="150" key="GridCell.Tab.0.center/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1588514761920" />
-    <state width="1323" height="169" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1592926684915" />
+    <state width="1323" height="169" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1593024584395" />
     <state width="745" height="176" key="GridCell.Tab.0.center/0.0.1536.834/-1366.121.1366.738@0.0.1536.834" timestamp="1588796824344" />
-    <state width="1323" height="169" key="GridCell.Tab.0.left" timestamp="1592926684905">
+    <state width="1323" height="169" key="GridCell.Tab.0.left" timestamp="1593024584394">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="661" height="150" key="GridCell.Tab.0.left/-1366.121.1366.730/0.0.1536.834@-1366.121.1366.730" timestamp="1588772509042" />
     <state width="1237" height="150" key="GridCell.Tab.0.left/0.0.1280.690@0.0.1280.690" timestamp="1588256812286" />
     <state width="1323" height="151" key="GridCell.Tab.0.left/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1588441106561" />
     <state width="1237" height="150" key="GridCell.Tab.0.left/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1588514761919" />
-    <state width="1323" height="169" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1592926684905" />
+    <state width="1323" height="169" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1593024584394" />
     <state width="745" height="176" key="GridCell.Tab.0.left/0.0.1536.834/-1366.121.1366.738@0.0.1536.834" timestamp="1588796824344" />
-    <state width="1323" height="169" key="GridCell.Tab.0.right" timestamp="1592926684915">
+    <state width="1323" height="169" key="GridCell.Tab.0.right" timestamp="1593024584395">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="661" height="150" key="GridCell.Tab.0.right/-1366.121.1366.730/0.0.1536.834@-1366.121.1366.730" timestamp="1588772509043" />
     <state width="1237" height="150" key="GridCell.Tab.0.right/0.0.1280.690@0.0.1280.690" timestamp="1588256812286" />
     <state width="1323" height="151" key="GridCell.Tab.0.right/0.0.1366.738/1366.-121.1280.689@0.0.1366.738" timestamp="1588441106561" />
     <state width="1237" height="150" key="GridCell.Tab.0.right/0.0.1366.738/1366.-121.1280.689@1366.-121.1280.689" timestamp="1588514761920" />
-    <state width="1323" height="169" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1592926684915" />
+    <state width="1323" height="169" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1593024584395" />
     <state width="745" height="176" key="GridCell.Tab.0.right/0.0.1536.834/-1366.121.1366.738@0.0.1536.834" timestamp="1588796824344" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1587995223955">
       <screen x="0" y="0" width="1366" height="738" />

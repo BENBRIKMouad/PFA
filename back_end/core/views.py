@@ -43,3 +43,7 @@ def AddToCart(request, slug):
         order.products.add(order_product)
 
     return redirect("core:product", slug=slug)
+
+
+def index(request):
+    return render(request, "core/index.html")
