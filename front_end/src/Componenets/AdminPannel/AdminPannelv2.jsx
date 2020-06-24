@@ -8,6 +8,7 @@ import {
   FaCog,
   FaAngleDoubleRight,
   FaUsers,
+  FaArrowLeft,
 } from "react-icons/fa";
 class AdminPannel extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class AdminPannel extends Component {
 
   componentDidMount() {
     axios
-      .get("http://127.0.0.1:8000/api/OrderView")
+      .post("http://127.0.0.1:8000/api/OrderView/", {})
       .then((res) =>
         this.setState({
           Orders: res.data,
@@ -56,6 +57,11 @@ class AdminPannel extends Component {
         <section id="actions" className="py-4 mb-4 bg-light">
           <div className="container">
             <div className="row">
+              <div className="col-md-3">
+                <Link to="/" className="btn btn-light btn-block">
+                  <FaArrowLeft className="mx-1" /> Retour a la Buotique
+                </Link>
+              </div>
               <div className="col-md-3">
                 <Link
                   to="/admin/AddProducts"
@@ -98,9 +104,11 @@ class AdminPannel extends Component {
                         <tr key={Order.id}>
                           <td>
                             <span className="pill"></span>
-                            <div type="button" class="btn btn-primary">
+                            <div type="button" className="btn btn-primary">
                               id:{" "}
-                              <span class="badge badge-light">{Order.id}</span>
+                              <span className="badge badge-light">
+                                {Order.id}
+                              </span>
                             </div>
                           </td>
                           <td>{Order.user_name}</td>
