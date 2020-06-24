@@ -495,9 +495,9 @@ class OrderView(APIView):
     def post(request, *args, **kwargs):
         orders = Order.objects.filter(ordered=True)
         products = Product.objects.all()
+        ordered = request.data.get('ordered', "False")
         if request.data.get('pk') is not None:
             user = User.objects.get(pk=request.data.get('pk'))
-            ordered = request.data.get('ordered', "False")
             if ordered is not None and ordered == "True":
                 ordered = True
             else:
@@ -530,6 +530,7 @@ class OrderView(APIView):
                  'received': order.received,
                  'refund_requested': order.refund_requested,
                  'refund_granted': order.refund_granted,
+                 'price': order.total_price,
                  'refund': ([{'id': Refund.objects.get(order=order).id,
                               'reason': Refund.objects.get(order=order).reason,
                               'accepted': str(Refund.objects.get(order=order).accepted),
