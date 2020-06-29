@@ -67,7 +67,7 @@ class Product(models.Model):
     # badge = models.CharField(choices=BADGES_CHOICES, blank=True, null=True, max_length=1)
     # badge_tag = models.CharField(blank=True, null=True, max_length=30)
     slug = models.SlugField(blank=True)
-    photo = models.ImageField(upload_to="gallery")
+    photo = models.ImageField(upload_to="gallery",default="gallery/food.png")
     description = models.TextField(default="No description available for this product")
     additional_items = models.ManyToManyField(AdditionalItem, blank=True, null=True)
 
