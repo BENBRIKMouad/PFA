@@ -56,9 +56,9 @@ class ProductList extends Component {
 
                 <Card.Text className="text-center lead overflow-hidden">
                   {item.description.length > 60 ? (
-                    <span>{item.description.substring(0, 60)} ... </span>
+                    <>{item.description.substring(0, 55)} ... </>
                   ) : (
-                    item.description.substring(0, 60)
+                    item.description.substring(0, 55)
                   )}
                 </Card.Text>
                 <Card.Text className="text-right">
