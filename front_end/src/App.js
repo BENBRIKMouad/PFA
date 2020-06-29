@@ -39,22 +39,43 @@ class App extends Component {
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/Product/:ID" component={ProductDetail} />
             {/* <Route exact path="/Admin" component={AdminPannel} /> */}
-            <Route exact path="/Admin" component={AdminPannelv2} />
-            <Route exact path="/Admin/AddProducts" component={AddProduct} />
-            <Route exact path="/Admin/RefundList" component={RefundPannel} />
+            {this.props.isAuthenticated ? (
+              <>
+                <Route exact path="/Admin" component={AdminPannelv2} />
+                <Route exact path="/Admin/AddProducts" component={AddProduct} />
+                <Route
+                  exact
+                  path="/Admin/RefundList"
+                  component={RefundPannel}
+                />
+
+                <Route exact path="/Admin/ClientList" component={ClientList} />
+                <Route
+                  exact
+                  path="/Admin/ProductList"
+                  component={ProductList}
+                />
+
+                <Route
+                  exact
+                  path="/Client/:ID/Pannel"
+                  component={ClientPannel}
+                />
+                <Route
+                  exact
+                  path="/Client/:ID/Refund"
+                  component={RefundPannelC}
+                />
+                <Route exact path="/:ID/Profile" component={Profile} />
+                <Route
+                  exact
+                  path="/Admin/AdditionalItem"
+                  component={AdditionalItem}
+                />
+              </>
+            ) : null}
             {/* <Route exact path="/Admin/OrderList" component={OrderList} /> */}
             {/* <Route exact path="/Admin/OrderList/:ID" component={OrderOne} /> */}
-            <Route exact path="/Admin/ClientList" component={ClientList} />
-            <Route exact path="/Admin/ProductList" component={ProductList} />
-
-            <Route exact path="/Client/:ID/Pannel" component={ClientPannel} />
-            <Route exact path="/Client/:ID/Refund" component={RefundPannelC} />
-            <Route exact path="/:ID/Profile" component={Profile} />
-            <Route
-              exact
-              path="/Admin/AdditionalItem"
-              component={AdditionalItem}
-            />
             <Route component={ErrorPage} />
           </Switch>
           <FooterComp />
