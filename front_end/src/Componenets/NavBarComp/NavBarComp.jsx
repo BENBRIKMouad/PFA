@@ -279,7 +279,6 @@ export class NavBarComp extends Component {
                 </>
               ) : (
                 <>
-                  <Nav.Link>A propos</Nav.Link>
                   <Link className="btn btn-outline-secondary mx-2" to="/SignUp">
                     {" "}
                     S'inscrire / Se connecter{" "}

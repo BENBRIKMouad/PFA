@@ -50,6 +50,8 @@ export class ProductsList extends Component {
 
     form_data.append("title", this.state.name);
     form_data.append("price", this.state.prix);
+    form_data.append("description", this.state.description);
+
     let url = `http://127.0.0.1:8000/api/product/${this.state.IdSelectedProduct}/`;
     axios
       .patch(url, form_data, {
@@ -183,9 +185,9 @@ export class ProductsList extends Component {
               <tr>
                 <th>#</th>
                 <th>photo</th>
-                <th>Nom :</th>
+                <th>Nom</th>
                 <th>Prix</th>
-                <th> Produit additionel</th>
+                <th>Supplément</th>
                 <th></th>
               </tr>
             </thead>
@@ -216,15 +218,15 @@ export class ProductsList extends Component {
                       Product.additional_items.map((add_product) => (
                         <React.Fragment key={add_product.id}>
                           <span className="text-success">
-                            {add_product.title}
+                            {add_product.title} :
                           </span>
                           <span className="text-success">
-                            {add_product.price}
+                            {add_product.price} MAD
                           </span>
                         </React.Fragment>
                       ))
                     ) : (
-                      <span className="text-danger"> L9adia 7amda</span>
+                      <span className="text-danger">Aucun</span>
                     )}
                   </td>
                   <td>
@@ -258,7 +260,7 @@ export class ProductsList extends Component {
               <div className="modal-content">
                 <div className="modal-header border-bottom-0">
                   <h5 className="modal-title" id="exampleModalLabel">
-                    Chnager la commande
+                    Changer la commande
                   </h5>
                   <button
                     type="button"

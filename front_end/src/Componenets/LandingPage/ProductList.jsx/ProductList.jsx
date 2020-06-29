@@ -36,7 +36,7 @@ class ProductList extends Component {
                 alt={item.slug}
                 style={{ width: 348, height: 195 }}
               />
-              <Card.Body>
+              <Card.Body className="overflow-hidden">
                 <Card.Title className="text-center">
                   <Link
                     className="text-reset text-decoration-none display-4"
@@ -54,8 +54,12 @@ class ProductList extends Component {
                   )}
                 </Card.Title>
 
-                <Card.Text className="text-center overflow-auto lead">
-                  {item.description}
+                <Card.Text className="text-center lead overflow-hidden">
+                  {item.description.length > 60 ? (
+                    <span>{item.description.substring(0, 60)} ... </span>
+                  ) : (
+                    item.description.substring(0, 60)
+                  )}
                 </Card.Text>
                 <Card.Text className="text-right">
                   {item.discount_price ? (
