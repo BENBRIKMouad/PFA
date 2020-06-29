@@ -3,12 +3,12 @@ import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../Store/Actions/auth";
-import signupimage from "../../assets/2813122.jpg";
+import signupimage from "../../assets/2813143.jpg";
 var sectionStyle = {
   backgroundImage: `url(${signupimage})`,
   backgroundSize: "cover",
-  width: "100vw",
-  height: "100vh",
+  width: "100%",
+  height: "100%",
 };
 class SignIn extends Component {
   constructor(props) {
@@ -46,18 +46,20 @@ class SignIn extends Component {
         <div style={sectionStyle}>
           <div className="container">
             <div className="row">
-              {/* <div className="col-sm-0 col-md-7  mx-auto"></div> */}
-              <div className="col-sm-12 col-md-5  mx-auto">
+              <div
+                className="col-sm-12 col-md-5  mx-auto"
+                style={{ marginTop: "18rem" }}
+              >
                 <div className="card card-signin my-5 shadow-lg">
                   <div></div>
                   <div className="card-body">
                     <h5 className="card-title text-center">Se Connecter</h5>
                     <Form onSubmit={this.handleSubmit}>
                       <Form.Group controlId="formGroupEmail">
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label>Address E-mail </Form.Label>
                         <Form.Control
                           type="text"
-                          placeholder="UserName"
+                          placeholder="Nom d'utilisateur"
                           name="username"
                           onChange={this.ChangeForm}
                         />
@@ -66,7 +68,7 @@ class SignIn extends Component {
                         <Form.Label>Mot de Passe</Form.Label>
                         <Form.Control
                           type="password"
-                          placeholder="*****"
+                          placeholder="******"
                           name="mdp"
                           onChange={this.ChangeForm}
                         />
@@ -79,7 +81,7 @@ class SignIn extends Component {
                         Envoyer
                       </Button>
                       <h5 className="my-2">
-                        Vous n'avez pas un coompte ?{" "}
+                        Vous n'avez pas de compte ?{" "}
                         <Link to="/SignUp">Inscrivez Vous </Link>
                       </h5>
                     </Form>

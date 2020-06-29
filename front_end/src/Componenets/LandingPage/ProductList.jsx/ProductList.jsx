@@ -30,7 +30,12 @@ class ProductList extends Component {
         {Products.map((item) => (
           <div className="col my-4" key={item.id}>
             <Card className="shadow-lg mb-5 bg-white rounded">
-              <Card.Img variant="top" src={item.photo} />
+              <Card.Img
+                variant="top"
+                src={item.photo}
+                alt={item.slug}
+                style={{ width: 348, height: 195 }}
+              />
               <Card.Body>
                 <Card.Title className="text-center">
                   <Link

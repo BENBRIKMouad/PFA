@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaArrowLeft, FaAngleDoubleRight } from "react-icons/fa";
+import { Modal } from "react-bootstrap";
 export class ClientPannl extends Component {
   state = {
     Info: {},
     isFetched: false,
+    modalDetailOpened: false,
+    SelectedOrder: {},
   };
   componentDidMount() {
     axios
@@ -14,12 +17,15 @@ export class ClientPannl extends Component {
         ordered: "True",
       })
       .then(({ data }) => this.setState({ Info: data, isFetched: true }));
-    // .then(this.setState({ }));
   }
   DateFix = (x) => {
     var Newdate = new Date(x);
 
     return Newdate.toLocaleString();
+  };
+  ModalHandler = async (term) => {
+    console.log(term);
+    this.setState({ SelectedOrder: term, modalDetailOpened: true });
   };
   render() {
     console.log(this.state);
@@ -66,6 +72,7 @@ export class ClientPannl extends Component {
                           <th>#</th>
                           <th>RéfCode</th>
                           <th>Date</th>
+                          <th>Prix </th>
                           <th></th>
                         </tr>
                       </thead>
@@ -83,14 +90,14 @@ export class ClientPannl extends Component {
                             </td>
                             <td>{Commande.ref_code}</td>
                             <td>{this.DateFix(Commande.ordered_date)}</td>
-
+                            <td>{Commande.price} MAD</td>
                             <td>
-                              <Link
-                                to={`${this.props.match.path}/RefundList`}
+                              <button
+                                onClick={() => this.ModalHandler(Commande)}
                                 className="btn btn-secondary"
                               >
                                 <FaAngleDoubleRight className="m-1" /> Details
-                              </Link>
+                              </button>
                             </td>
                           </tr>
                         ))}
@@ -102,7 +109,93 @@ export class ClientPannl extends Component {
             </div>
           </section>
         ) : null}
+        {this.state.modalDetailOpened ? (
+          <>
+            <Modal
+              show={this.state.modalDetailOpened}
+              onHide={() => this.setState({ modalDetailOpened: false })}
+              size="lg"
+            >
+              <div className="modal-content">
+                <div className="modal-header border-bottom-0">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    Commande {this.state.SelectedOrder.id}
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={() => this.setState({ modalDetailOpened: false })}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <table className="table table-striped">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Prix Total</th>
+                        <th>Statut récéprion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <td>{this.state.SelectedOrder.id}</td>
+                      <td>
+                        {this.DateFix(this.state.SelectedOrder.ordered_date)}
+                      </td>
+                      <td> {this.state.SelectedOrder.price}</td>
+                      <td>
+                        {this.state.SelectedOrder.received
+                          ? "recu"
+                          : "pas recu"}
+                      </td>
+                    </tbody>
+                  </table>
 
+                  <span className="lead m-2">Produit : </span>
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Photo</th>
+                        <th>Nom</th>
+                        <th>Quantité </th>
+                        <th> Prix Individuelle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.state.SelectedOrder.product.map((prod) => (
+                        <tr>
+                          <td>
+                            <img
+                              src={prod.photo}
+                              alt={prod.slug}
+                              className="img-thumbnail "
+                            />
+                          </td>
+                          <td>{prod.title}</td>
+                          <td>{prod.quantity}</td>
+                          <td>{prod.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="modal-footer border-top-0 d-flex justify-content-between">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => this.setState({ modalDetailOpened: false })}
+                  >
+                    Fermé
+                  </button>
+                </div>
+              </div>
+            </Modal>
+          </>
+        ) : null}
         {/* <Link to={`/Client/${this.props.match.params.ID}/Refund`}>
           Demander Un remboursement
         </Link> */}

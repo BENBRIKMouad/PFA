@@ -21,13 +21,15 @@ class ProductDetail extends Component {
       .get(`http://127.0.0.1:8000/api/ProductView/${this.state.id}`)
       .then(({ data }) => this.setState({ data: data, isFetched: true }))
       .catch((err) => console.log(err));
-    const token = localStorage.getItem("token");
-    axios
-      .post("http://127.0.0.1:8000/api/TokenView/", {
-        token: token,
-      })
-      .then(({ data }) => this.setState({ Info: data }))
-      .catch((err) => console.log(err));
+    if (this.props.isAuthenticated) {
+      const token = localStorage.getItem("token");
+      axios
+        .post("http://127.0.0.1:8000/api/TokenView/", {
+          token: token,
+        })
+        .then(({ data }) => this.setState({ Info: data }))
+        .catch((err) => console.log(err));
+    }
   }
 
   notify = () =>
@@ -53,6 +55,7 @@ class ProductDetail extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <React.Fragment>
         <br />
@@ -100,13 +103,15 @@ class ProductDetail extends Component {
                   )}{" "}
                   MAD
                   {this.props.isAuthenticated ? (
-                    <Button
-                      variant="success"
-                      onClick={this.AddItem}
-                      className="btn-block "
-                    >
-                      Ajouter au panier
-                    </Button>
+                    this.state.Info.is_admin ? null : (
+                      <Button
+                        variant="success"
+                        onClick={this.AddItem}
+                        className="btn-block "
+                      >
+                        Ajouter au panier
+                      </Button>
+                    )
                   ) : (
                     <Link
                       to="/SignIn"

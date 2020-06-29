@@ -3,7 +3,9 @@ export default class ErrorPage extends Component {
   render() {
     return (
       <>
-        <div id="clouds"></div>
+        <div>
+          <h1>404Error Page</h1>
+        </div>
       </>
     );
   }
