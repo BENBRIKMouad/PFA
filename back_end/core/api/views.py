@@ -336,7 +336,7 @@ class PaymentHandler(APIView):
                         man.save()
                         order.status = 'W'
                         order_products = Order.objects.filter(pk=pk)[0].products.all()
-                        return Response({'message': 'la commande a été commandée'})
+                        return Response({'message': 'la commande est payé'})
                 if order.status != 'W':
                     order.status = 'Q'
                     order.save()
@@ -574,6 +574,8 @@ class ProductView(APIView):
     @staticmethod
     def get(request, *args, **kwargs):
         products = Product.objects.all()
+
+        print(kwargs.get('pk'))
         if kwargs.get('pk') is not None:
             pk = kwargs.get('pk')
             product = Product.objects.get(pk=pk)
