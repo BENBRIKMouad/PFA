@@ -198,8 +198,7 @@ class Order(models.Model):
                                          blank=True,
                                          null=True)
 
-    def __str__(self):
-        return "%s %s" % (self.user.username, self.order_date)
+
 
     def total_saved_price(self):
         save = 0

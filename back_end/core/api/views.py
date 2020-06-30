@@ -373,6 +373,7 @@ class RefundHandler(APIView):
             if order_qs.exists() and order_qs[0].ordered:
                 order = order_qs[0]
                 if option == "request":
+                    print(0)
                     if not order.refund_requested:
                         reason = request.data.get('reason', None)
                         Refund.objects.create(reason=reason, accepted=False, in_queue=True, order=order)
@@ -392,6 +393,7 @@ class RefundHandler(APIView):
                         client.amount += order.total_price
                         refund.save()
                         order.save()
+                        client.save()
                         return Response({'message': 'remboursement accordé'})
                     else:
                         return Response({'error': 'le remboursement est déjà accordé ou non demandé sur cette commande'})
@@ -697,3 +699,4 @@ class TokenView(APIView):
                 'is_admin': user.is_superuser
             }
         return Response(data)
+
