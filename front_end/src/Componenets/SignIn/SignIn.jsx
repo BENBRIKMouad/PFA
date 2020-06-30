@@ -34,11 +34,11 @@ class SignIn extends Component {
     });
   }
   render() {
-    let errorMessage = null;
-    if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
-      console.log(this.props.error);
-    }
+    // let errorMessage = null;
+    // if (this.props.error) {
+    //   errorMessage = <p>{this.props.error.message}</p>;
+    //   console.log(this.props.error);
+    // }
     console.log(this.state);
     return (
       <>

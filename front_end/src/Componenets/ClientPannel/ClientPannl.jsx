@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaArrowLeft, FaAngleDoubleRight } from "react-icons/fa";
-import { Modal } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 export class ClientPannl extends Component {
   state = {
     Info: {},
     isFetched: false,
     modalDetailOpened: false,
     SelectedOrder: {},
+    ModalRembours: false,
+    rembourseprod: null,
+    raison: "",
   };
   componentDidMount() {
     axios
@@ -27,6 +30,10 @@ export class ClientPannl extends Component {
     console.log(term);
     this.setState({ SelectedOrder: term, modalDetailOpened: true });
   };
+  ChangeForm = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
     console.log(this.state);
     return (
@@ -47,6 +54,14 @@ export class ClientPannl extends Component {
                 <Link to="/" className="btn btn-light btn-block">
                   <FaArrowLeft className="mx-1" /> Retour a la Boutique
                 </Link>
+              </div>
+              <div className="col-md-3">
+                <button
+                  className="btn btn-outline-dark"
+                  onClick={() => this.setState({ ModalRembours: true })}
+                >
+                  Demander un Remboursemnt
+                </button>
               </div>
             </div>
           </div>
@@ -177,7 +192,11 @@ export class ClientPannl extends Component {
                           </td>
                           <td>{prod.title}</td>
                           <td>{prod.quantity}</td>
-                          <td>{prod.price}</td>
+                          <td>
+                            {prod.discount_price > 0
+                              ? prod.discount_price
+                              : prod.price}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -190,6 +209,86 @@ export class ClientPannl extends Component {
                     onClick={() => this.setState({ modalDetailOpened: false })}
                   >
                     Fermé
+                  </button>
+                </div>
+              </div>
+            </Modal>
+          </>
+        ) : null}
+        {this.state.ModalRembours ? (
+          <>
+            <Modal
+              show={this.state.ModalRembours}
+              onHide={() => this.setState({ ModalRembours: false })}
+              size="lg"
+            >
+              <div className="modal-content">
+                <div className="modal-header border-bottom-0">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    Remboursemnt
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={() => this.setState({ ModalRembours: false })}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <Form>
+                    <Form.Group>
+                      <Form.Label>Commande ID</Form.Label>
+                      <Form.Control
+                        as="select"
+                        custom
+                        onChange={(e) =>
+                          this.setState({ rembourseprod: e.target.value })
+                        }
+                      >
+                        <option value="" selected disabled hidden>
+                          Choisie ICI
+                        </option>
+                        {this.state.Info.map((Commande) => (
+                          <option
+                            key={Commande.id}
+                            value={this.state.rembourseprod}
+                          >
+                            {Commande.id}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Raison</Form.Label>
+
+                      <Form.Control
+                        as="textarea"
+                        rows="3"
+                        placeholder="Raison"
+                        onChange={this.ChangeForm}
+                        value={this.state.raison}
+                        name="raison"
+                      />
+                    </Form.Group>
+                  </Form>
+                </div>
+                <div className="modal-footer border-top-0 d-flex justify-content-between">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => this.setState({ ModalRembours: false })}
+                  >
+                    Fermé
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    onClick={() => this.setState({ ModalRembours: false })}
+                  >
+                    Envoyer
                   </button>
                 </div>
               </div>

@@ -72,9 +72,7 @@ class RefundPannel extends Component {
         return this.state.refundList.map((item) => (
           <tr key={item.id}>
             <td>{item.id}</td>
-            <td>
-              <Link to={`/Admin/OrderList/${item.order}`}> {item.order}</Link>
-            </td>
+            <td>{item.order}</td>
             <td>{item.reason}</td>
             <td>
               {item.in_queue ? (
@@ -92,9 +90,7 @@ class RefundPannel extends Component {
       return this.state.SelectedItem.map((item) => (
         <tr key={item.id}>
           <td>{item.id}</td>
-          <td>
-            <Link to={`/Admin/OrderList/${item.order}`}>{item.order}</Link>
-          </td>
+          <td>{item.order}</td>
           <td>{item.reason}</td>
           <td>
             {item.in_queue ? (

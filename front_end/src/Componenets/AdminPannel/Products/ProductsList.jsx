@@ -260,7 +260,11 @@ export class ProductsList extends Component {
               <div className="modal-content">
                 <div className="modal-header border-bottom-0">
                   <h5 className="modal-title" id="exampleModalLabel">
-                    Changer la commande
+                    {this.state.status === "send" ? (
+                      <> Ajouter unPlat</>
+                    ) : (
+                      <>Changer le plat</>
+                    )}
                   </h5>
                   <button
                     type="button"
